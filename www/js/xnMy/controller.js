@@ -56,8 +56,8 @@ angular.module('xn.my.ctrl', [])
         }
     ])
 
-    .controller('user_ctrl', ['$stateParams','AccountService','$ionicHistory','FirstService','PictureSelect','$ionicActionSheet', '$ionicPopup', '$rootScope', 'iAlert', '$log', '$scope', 'ionicDatePicker', 'Storage', 'ionicToast', '$filter', '$timeout',
-        function ($stateParams,AccountService,$ionicHistory,FirstService,PictureSelect, $ionicActionSheet,$ionicPopup, $rootScope, iAlert, $log, $scope, ionicDatePicker, Storage, ionicToast, $filter, $timeout) {
+    .controller('user_ctrl', ['$stateParams','$state','$interval','AccountService','$ionicHistory','FirstService','PictureSelect','$ionicActionSheet', '$ionicPopup', '$rootScope', 'iAlert', '$log', '$scope', 'ionicDatePicker', 'Storage', 'ionicToast', '$filter', '$timeout',
+        function ($stateParams,$state,$interval,AccountService,$ionicHistory,FirstService,PictureSelect, $ionicActionSheet,$ionicPopup, $rootScope, iAlert, $log, $scope, ionicDatePicker, Storage, ionicToast, $filter, $timeout) {
             var vm = $scope.vm = this;
             $log.debug("我的页面");
             vm.data = {};
@@ -67,7 +67,7 @@ angular.module('xn.my.ctrl', [])
             //vm.userChange.name = $rootScope.user.UserInfo.username;
             //vm.userChange.age = 12;
             $scope.textTs = '获取验证码';
-           
+            $scope.isDisabled = false;
 
             vm.openDatePicker = function () {
                 ionicDatePicker.openDatePickerExtend(ipObj1);
@@ -121,7 +121,7 @@ angular.module('xn.my.ctrl', [])
                                 <label class="item-input-wrapper">
                                    <input type="tel" maxlength="6" ng-model="data.verifyNum" placeholder="请输入验证码">
                                 </label>
-                                <button class="button button-small button-assertive" ng-click='getCoke(data.phone)'>
+                                <button ng-disabled="isDisabled" class="button button-small button-assertive" ng-click='getCoke(data.phone)'>
                                     {{textTs}}
                                 </button>
                             </div>
@@ -145,18 +145,18 @@ angular.module('xn.my.ctrl', [])
                     
                         $interval.cancel(vm.timer);
                         vm.timer = undefined;
-                        vm.textTs = '获取验证码';
-                        vm.isDisabled = false;
+                        $scope.textTs = '获取验证码';
+                        $scope.isDisabled = false;
                     }
                 }
 
                 if (falg) {
-                    vm.time = 89;
-                    vm.textTs = vm.time + 's后请重新获取';
-                    vm.isDisabled = true;
+                    vm.time =60;
+                    $scope.textTs = vm.time + 's后请重新获取';
+                    $scope.isDisabled = true;
                     vm.timer = $interval(function () {
                         vm.time--;
-                        vm.textTs = vm.time + 's后请重新获取';
+                        $scope.textTs = vm.time + 's后请重新获取';
                         if (vm.time == 0) {
                             stop();
                         }
@@ -171,7 +171,7 @@ angular.module('xn.my.ctrl', [])
             $scope.getCoke = function (phone) {
             
                 if (/(^13[0-9]{9}$)|(^15[0-9]{9}$)|(^17[0-9]{9}$)|(^18[012356789][0-9]{8}$)/.test(phone)) {
-                    
+                    vm.clearIntervalOut(true)
                 }else{
                     ionicToast.alert('手机号格式不正确');
                     return false;

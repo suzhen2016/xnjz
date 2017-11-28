@@ -53,7 +53,7 @@ angular.module('rsc.common.account.service', ['rsc.common.service.rest','rsc.com
                  * 修改手机号接口
                  */
                 xnGetChangePhone: function (str) {
-                    var all = XnRestAngular.allUrl('/User/uptPhoneNumVerifyCode?'+str);
+                    var all = XnRestAngular.allUrl('/User/updatePhoneNumber?'+str);
                     return all.get('');
                 },
             }
