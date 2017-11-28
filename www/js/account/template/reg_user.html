@@ -1,0 +1,86 @@
+<ion-view>
+  <ion-nav-title>
+    <div class="bar bar-positive">
+      <div class="button-bar nav-bar">
+        <a class="button" nav-transition="ios" nav-direction="enter">注册</a>
+      </div>
+    </div>
+  </ion-nav-title>
+  <ion-content>
+    <div class="bg-white item-login">
+      <form name="frm_registe_first" novalidate>
+        <div class="list">
+          <!--用户名-->
+          <li class="item item-input item-icon-left">
+            <i class="icon ion-person"></i>
+            <input class="font-col" type="text" name="realname" id="realname" required ng-model="vm.user.username" placeholder="输入您的姓名"
+              maxlength="12" ng-pattern="/^[(\u4e00-\u9fa5)+A-Za-z]{1,12}[^`~!@$%^&()+=|\\\][\]\{\}:;'\,.<>?\d]$/">
+          </li>
+          <div class="form-error" ng-messages="frm_registe_first.realname.$dirty&&frm_registe_first.realname.$error">
+            <div ng-message="pattern">请输入2-10个中英文字符</div>
+          </div>
+          <!--邮箱-->
+           <li class="item item-input item-icon-left">
+            <i class="icon ion-email"></i>
+            <input class="font-col" type="text" name="realEmail" id="realEmail" required ng-model="vm.user.user_email" placeholder="输入您的邮箱"
+               ng-pattern="/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])/">
+          </li>
+          <div class="form-error" ng-messages="frm_registe_first.realEmail.$dirty&&frm_registe_first.realEmail.$error">
+            <div ng-message="pattern">请输入正确的邮箱</div>
+          </div>
+
+          <!--手机号-->
+          <!--<li class="item item-input item-icon-left">
+            <i class="icon ion-iphone"></i>
+            <input class="font-col" type="tel" name="phone" id="phone" required maxlength="11" ng-model="vm.user.phone" phone-check placeholder="输入手机号"
+              ng-pattern="/(^13[0-9]{9}$)|(^15[0-9]{9}$)|(^17[0-9]{9}$)|(^18[012356789][0-9]{8}$)/">
+          </li>-->
+         <div class="form-error " ng-messages="frm_registe_first.phone.$dirty&&frm_registe_first.phone.$error">
+            <div ng-message="pattern">请输入11位手机号码</div>
+            <div ng-message="phone">手机号码已注册</div>
+          </div>
+
+          <li class="item item-input item-icon-left">
+            <i class="icon ion-iphone"></i>
+            <input class="font-col" name="phone" type="tel"  ng-model="vm.user.phone" placeholder="输入手机号" maxlength="11"
+              phone-check find-password="true" ng-pattern="/(^13[0-9]{9}$)|(^15[0-9]{9}$)|(^17[0-9]{9}$)|(^18[012356789][0-9]{8}$)/">
+            <button ng-click="vm.getCode()" ng-disabled="vm.isDisabled" class="button button-small button-assertive">
+							{{vm.textTs}}
+						</button>
+          </li>
+
+           <li class="item item-input item-icon-left">
+            <i class="icon"><img src="./img/common/code.png" class="code"></i>
+            <input class="font-col" name="verify_code" type="tel" ng-model="vm.user.chknumber" placeholder="输入验证码" ng-pattern="/^[0-9]{6}$/"
+              maxlength="6">
+          </li>
+
+          <!--密码-->
+          <li class="item item-input item-icon-left">
+            <i class="icon ion-key"></i>
+            <input class="font-col" type="password" name="password" id="one" required ng-model="vm.user.pwd_one" placeholder="输入您的密码"
+              maxlength="13" ng-pattern="/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,13}$/">
+          </li>
+          <div class="form-error" ng-messages="frm_registe_first.password.$dirty&&frm_registe_first.password.$error">
+            <div ng-message="pattern">请输入6-13个字母和数字</div>
+          </div>
+          <!--再次确认密码-->
+          <li class="item item-input item-icon-left">
+            <i class="icon ion-key"></i>
+            <input class="font-col" type="password" name="password-two" id="two" required ng-model="vm.user.pwd_two" placeholder="请再次确认你的密码"
+              maxlength="13" ng-pattern="/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,13}$/">
+          </li>
+          <!--<div class="form-error" ng-messages="frm_registe_first.password-two.$dirty&&frm_registe_first.password-two.$error">
+            <div ng-message="pattern">请输入2-10个中英文字符</div>
+          </div>-->
+        </div>
+        <div class="clear"></div>
+        <button ng-disabled="frm_registe_first.$invalid" ng-click="vm.registeCode()" class="button button-block button-stable">
+					注册并登陆
+				</button>
+        <!--<button ng-click='vm.registeCode()'>fahsffhfha</button>-->
+        <!--<h5 class="gap-10 text-gray">注：点击注册表示您同意<a class="text-blue" ui-sref="reg_agreement">《西南家政用户注册协议》</a></h5>-->
+      </form>
+    </div>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,33 @@
+<ion-view hide-tabs="true">
+    <ion-nav-title>
+        <div class="bar bar-positive">
+            <h1 class="title">
+                选择地址
+            </h1>
+        </div>
+    </ion-nav-title>
+    <ion-content class="bg-gray" >
+        <div ng-if='!vm.dele.isLoading && vm.address_data.length==0 '>
+            <h4 class="text-center gap-30" style="padding-bottom:30px">
+                当前暂无数据,请到设置里面添加个人收货地址
+            </h4>
+        </div>
+        <div ng-if='vm.dele.isError && vm.address_data.length==0'>
+            <h4 class="text-center gap-30" style="padding-bottom:30px">
+                服务器忙，请稍后重试
+            </h4>
+        </div>
+        <div ng-if='vm.dele.isLoading'>
+            <h4 class="text-center gap-30" style="padding-bottom:30px">
+                <ion-spinner icon="spiral"></ion-spinner>
+            </h4>
+        </div>
+        <div class="list " ng-repeat="item in vm.address_data track by $index" >
+            <li class="item item-avatar item-address-master" ng-click='vm.selectAddress(item)'>
+                <img src="./img/common/landmark-1.png" class="landmark">
+                <h2 class="text-gray1">详细地址：{{item.cgn_daddr}}</h2>
+                <p>联系人：{{item.cgn_name}} &nbsp;&nbsp;&nbsp;&nbsp;<span>手机号：{{item.cgn_tel}}&nbsp&nbsp</span> </p>
+            </li>
+        </div>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,15 @@
+<div ng-if="data.type == 'company' ">
+    <div class="list">
+        <label class="item item-input">
+      <textarea placeholder="简述公司介绍,限制200字" ng-model="data.desc" maxlength="200" style="height:300px;"></textarea>
+    </label>
+    </div>
+</div>
+
+<div ng-if="data.type == 'user' ">
+    <div class="list">
+        <label class="item item-input">
+      <textarea placeholder="备注个人信息" ng-model="data.desc" maxlength="200" style="height:300px;"></textarea>
+    </label>
+    </div>
+</div>

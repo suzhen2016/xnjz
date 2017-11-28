@@ -1,0 +1,33 @@
+<ion-view hide-tabs="true">
+  <!--顶部导航-->
+  <ion-nav-title>
+    <div class="bar bar-positive">
+      <h1 class="title">评价</h1>
+    </div>
+  </ion-nav-title>
+
+  <!--内容区域-->
+  <ion-content class="bg-gray">
+    <div class="list gap-8">
+      <li class="item">
+        <p>商品还可以，请给五星好评，谢谢</p>
+      </li>
+    </div>
+    <div class="list gap-8">
+      <li class="item">
+        <p>为该{{vm.info.yuangong_id =='0' ?'商品':'员工' }}评价：<span class="text-red appraise-start pa-right-5 {{i.class}}" ng-repeat="i in vm.obj track by $index" ng-click='vm.appStart($index)'></span></p>
+      </li>
+    </div>
+    <div class="bg-white">
+      <div class="list list-item list-type-input">
+        <label class="item item-input list-input">
+            <textarea class="text-gray1" ng-model='vm.query.cmt_msg' maxlength="200" rows="3" wrap="soft" placeholder="请填写文字评论"></textarea>
+        </label>
+      </div>
+    </div>
+    <button class="button button-block button-positive" ng-click='vm.submitAppraise()' style="margin-top:100px">
+      提交评价
+    </button>
+
+  </ion-content>
+</ion-view>

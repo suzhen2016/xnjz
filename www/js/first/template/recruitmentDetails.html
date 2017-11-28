@@ -1,0 +1,85 @@
+<ion-view hide-tabs="true">
+  <!--中间内容区-->
+  <ion-nav-title>
+    <div class="bar bar-positive">
+      <div class="button-bar nav-bar">
+        <a class="button">招聘详情</a>
+      </div>
+    </div>
+  </ion-nav-title>
+  <ion-content class="bg-gray xn-content" ng-init='vm.init()'>
+    <div ng-if='!vm.dele.isLoading'>
+      <div class="bg-white item-padding-10">
+        <h3><span>{{vm.dele.hire.hire_name}}</span><span class="txet-red">【{{vm.dele.hire.office_salary}}】</span></h3>
+        <h4 class="gap-8">
+          <span class="ion-ios-location">&nbsp&nbsp{{vm.dele.hire.hire_area}}</span>
+          <span class="ion-ios-folder">&nbsp{{vm.dele.hire.work_year| workTime}}</span>
+          <span class="ion-university">&nbsp{{vm.dele.hire.hire_degree |Degree}}</span>
+        </h4>
+        <h4>
+          <span class="ion-ios-alarm">&nbsp&nbsp{{vm.dele.hire.upd_time}}</span>
+        </h4>
+      </div>
+      <div class="list">
+        <div class='item_box item gap-10 padding-none first-bottom pa-btm-5'>
+          <h3 class='pa-left-10 pa-top-5'>
+            <span>岗位要求</span>
+          </h3>
+        </div>
+        <div class="item item-body">
+          <p class="gap-0" ng-repeat="i in vm.dele.hireInfo track by $index">
+            <span class="text-bold" ng-if='i.work_need'>{{$index + 1}}.</span> {{i.work_need}}
+          </p>
+        </div>
+      </div>
+      <div class="list">
+        <div class='item_box item gap-10 padding-none first-bottom pa-btm-5'>
+          <h3 class='pa-left-10 pa-top-5'>
+            <span>岗位职责</span>
+          </h3>
+        </div>
+        <div class="item item-body">
+          <p class="gap-0" ng-repeat="i in vm.dele.hireInfo track by $index">
+            <span class="text-bold" ng-if='i.work_duty'>{{$index + 1}}.</span> {{i.work_duty}}
+          </p>
+        </div>
+      </div>
+
+      <div class="list">
+        <div class='item_box item gap-10 padding-none first-bottom pa-btm-5'>
+          <h3 class='pa-left-10 pa-top-5'>
+            <span>联系方式</span>
+          </h3>
+        </div>
+        <a class="item item-icon-left">
+        <i class="icon ion-ios-person"></i>
+        联系人：{{vm.dele.hire.hire_person}}
+      </a>
+        <a class="item item-icon-left item-icon-right" ng-click='vm.telPhone()'>
+          <i class="icon ion-android-phone-portrait"></i>
+          手机：{{vm.dele.hire.hire_tel}}
+          <i class="icon ion-ios-telephone-outline"></i>
+        </a>
+
+        <a class="item item-icon-left">
+        <i class="icon ion-android-mail"></i>
+        邮箱：{{vm.dele.hire.hire_email}}
+      </a>
+
+        <a class="item item-icon-left">
+        <i class="icon ion-chatbox-working"></i>
+        QQ:{{vm.dele.hire.hire_qq}}
+        
+      </a>
+
+      </div>
+    </div>
+
+    <div ng-if='vm.dele.isLoading'>
+      <h4 class="text-center gap-30">正在加载中...</h4>
+    </div>
+    <div ng-if='vm.dele.isLoading && !vm.dele.isError'>
+      <h4 class="text-center gap-30">服务器忙请稍后再访问...</h4>
+    </div>
+  </ion-content>
+</ion-view>

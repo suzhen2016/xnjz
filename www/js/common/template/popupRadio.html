@@ -1,0 +1,360 @@
+<!-- 单选框弹窗 type类型:radio text number select confirm file-->
+
+<div ng-if="data.type == 'radio' ">
+    <!-- 增加加载图片 -->
+    <ion-spinner ng-if="!popup_lists" icon="ios"></ion-spinner>
+    <!--<ion-radio ng-if="popup_lists.length >0" ng-repeat="item in popup_lists" ng-value='{eng:item.eng,chn:item.chn}' ng-model="data.subtype"-->
+        <!--name="server-side">-->
+        <!--{{item.chn}}$event.stopPropagation()-->
+    <!--</ion-radio>-->
+    <ul class="list">
+        <li class="item item-checkbox item-checkbox1 item-icon-right" ng-repeat="item in popup_lists">
+          <label class="checkbox" style="width:250px;">
+            <!--<input type="radio" ng-value='item' ng-model="data.subtype">-->
+            <input type="radio" ng-value='item' ng-model="data.subtype">
+          </label>
+         {{item.chn}}&nbsp;
+          <i class="icon ion-ios-help-outline text-gray1" ng-if="data.isAnswer" ng-click="data.answerClick(item.eng);"></i>
+        </li>
+    </ul>
+    <div class="clearfix"></div>
+    <span ng-if="data.msg" ng-class="data.msgCss ? data.msgCss:'text-gray1'">{{data.msg}}</span><br/>
+    <span ng-if="data.msg1" ng-class="data.msgCss ? data.msgCss:'text-gray1'">{{data.msg1}}</span>
+
+</div>
+<div ng-if="data.type == 'radioActive' ">
+  <!-- 增加加载图片 -->
+  <ion-spinner ng-if="!popup_lists" icon="ios"></ion-spinner>
+  <ion-radio ng-if="popup_lists.length >0" ng-repeat="item in popup_lists" ng-value='{prov_address:item.prov_address,city_address:item.city_address,dist_address:item.dist_address,detail_address:item.detail_address,chn:item.chn,eng:item.eng}' ng-model="data.subtype"
+             name="server-side">
+    {{item.prov_address}}{{item.city_address}}{{item.dist_address}}{{item.detail_address}}{{item.chn}}
+  </ion-radio>
+  <span ng-if="data.msg" ng-class="data.msgCss ? data.msgCss:'text-gray1'">{{data.msg}}</span><br/>
+  <span ng-if="data.msg1" ng-class="data.msgCss ? data.msgCss:'text-gray1'">{{data.msg1}}</span>
+</div>
+<div ng-if="data.type == 'Product' ">
+  <!-- 增加加载图片 -->
+  <ion-radio  ng-value='{eng:item.eng,chn:item.chn}' ng-model="data.coal" name="server-side">
+  <span>煤炭</span>
+  </ion-radio>
+  <ion-radio  ng-value='{eng:item.eng,chn:item.chn}' ng-model="data.steel"
+              name="server-side">
+    <span>钢铁</span>
+  </ion-radio>
+  <span ng-if="data.msg" ng-class="data.msgCss ? data.msgCss:'text-gray1'">{{data.msg}}</span><br/>
+  <span ng-if="data.msg1" ng-class="data.msgCss ? data.msgCss:'text-gray1'">{{data.msg1}}</span>
+</div>
+<div ng-if="data.type == 'radio2' ">
+  <!-- 增加加载图片 -->
+  <ion-spinner ng-if="!data.popup_lists" icon="ios"></ion-spinner>
+    <ul ng-if="data.popup_lists.length >0" class="list">
+      <li class="item item-checkbox item-checkbox1 item-checkbox2" ng-repeat="item in data.popup_lists">
+        <label class="checkbox">
+          <input type="radio" ng-value='item' ng-model="data.subtype">
+        </label>
+        {{item.chn}}
+      </li>
+    </ul>
+  <span ng-if="data.msg" class="text-gray1">{{data.msg}}</span>
+</div>
+<div ng-if="data.type == 'radioMode' ">
+    <!-- 增加加载图片-->
+    <ion-spinner ng-if="!popup_lists" icon="ios"></ion-spinner>
+    <ion-radio ng-if="popup_lists.length >0" ng-repeat="item in popup_lists" ng-value='{eng:item.eng,chn:item.chn}' ng-model="data.subtype"
+        name="server-side" class="">
+        {{item.chn}}
+    </ion-radio>
+    <span><span>于{{msg.time_arrival}}三方物流不可用</span></span>
+    <span ng-if="data.msg" class="text-gray1"></span>
+</div>
+
+<div ng-if="data.type == 'radioObject' ">
+    <!-- 增加加载图片 -->
+    <ion-spinner ng-if="! (popup_lists.length==0) && popup_lists.length <0" icon="ios"></ion-spinner>
+    <ion-radio ng-if="popup_lists.length >0" ng-repeat="item in popup_lists" ng-value='item' ng-model="data.subtype" name="server-side">
+        {{item.chn}}
+    </ion-radio>
+</div>
+<div ng-if="data.type == 'text' ">
+    <div>
+        <label ng-repeat="item in popup_lists">
+        <!--<span class="input-label" >{{item.chn}}</span>-->
+            <input type='text' ng-value='xxx' ng-model="data.subtype[item.eng]" placeholder="请输入{{item.chn}}"/>
+        </label>
+    </div>
+</div>
+<div ng-if="data.type == 'number' ">
+    <form name="form">
+        <div ng-repeat="(key,item) in popup_lists">
+            <label class="item item-input">
+          <span class="input-label">{{item.chn}}</span>
+          <input type='text' name="{{key}}" ng-model="data.subtype[item.eng]" placeholder="{{item.pel?item.pel:'请输入'}}" required  ng-pattern= '/^[1-9][0-9]{0,9}(\.\d{1,2})?$/'>
+          <!--   ng-pattern= '/^[1-9][0-9]{0,9}(\.\d{1,2})?$/'-->
+        </label>
+            <span class="text-red" ng-messages="form[key].$dirty && form[key].$error">
+            <span ng-message="required">不能为空</span>
+            <span ng-message="pattern">{{data.demoPatternMsg}}</span>
+            </span>
+        </div>
+    </form>
+</div>
+<div ng-if="data.type == 'numberss' ">
+    <form name="form">
+        <div ng-repeat="(key,item) in popup_lists">
+            <label class="item item-input">
+        <span class="input-label">请输入</span>
+        <input type='text' name="{{key}}" ng-model="data.subtype[item.eng]" placeholder="{{item.chn}}" required ng-pattern="/^[1-9][0-9]{0,99}(\.\d{1,2})?$/" max="100" maxlength="5" minlength="1">
+      </label>
+            <span class="text-red" ng-messages="form[key].$dirty && form[key].$error">
+            <span ng-message="required">不能为空</span>
+            <span ng-message="max">不能大于100</span>
+            <span ng-message="pattern">整数[100以内],小数[2位],且不能为0</span>
+            </span>
+        </div>
+    </form>
+</div>
+<div ng-if="data.type=='select' ">
+    <label class="item item-input">
+        <span class="input-label">{{data.subhead}}</span>
+        <select style="font-size: 16px" ng-model="data.subtype"
+                ng-options="item.eng as item.chn for item in popup_lists">
+        </select>
+    </label>
+</div>
+<div ng-if="data.type=='advanced_payment' ">
+    <label class="item item-input">
+        <span class="input-label">首付款支付方式:</span>
+        <select ng-model="data.advanced_payment"
+                ng-options="item.value as item.text for item in [{value:['url','现金'],text:'现金'},{value:['credit','信用'],text:'信用'}]">
+        </select>
+    </label>
+    <label class="item item-input">
+        <span class="input-label">尾款支付方式:</span>
+        <select ng-model="data.final_payment"
+                ng-options="item.value as item.text for item in [{value:['url','现金'],text:'现金'},{value:['credit','信用'],text:'信用'}]">
+        </select>
+    </label>
+</div>
+<div ng-if="data.type=='confirm' ">
+    <sapn>{{data.text}}</sapn>
+</div>
+<div ng-if=" data.type=='file' ">
+    <label class="item item-input">
+        <input type="file" name="file" accept=".jpg,.png,.jpeg,.bmp" ng-model="data.file" onchange="angular.element(this).scope().getUploadPic(this.files)" ng-disabled="0" />
+
+    </label>
+    <span class="text-red">请选择小于5M的jpg格式的图片</span>
+    <img ng-if="previewImageSrc" class="card2" ng-src="{{previewImageSrc}}" alt="预览图片">
+</div>
+
+
+<div ng-if="data.type=='selectDriver' ">
+    <label class="item item-input">
+        {{data.subhead}}
+        <select style="font-size: 14px" ng-model="data.item"
+                ng-options="(item.real_name+'-' +item.phone ) for item in popup_lists">
+            <!--(o.ProductColor+'-'+o.ProductName)-->
+            <option value="">选择要更换的司机</option>
+        </select>
+    </label>
+</div>
+<div ng-if="data.type=='changeCar' ">
+    <label class="item item-input">
+        <span class="input-label">{{data.subhead}}</span>
+        <select style="font-size: 16px" ng-model="data.car"
+                ng-options="item.number for item in carList">
+            <!--(o.ProductColor+'-'+o.ProductName)-->
+            <option value="">选择要更换的车辆</option>
+        </select>
+    </label>
+
+    <label class="item item-input">
+        <span class="input-label">司机信息</span>
+        <select style="font-size: 16px" ng-model="data.driver"
+                ng-options="(item.real_name+'-' +item.phone ) for item in driverList">
+            <!--(o.ProductColor+'-'+o.ProductName)-->
+            <option value="">选择要更换的司机</option>
+        </select>
+    </label>
+</div>
+<div ng-if="data.type=='newChangeCar' ">
+    <label class="item item-input">
+        <span class="input-label">{{data.subhead}}</span>
+        <select style="font-size: 16px" ng-model="data.car"
+                ng-options="item.number for item in cars">
+            <!--(o.ProductColor+'-'+o.ProductName)-->
+            <option value="">选择要更换的车辆</option>
+        </select>
+    </label>
+
+    <label class="item item-input">
+        <span class="input-label">司机信息</span>
+        <select style="font-size: 16px" ng-model="data.driver"
+                ng-options="(item.real_name+'-' +item.phone ) for item in drivers">
+            <!--(o.ProductColor+'-'+o.ProductName)-->
+            <option value="">选择要更换的司机</option>
+        </select>
+    </label>
+</div>
+
+
+<!--修改收机号的弹框-->
+<div ng-if="data.type == 'phone' ">
+  <div>
+    <ion-list>
+      <form name="myPhone" novalidate>
+        <ion-item ng-repeat="item in popup_lists" style="padding: 6px">
+          <label>
+            <!--<span class="input-label" >{{item.chn}}</span>-->
+            <input type='text' name ="{{item.name}}"  ng-value='xxx' ng-model="data.subtype[item.eng]" placeholder="请输入{{item.chn}}" required
+                   style="display: inline-block" ng-change="getTrue()" maxlength="11"
+                   ng-pattern="/(^13[0-9]{9}$)|(^15[0-9]{9}$)|(^17[0-9]{9}$)|(^18[012356789][0-9]{8}$)/"/>
+            </label>
+          <div class="form-error"
+               ng-messages="myPhone.phone.$dirty&&myPhone.phone.$error">
+            <div ng-message="pattern">格式错误(11位手机号码)</div>
+          </div>
+        </ion-item>
+        <ion-item style="padding: 6px">
+
+            <!--<span class="input-label" >{{item.chn}}</span>-->
+            <input type='text' name ="yan"  ng-model="data.subtype.number" placeholder="请输入验证码"
+                   required maxlength="6"
+                   style="display: inline-block"/>
+            <button ng-disabled="isPhone" class="button ng-binding button-positive"  ng-click="getNewNum()">{{btnText}}</button>
+          <div class="form-error">
+            {{errConfig}}
+          </div>
+        </ion-item>
+      </form>
+    </ion-list>
+
+  </div>
+</div>
+
+
+
+<div ng-if="data.type=='changeDate' " style="padding-left: 15px;">
+    <section class="col-xs-12 col-md-12" ng-init="option={
+            formatMonth: 'MM月',
+            formatYear: 'yy年',
+            formatDayHeader: 'EEE',
+            formatDayTitle: 'MM月 yyyy年',
+            formatMonthTitle: 'yyyy年',
+            maxDate: data.maxDate,
+            minDate: data.minDate,
+            showWeeks: false,
+            startingDay:0}">
+        <!--  style="float:none; margin:20px auto; background:#fff; padding:20px;" -->
+        <uib-datepicker datepicker-options="option" ng-model="data.dt" min-date="data.minDate" max-date="data.maxDate" show-weeks="true"
+            class="wellwell-sm"></uib-datepicker>
+        <!--<uib-datepicker datepicker-options='{minDate:data.minDate,maxDate:data.maxDate,showWeeks:false}' ng-model="data.dt" min-date="data.minDate" max-date="data.maxDate" show-weeks="true" class="wellwell-sm"></uib-datepicker>-->
+
+
+    </section>
+</div>
+<!--订单第三步，采购方需填写数字和时间 -->
+<div ng-if="data.type == 'numDate' ">
+    <form name="form">
+        <div>
+            <label class="item item-input">
+          <span class="input-label">吨数</span>
+          <input type='text' name="amount" ng-model="data.subtype.amount" placeholder="吨数" required ng-pattern="/^[1-9][0-9]{0,9}(\.\d{1,2})?$/" >
+        </label>
+            <span class="text-red" ng-messages="form.amount.$dirty && form.amount.$error">
+            <span ng-message="required">不能为空</span>
+            <span ng-message="pattern">整数[1-10位],小数[2位],且不能为0</span>
+            </span>
+            <label class="item item-input">
+          <span class="input-label">最终到货时间</span>
+          <input type='text' name="date" ng-model="data.subtype.date" placeholder="2016/01/01" required ng-pattern="/^(201[6-9])\/(0[1-9]|1[1-2])\/(0[1-9]|[1-2][0-9]|3[0-1])$/" >
+        </label>
+            <span class="text-red" ng-messages="form.date.$dirty && form.date.$error">
+            <span ng-message="required">不能为空</span>
+            <span ng-message="pattern">格式为"年/月/日,2016/01/01"</span>
+            </span>
+        </div>
+    </form>
+</div>
+<div ng-if="data.type == 'pass_number' ">
+    <form name="form">
+        <div ng-repeat="(key,item) in popup_lists">
+            <label class="item item-input">
+        <span class="input-label">{{item.chn}}</span>
+        <input type='number' name="{{key}}" value="{{item.value}}" ng-model="data.subtype[item.eng]" placeholder="{{item.chn}}" required max={{item.max}} min={{item.min}}>
+      </label>
+            <span class="text-red" ng-messages="form[key].$dirty && form[key].$error">
+            <span ng-message="required">不能为空</span>
+            <span ng-message="min">{{'必须大于'+item.min +'小于'+item.max}}</span>
+            <span ng-message="max">{{'必须大于'+item.min +'小于'+item.max}}</span>
+            <span ng-message="pattern">整数[100以内],小数[2位],且不能为0</span>
+            </span>
+        </div>
+    </form>
+</div>
+<div ng-if="data.type=='truckGroup'">
+    <label class="item item-input">
+        {{data.subhead}}
+        <select style="font-size: 14px" ng-model="data.item"
+                ng-options="item.name for item in popup_lists">
+            <!--(o.ProductColor+'-'+o.ProductName)-->
+            <option value="">选择要分配组</option>
+        </select>
+    </label>
+</div>
+
+<div ng-if="data.type == 'checkbox' ">
+    <!-- 增加加载图片 -->
+    <ion-spinner ng-if="!popup_lists" icon="ios"></ion-spinner>
+    <ul class="list">
+        <li class="item item-checkbox item-checkbox1 item-icon-right" ng-repeat="item in popup_lists">
+          <label class="checkbox" style="height:38px;">
+            <input type="checkbox" ng-value='{eng:item.eng,chn:item.chn}' ng-model="item.checkbox">
+          </label>
+          {{item.chn}}&nbsp;
+        </li>
+    </ul>
+    <span ng-if="data.msg" class="text-gray1">{{data.msg}}</span>
+</div>
+<!--公用的下拉框选择-->
+
+<div ng-if="data.type=='selectControl' ">
+
+    <label class="item item-input">
+        <span class="input-label">{{data.subhead}}</span>
+        <select style="font-size: 16px" ng-model="data.Selected"
+                ng-options="item[data.key] for item in data.items">
+            <!--(o.ProductColor+'-'+o.ProductName)-->
+            <option value="">{{data.firstText}}</option>
+        </select>
+    </label>
+</div>
+<!--申请申诉弹出框-->
+<div ng-if="data.type == 'ton_num' ">
+  <form name="form">
+    <div ng-repeat="(key,item) in popup_lists">
+      <label class="item item-input">
+        <span class="input-label">请输入</span>
+        <input type='number' name="{{key}}" ng-model="data.subtype[item.eng]" placeholder="{{item.chn}}" required ng-pattern="/^[1-9][0-9]{0,5}(\.\d{1,3})?$/" >
+      </label>
+            <span class="text-red" ng-messages="form[key].$dirty && form[key].$error">
+            <span ng-message="required">不能为空</span>
+            <span ng-message="pattern">整数6位(小数3位)</span>
+            </span>
+    </div>
+  </form>
+</div>
+<div ng-if="data.type=='liji'">
+  <form name="form">
+    <h4>平台还未帮您设置理计系数，请留下您的联系方式，运营人员会在30min內联系您</h4>
+    <label class="item item-input">
+      <span class="input-label">电话</span>
+      <input type='text' name="telephone" ng-model="liji.phone"   max="20" maxlength="11" minlength="0" placeholder="请输入手机号"  required ng-pattern="/^((0\d{2,3}-\d{7,8})|(1[3584]\d{9}))$/">
+    </label>
+      <span class="form-error" ng-messages="form.telephone.$dirty&&form.telephone.$error">
+        <span ng-message="required">不能为空</span>
+        <span ng-message="pattern">请输入正确的联系方式</span>
+      </span>
+  </form>
+</div>
+

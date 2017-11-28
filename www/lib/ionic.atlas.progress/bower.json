@@ -1,0 +1,41 @@
+{
+  "name": "ionic.atlas.progress",
+  "version": "0.0.2",
+  "description": "A header progress bar using the style of Uber",
+  "author": "WebAtlas GbR <aaron.czichon@webatlas-gbr.de> (https://github.com/WebAtlas)",
+  "main": [
+    "dist/ionic.atlas.progress.css",
+    "dist/ionic.atlas.progress.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WebAtlas/ionic-atlas-progress.git"
+  },
+  "ignore": [
+    "js",
+    ".gitignore",
+    "gulpfile.js",
+    "LICENSE",
+    "package.json",
+    "README.md"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "ionic": "^1.1.0"
+  },
+  "keywords": [
+    "mobile",
+    "html5",
+    "ionic",
+    "cordova",
+    "phonegap",
+    "uber",
+    "progress",
+    "bar",
+    "animation",
+    "angularjs",
+    "angular"
+  ],
+  "license": "MIT",
+  "private": false
+}

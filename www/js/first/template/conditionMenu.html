@@ -1,0 +1,30 @@
+<ion-view hide-tabs="true">
+  <!--中间内容区-->
+  <ion-nav-title>
+    <div class="bar bar-positive">
+      <div class="button-bar nav-bar">
+        <a class="button">{{vm.dele.title}}</a>
+      </div>
+    </div>
+  </ion-nav-title>
+  <ion-content class="bg-gray xn-content" ng-init ='vm.init()'>
+    <ion-slide-box on-slide-changed="slideHasChanged($index)" auto-play="false" does-continue="false" show-pager="false">
+      <ion-slide>
+        <img src="./img/xn/first/zhaopin/hire.png" class="img-responsive">
+      </ion-slide>
+    </ion-slide-box>
+    <div class="bg-white">
+      <div class="list">
+        <a class="item item-thumbnail-left item-icon-right" ui-sref='tab.conditionDetails({id:i.dyn_id})' ng-repeat="i in vm.dele.list track by $index">
+          <img src="{{imgUrl + i.dyn_pho_headimg}}">
+          <h2>标题：{{i.dyn_title}}</h2>
+          <p>内容：{{i.dyn_content}}</p>
+          <span>时间：{{i.upd_time}}</span>
+          <i class="icon ion-ios-arrow-right"></i>
+        </a>
+     </div>
+     
+     
+    </div>
+  </ion-content>
+</ion-view>

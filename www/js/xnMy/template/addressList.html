@@ -1,0 +1,47 @@
+<ion-view hide-tabs="true">
+    <ion-nav-title>
+        <div class="bar bar-positive">
+            <h1 class="title">
+                地址管理
+            </h1>
+        </div>
+    </ion-nav-title>
+    <ion-content class="bg-gray has-footer" >
+        <div ng-if='!vm.dele.isLoading && vm.address_data.length==0 && !vm.dele.isError'>
+            <h4 class="text-center gap-30" style="padding-bottom:30px">
+                当前暂无数据
+            </h4>
+        </div>
+        <div ng-if='!vm.dele.isLoading &&  vm.dele.isError'>
+            <h4 class="text-center gap-30" style="padding-bottom:30px">
+                服务器忙，请稍后重试
+            </h4>
+        </div>
+        <div ng-if='vm.dele.isLoading'>
+            <h4 class="text-center gap-30" style="padding-bottom:30px">
+                <ion-spinner icon="spiral"></ion-spinner>
+            </h4>
+        </div>
+        <div class="list " ng-repeat="item in vm.address_data">
+            <li class="item item-avatar item-address-master ">
+                <img src="./img/common/landmark-1.png" class="landmark">
+                <h2 class="text-gray1">详细地址：{{item.cgn_daddr}}</h2>
+                <p>联系人：{{item.cgn_name}} &nbsp;&nbsp;&nbsp;&nbsp;<span>手机号：{{item.cgn_tel}}&nbsp&nbsp</span> </p>
+            </li>
+            <li class="item  item-address-master item-icon-right" style="padding: 0;padding-left:10px;margin-bottom:10px">
+                <label class="checkbox" style="vertical-align: middle">
+						<input type="radio" name="radio" ng-model="item.cgn_bool" ng-value='vm.isRadio'
+							   ng-click="vm.setDefultAddress(item.cgn_id)">
+					</label>
+                <span class="text-gray">默认地址</span>
+                <i class="icon">
+					<span class="h5 text-gray" ng-click="vm.edit(item)">编辑</span>
+					<span class="h5 text-gray" ng-click="vm.deleAddress(item.cgn_id)">删除</span>
+				</i>
+            </li>
+        </div>
+    </ion-content>
+    <ion-footer-bar class="bar bar-light">
+        <h1 class="title text-red" ui-sref='tab.addAdrss({params:"add"})'> +新增地址</h1>
+    </ion-footer-bar>
+</ion-view>

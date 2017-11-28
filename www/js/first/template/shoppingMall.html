@@ -1,0 +1,45 @@
+<ion-view hide-tabs="true" ng-init='vm.init()'>
+  <!--中间内容区-->
+  <ion-nav-title>
+    <div class="bar bar-positive">
+      <div class="button-bar nav-bar">
+        <a class="button">购物商城</a>
+      </div>
+    </div>
+  </ion-nav-title>
+  <ion-content class="bg-gray xn-content">
+    <ion-slide-box on-slide-changed="slideHasChanged($index)" auto-play="false" does-continue="false" show-pager="false">
+      <ion-slide>
+        <img src="./img/xn/first/homeWork/dingbu.png" class="img-responsive">
+      </ion-slide>
+    </ion-slide-box>
+
+    <div class="list" ng-repeat="item in vm.order.data track by $index">
+      <div class='item_box item gap-10 padding-none first-bottom pa-btm-5'>
+        <h3 class='pa-left-10 pa-top-5'>
+          <img style="width: 25px" class="img_icon" src="{{imgUrl + item.img_img}}" alt="">
+          <span>{{item.img_name}}</span>
+          <span class="pull-right pa-right-10" ui-sref='tab.shoppingMore({id:item.more_id})'>更多 ></span>
+        </h3>
+      </div>
+      <div class="row row-wrap">
+          <div class="col col-33" ng-repeat="i in item.list">
+            <div class="list card" ui-sref='tab.shoppDetail({id:i.goods_id})'>
+              <div class="item item-body text-space shopMall">
+                <img class="full-image" src="{{imgUrl + i.goods_s_logo}}">
+                <p>
+                  {{i.goods_introduce}}
+                </p>
+                <p>
+                  <a class="subdued">￥{{i.goods_price}}</a>
+                </p>
+              </div>
+
+            </div>
+          </div>
+      </div>
+    </div>
+    
+  </ion-content>
+
+</ion-view>

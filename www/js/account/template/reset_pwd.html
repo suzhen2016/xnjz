@@ -1,0 +1,32 @@
+<ion-view view-title="找回密码" hide-back-button="true">
+	<ion-nav-buttons side="left">
+		<i class="icon ion-ios-arrow-back" ng-click="rootGoBack()"></i>
+	</ion-nav-buttons>
+	<ion-content>
+		<div class="bg-white item-login">
+			<form name="new_password" novalidate>
+				<div class="list">
+					<li class="item-input item-icon-left item-icon-right">
+						<i class="icon ion-key"></i>
+						<input class="font-col" type={{vm.inputSel?'password':'text'}}
+							   placeholder="设置密码"
+							   ng-model="vm.data.new_password"
+							   required
+							   name="password"
+							   ng-pattern="/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$$/"
+						>
+						<i ng-click="vm.isSelect()" class="icon {{vm.inputSel?'ion-eye-disabled':'ion-eye'}}"></i>
+					</li>
+					<div class="form-error" ng-messages="new_password.password.$dirty&&new_password.password.$error" >
+						<!--<div ng-message="required">密码不能为空</div>-->
+						<div ng-message="pattern">请输入密码6-16位字母+数字</div>
+					</div>
+				</div>
+				<div class="clear"></div>
+				<button ng-disabled="new_password.$invalid" class="button button-block button-stable" ng-click="vm.update()">
+					完成
+				</button>
+			</form>
+		</div>
+	</ion-content>
+</ion-view>

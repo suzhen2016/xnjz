@@ -1,0 +1,46 @@
+<ion-view hide-tabs="true">
+  <!--中间内容区-->
+  <ion-nav-title>
+    <div class="bar bar-positive">
+      <div class="button-bar nav-bar">
+        <a class="button">公司动态</a>
+      </div>
+    </div>
+  </ion-nav-title>
+  <ion-content class="bg-gray xn-content" ng-init='vm.init()'>
+    <!--<ion-refresher spinner="spiral" on-refresh="doRefresh()"></ion-refresher>-->
+    <div>
+      <ion-scroll zooming="false" direction="x" scrollbar-x="false" style="width:700px;">
+        <ul class="third-bar ">
+          <!--<li class="condition_col">全部  ui-sref='tab.condition({id:i.cat_id})'   </li>-->
+          <li class="condition_col" ng-class='{active:i.cat_id==vm.dele.classActive}' ng-click='vm.getNewList(i.cat_id)' ng-repeat="i in vm.dele.list track by $index">{{i.cat_name}}</li>
+        </ul>
+      </ion-scroll>
+    </div>
+      <div ng-if='!vm.dele.isLoading && vm.dele.newsList.length==0'>
+        <h4 class="text-center gap-30" style="padding-bottom:30px">
+          当前暂无数据
+        </h4>
+      </div>
+       <div ng-if='!vm.dele.isLoading'>
+        <h4 class="text-center gap-30" style="padding-bottom:30px">
+          数据加载中...
+        </h4>
+      </div>
+       <div ng-if='vm.dele.isLoading && vm.dele.isError'>
+        <h4 class="text-center gap-30" style="padding-bottom:30px">
+        服务器正忙,请稍后再访问
+        </h4>
+      </div>
+    <div class="bg-white" ng-if='vm.dele.isLoading&& vm.dele.newsList.length>0'>
+      <div class="list">
+        <a class="item item-thumbnail-left item-icon-right" ui-sref='tab.conditionDetails({id:i.dyn_id})' ng-repeat="i in vm.dele.newsList track by $index">
+          <img src="{{imgUrl + i.dyn_pho_headimg}}">
+          <h2>标题：{{i.dyn_title}}</h2>
+          <p>内容：{{i.dyn_content}}</p>
+          <span>时间：{{i.upd_time}}</span>
+          <i class="icon ion-ios-arrow-right"></i>
+        </a>
+      </div>
+  </ion-content>
+</ion-view>

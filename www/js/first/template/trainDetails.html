@@ -1,0 +1,92 @@
+<ion-view hide-tabs="true">
+  <!--中间内容区-->
+  <ion-nav-title>
+    <div class="bar bar-positive">
+      <div class="button-bar nav-bar">
+        <a class="button">培训详情</a>
+      </div>
+    </div>
+  </ion-nav-title>
+  <ion-content class="bg-gray xn-content" ng-init='vm.init()'>
+    <div ng-if='!vm.dele.isLoading && vm.dele.train'>
+      <div class="bg-white item-padding-10">
+        <h4><span>培训项目：{{vm.dele.train.train_cname}}</span></h4>
+        <h4><span>培训费用：￥{{vm.dele.train.train_price}}</span></h4>
+      </div>
+
+      <div class="list">
+        <div class='item_box item gap-10 padding-none first-bottom pa-btm-5'>
+          <h3 class='pa-left-10 pa-top-5'>
+            <span>培训简介</span>
+          </h3>
+        </div>
+        <!--<div class="item item-body">
+            
+        </div>-->
+        <ul class="list">
+              <li class="item">
+                培训教师：{{vm.dele.train.train_teacher}}
+              </li>
+              <li class="item">
+                培训地点：{{vm.dele.train.train_addr}}
+              </li>
+              <li class="item">
+                培训周期：{{vm.dele.train.train_cycle}}
+              </li>
+              <li class="item">
+                开班人数：{{vm.dele.train.train_pnum}}
+              </li>
+               <li class="item">
+                报名截止日期：{{vm.dele.train.train_time}}
+              </li>
+              <li class="item">
+                开课时间：{{vm.dele.train.train_time}}
+              </li>
+          </ul>
+      </div>
+
+      <div class="list">
+        <div class='item_box item gap-10 padding-none first-bottom pa-btm-5'>
+          <h3 class='pa-left-10 pa-top-5'>
+            <span>培训内容</span>
+          </h3>
+        </div>
+        <div class="item item-body">
+          <p class="gap-0" ng-repeat="i in vm.dele.tInfo track by $index">
+            <span class="text-bold" ng-if='i.tinfo_item'>{{$index + 1}}.</span> {{i.tinfo_item}}
+          </p>
+        </div>
+      </div>
+
+      <div class="list">
+        <div class='item_box item gap-10 padding-none first-bottom pa-btm-5'>
+          <h3 class='pa-left-10 pa-top-5'>
+            <span>联系方式</span>
+          </h3>
+        </div>
+        <a class="item item-icon-left">
+          <i class="icon ion-ios-person"></i>
+          联系人：{{vm.dele.hire.hire_person}}
+        </a>
+
+        <a class="item item-icon-left item-icon-right" ng-click='vm.telPhone()'>
+          <i class="icon ion-android-phone-portrait"></i>
+          手机：{{vm.dele.train.train_tel}}
+          <i class="icon ion-ios-telephone-outline"></i>
+        </a>
+        <a class="item item-icon-left">
+          <i class="icon ion-chatbubble"></i>
+          微信：{{vm.dele.train.train_wechat}}
+        </a>
+        <a class="item item-icon-left">
+          <i class="icon ion-chatbox-working"></i>
+          QQ：{{vm.dele.train.train_qq}}
+        </a>
+
+      </div>
+    </div>
+    <div ng-if='vm.dele.isLoading'>
+        <h4 class="text-center gap-30">正在加载中...</h4>
+    </div>
+  </ion-content>
+</ion-view>

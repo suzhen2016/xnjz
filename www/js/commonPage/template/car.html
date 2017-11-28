@@ -1,0 +1,92 @@
+<ion-view hide-tabs="true" hide-back-button='true'>
+  <ion-nav-title>
+    <div class="bar bar-positive">
+      <h1 class="title">购物车</h1>
+    </div>
+  </ion-nav-title>
+  <!--<ion-nav-buttons side="left">
+    <i class="icon ion-ios-arrow-back" nav-transition="ios" nav-direction="back" ng-click='vm.goBack()'></i>
+  </ion-nav-buttons>-->
+  <ion-nav-buttons side="left">
+        <i class="icon ion-ios-arrow-back" nav-transition="ios" nav-direction="back" ng-click='vm.goBack()'></i>
+        <span  class="default-title" ng-click='vm.goBack()'>返回</span>
+    </ion-nav-buttons>
+  <!--内容区域-->
+  <ion-content ng-init="vm.init()" class="bg-gray has-footer">
+    <div class="list car">
+      <div class="item item-button-right gap-10">
+        西南家政购物车
+        <span ng-if='vm.carList.length>0' class="pull-right" ng-click='vm.editOrder(vm.isEdit)'>{{vm.isEdit?"编辑":'完成'}}</span>
+      </div>
+    </div>
+
+    <div ng-if='!vm.isLoading && vm.carList.length==0'>
+        <h4 class="text-center gap-30" style="padding-bottom:30px">
+          购物车空空，赶快去将商品添加购物车
+        </h4>
+    </div>
+
+    <div ng-if='vm.isLoading'>
+        <h4 class="text-center gap-30" style="padding-bottom:30px">
+          
+          <!--<ion-spinner icon="spiral"></ion-spinner>-->
+          <span>数据加载中...</span>
+        </h4>
+    </div>
+
+    <div class="bg-white"  ng-if='!vm.dele.isLoading && vm.carList.length>0'>
+      <div class="list  list-plan">
+        <div class="item item-avatar item-offer item-car item-offer-plan" ng-repeat="item in vm.carList track by $index">
+          <label class="checkbox" ng-if='vm.isEdit'>
+							<input type="checkbox"  ng-model="item.isOrder" ng-change="vm.isSeletAll()">
+					</label>
+          <label class="checkbox" ng-if='!vm.isEdit'>
+							<input type="checkbox"  ng-model="item.isDele" ng-change="vm.isSeletAll()">
+					</label>
+          <a class="item item-car item-thumbnail-left">
+            <img src="{{imgUrl+item.goods_log}}">
+            <h4>【西南家政】</h4>
+            <p>{{item.goods_introduce}}</p>
+            <span>￥{{item.goods_price}}</span>
+            <div class="pull-right driver-input">
+              <img src="./img/xn/first/shopping/minus.png" ng-if='item.is_goods==0' class="pull-left" ng-click="vm.changeNum('cut',item)">
+              <input type="tel" placeholder="1" class="pull-left"  ng-disabled="item.is_goods==1" ng-model="item.goods_buy_number" ng-change="vm.changeNum('change',item)">
+              <img src="./img/xn/first/shopping/plus.png" ng-if='item.is_goods==0' class="pull-left" ng-click=" vm.changeNum('add',item)">
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+
+
+
+  </ion-content>
+  <div class="bar bar-footer bar-light" ng-if='vm.isEdit'>
+    <div class="row button-foot">
+      <div class="col col-67">
+        <!--<label class="checkbox">
+            <input type="checkbox" ng-model='vm.isAllSelect' ng-change='vm.selectAll()'>
+        </label> -->
+        <!--<span class="text-small">全选</span>-->
+        <span class="text-red gap-left-20">已选择({{vm.isAllSelect}})&nbsp&nbsp总价：{{vm.query.sum |currency :'￥'}}</span>
+      </div>
+      <div class="col col-red text-center" ng-click='vm.submitOrder()'>
+        去结算
+      </div>
+    </div>
+  </div>
+  <div class="bar bar-footer bar-light" ng-if='!vm.isEdit'>
+    <div class="row button-foot">
+      <div class="col col-67">
+        <label class="checkbox">
+            <input type="checkbox" ng-model='vm.isAlldele' ng-change='vm.selectAll()'>
+        </label> 
+        <span class="text-small">全选</span>
+      </div>
+      <div class="col col-red text-center" ng-click="vm.dele()">
+        删除
+      </div>
+    </div>
+  </div>
+</ion-view>

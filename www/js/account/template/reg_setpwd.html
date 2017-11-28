@@ -1,0 +1,39 @@
+<ion-view view-title="设置密码" hide-back-button="true">
+	<ion-nav-buttons side="left">
+		<i class="icon ion-ios-arrow-back" ng-click="rootGoBack()"></i>
+	</ion-nav-buttons>
+	<ion-content>
+		<div class="bg-white item-login">
+			<form name="frm_registe_setpwd">
+				<div class="list">
+					<li class="item item-input item-icon-left">
+						<i class="icon"><img src="./img/general/code.png" class="code"></i>
+						<input class="font-col" name="code" id="code" type="tel" required autofocus="autofocus" ng-model="user.verify_code" placeholder="输入验证码" maxlength="6"
+							   ng-pattern="/^[0-9]{6}$/">
+						<button class="button button-small button-assertive" ng-click="getCode()" ng-disabled="timeDown">{{getCodeText}}
+						</button>
+					</li>
+					<div class="form-error"
+						 ng-messages="frm_registe_setpwd.code.$dirty&&frm_registe_setpwd.code.$error">
+						<div ng-message="required">请输入6位验证码数字</div>
+						<div ng-message="pattern">请输入6位验证码数字</div>
+					</div>
+					<li class="item-input item-icon-left item-icon-right">
+						<i class="icon ion-key"></i>
+						<input class="font-col" type={{inputSel?'password':'text'}} name="pwd" id="pwd" required ng-pattern="/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$$/"
+							   ng-model="user.password" placeholder="设置密码">
+						<i ng-click="isSelect()" class="icon {{inputSel?'ion-eye-disabled':'ion-eye'}}"></i>
+					</li>
+					<div class="form-error" ng-messages="frm_registe_setpwd.pwd.$dirty&&frm_registe_setpwd.pwd.$error">
+						<!--<div ng-message="required">密码不能为空</div>-->
+						<div ng-message="pattern">请输入密码6-16位字母+数字</div>
+					</div>
+				</div>
+				<div class="clear"></div>
+				<button ng-disabled="frm_registe_setpwd.$invalid" ng-click="goNext()" class="button button-block button-stable">
+					{{user.type=='employeesAndDrivers'?'完成注册':'下一步'}}
+				</button>
+			</form>
+		</div>
+	</ion-content>
+</ion-view>

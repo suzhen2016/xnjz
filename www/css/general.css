@@ -1,0 +1,72 @@
+/* Empty. Add your own CSS if you like */
+/*登录注册样式*/
+/*.bg-login {
+    background: url("../img/general/bg-login.png") no-repeat center center;
+    background-size: 100%;
+    padding-top: 128px;
+}*/
+.bg-login a {
+    font-size: 14px;
+}
+.item-login {
+    padding: 15px 15px 0 15px;
+}
+.item-login .item{
+    /*padding: 0;*/
+    border: none;
+    margin: 0;
+    border-bottom: 1px solid #e8e8e8;
+}
+.item-login .item:last-child{
+    border-bottom: none;
+}
+.item-login .item-input {
+    padding-left: 35px;
+}
+.code {
+    width: 15px;
+    height: 21px;
+    margin-left: 8px;
+}
+.item-login .icon {
+    font-size: 28px;
+    color: #2C2C2C;
+}
+.item-login .ion-eye-disabled{
+    color: #999;
+}
+.item-login .item-icon-left .icon {
+    left: 0;
+}
+.item-login .item-icon-right .icon {
+    right: 0;
+}
+.login-foot {
+    padding: 20px 80px;
+}
+/*我要买卖*/
+.list-buytype h2{
+    width: 150px;
+    text-align: center;
+    padding: 20px 0 0 20px;
+    color: #333;
+}
+/*错误提示*/
+.form-error {
+    background: rgba(255, 238, 175, 0.5);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    margin-left: -15px;
+    margin-right: -15px;
+    text-align: center;
+    z-index: 99;
+}
+.form-error div {
+    font-size: 12px;
+    padding: 3px;
+    color: #8B572A;
+}
+.form-error-line {
+    margin-left: 0;
+}

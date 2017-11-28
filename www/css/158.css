@@ -1,0 +1,1040 @@
+/* Empty. Add your own CSS if you like */
+
+
+/*交易样式*/
+
+
+/*买*/
+
+.item-offer-list {
+    position: relative;
+    padding: 12px 0 12px 70px;
+    border: none;
+}
+
+.item-offer-list .item-face {
+    position: absolute;
+    right: 15px;
+    top: 12px;
+}
+
+.item-offer-list h2 {
+    position: relative;
+    padding-left: 40px;
+    padding-right: 15px;
+    font-size: 14px;
+}
+
+.item-offer-list p {
+    font-size: 12px;
+    color: #999;
+}
+
+.item-offer-list img.label-v-purple {
+    position: absolute;
+    top: 35px;
+    left: 40px;
+    width: 16px;
+    height: 16px;
+}
+
+.item-offer-list h5 {
+    font-size: 12px;
+    padding-right: 15px;
+}
+
+.list-item .item {
+    font-size: 14px;
+    border: none;
+    padding: 13px 15px;
+}
+
+.list-item .item-icon-right {
+    padding-right: 30px;
+}
+
+.list-item .icon {
+    right: 0;
+    color: #dedede;
+    font-size: 20px;
+}
+
+.list-item .list-input {
+    border: none;
+    padding: 6px 15px;
+}
+
+.list-item .list-input-condensed {
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.input-label {
+    font-size: 14px;
+    width: 100%;
+}
+
+.list-input input {
+    font-size: 14px;
+    padding-right: 0;
+}
+
+.list-item .item-except {
+    padding: 15px 30px 15px 0;
+    border-top: 1px solid #e8e8e8;
+}
+
+.item-except-area {
+    padding: 10px;
+    font-size: 14px;
+    width: 100%;
+}
+
+
+/*提货地址*/
+
+.list-item .item-except-adrress {
+    padding: 3px 0 3px 0;
+    border-top: 1px solid #e8e8e8;
+}
+
+.list-item .item-except-adrress .item {
+    padding-left: 3px;
+}
+
+
+/*买-计划*/
+
+.item-plan {
+    border: none;
+    padding: 12px 15px;
+}
+
+.item-plan h2 {
+    font-size: 14px;
+}
+
+.item-plan p {
+    font-size: 12px;
+}
+
+.item-plan-title {
+    font-size: 12px;
+    border-top: 1px solid #f5f5f5;
+}
+
+
+/*库存量*/
+
+.list-item-num {
+    padding: 10px 0;
+}
+
+.list-item-num h4 {
+    padding: 0 15px;
+    margin-bottom: 15px;
+}
+
+.list-item-num .item {
+    padding-top: 8px;
+    padding-bottom: 7px;
+    margin: 0;
+    margin-left: 15px;
+    border-left: 2px solid #e8e8e8;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.list-item-num .item:last-child {
+    border-bottom: none;
+}
+
+.list-item-num .list-input {
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+
+.list-item-num .list-input input.num-input {
+    padding-top: 10px;
+}
+
+
+/*发热量等*/
+
+.list-type-input {
+    border-bottom: none;
+    margin-left: 15px;
+}
+
+.list-type-input .list-input {
+    padding-left: 0;
+    margin: 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.list-type-input .list-input:last-child {
+    /*border-bottom: none;*/
+}
+
+
+/*选择产品种类*/
+
+.coal-type h2 {
+    text-align: center;
+}
+
+.coal-type-bar .button {
+    background: transparent;
+    line-height: 32px;
+    min-height: 0;
+    min-width: 0;
+    overflow: visible;
+    padding: 0;
+}
+
+.coal-type-bar .button.active {
+    border-radius: 20px;
+    background: #fff;
+    color: #459352;
+    border: 1px solid #459352;
+}
+
+.coal-type-bar .button.activated {
+    border: none;
+    border-radius: 0;
+}
+
+.coal-type .col.active {
+    border-radius: 20px;
+    background: #fff;
+    color: #459352;
+    border: 1px solid #459352;
+}
+
+
+/*发布定价*/
+
+.add-area {
+    padding: 10px 0 10px 15px;
+}
+
+.add-area-list {
+    position: relative;
+    border-top: 1px solid #e8e8e8;
+    padding-top: 10px;
+    margin-top: 10px;
+}
+
+.add-area-list li {
+    padding: 5px 0 5px 40px;
+    font-size: 14px;
+    color: #666;
+}
+
+.add-area-list h4 {
+    position: absolute;
+    left: 0;
+    top: 17px;
+}
+
+.add-area-list a {
+    font-size: 12px;
+    padding-right: 15px;
+}
+
+
+/*报价详情*/
+
+.item-offer {
+    padding: 12px 0 12px 15px;
+    border: none;
+}
+
+.item-offer h2 {
+    position: relative;
+    padding-left: 42px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.item-offer h6 {
+    font-size: 11px;
+}
+
+.item-offer h5 {
+    font-size: 12px;
+    padding-right: 15px;
+}
+
+.item-offer .h6 {
+    padding-right: 15px;
+}
+
+.item-offer .row-area {
+    padding: 10px 15px 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.item-offer .row-area-border-no {
+    border-bottom: none;
+}
+
+.item-offer .row-area:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.item-offer-condensed {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+
+/*更新库存*/
+
+.button-royal-update {
+    position: absolute;
+    right: 15px;
+    top: 0px;
+    padding: 0 10px;
+}
+
+
+/*更新质检*/
+
+.qtest-icon {
+    width: 310px;
+    height: 180px;
+}
+
+
+/*买计划*/
+
+.item-offer h2.item-offer-title {
+    padding-left: 0;
+    padding-right: 15px;
+}
+
+.list-plan {
+    margin-left: 15px;
+}
+
+.item-offer-plan {
+    border-top: 1px solid #f5f5f5;
+    padding-left: 28px;
+}
+
+.item-offer-plan .checkbox {
+    position: absolute;
+    top: 50%;
+    /*left: -7px;*/
+    z-index: 3;
+    margin-top: -21px;
+}
+
+.item-offer h2 small {
+    font-size: 11px;
+    padding-right: 15px;
+}
+
+.item-offer h3 {
+    font-size: 16px;
+}
+
+.label-icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 32px;
+    height: 16px;
+}
+
+.item-offer p {
+    font-size: 12px;
+    color: #666;
+    margin-right: 15px;
+}
+
+.item-offer .item-face {
+    top: 5px;
+}
+
+.item-face {
+    position: absolute;
+    right: 15px;
+    top: 8px;
+}
+
+.item-driver .item-face {
+    top: 5px;
+}
+
+.item-face .face {
+    font-size: 30px;
+    color: #ccc;
+    border-radius: 100%;
+}
+
+
+/*绿色*/
+
+.offerlist-type {
+    background: #F5FEEB;
+    padding: 8px 10px;
+}
+
+.offerlist-type li {
+    float: left;
+    padding-right: 20px;
+    font-size: 12px;
+    color: #459352;
+}
+
+.offerlist-type h5 {
+    font-size: 12px;
+    color: #459352;
+}
+
+.offerlist-type li span {
+    display: block;
+}
+
+
+/*橙色*/
+
+.offerlist-type-orange {
+    background: #FFF9E8;
+}
+
+.offerlist-type-orange h5 {
+    font-size: 12px;
+    color: #904E0F;
+}
+
+.offerlist-type-orange li {
+    color: #904E0F;
+}
+
+
+/**/
+
+.new-price-list {
+    padding-left: 15px;
+}
+
+.new-price-list li {
+    padding: 10px 0;
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.new-price {
+    padding: 10px 0 10px 15px;
+}
+
+.new-price-condensed {
+    padding: 5px 0 5px 15px;
+}
+
+.new-price-no {
+    padding-bottom: 0;
+}
+
+.new-price h4 {
+    padding-right: 15px;
+}
+
+.new-price h5 {
+    padding: 5px 15px 0 0;
+}
+
+.item-address {
+    border: none;
+    padding: 10px 0 8px 50px;
+    /*margin-left: -15px;*/
+    min-height: 0;
+}
+
+.item-address h2 {
+    font-size: 14px;
+    width: 300px;
+    overflow: visible;
+    white-space: normal;
+}
+
+.item-address p {
+    font-size: 12px;
+    color: #999;
+}
+
+.item-address-border {
+    border-top: 1px solid #f0f0f0;
+}
+
+.item-avatar img.landmark {
+    border-radius: 0;
+    width: 21px;
+    height: 30px;
+    left: 15px;
+    top: 12px;
+}
+
+.new-price-qclist {
+    position: relative;
+    padding-bottom: 53px;
+}
+
+.qc-img {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    width: 78px;
+    height: 78px;
+}
+
+
+/*卖-主页面*/
+
+.trade-bar .button {
+    background: #fff;
+    font-size: 14px;
+    padding: 0;
+    text-align: center;
+}
+
+.trade-bar .button.active {
+    border: none;
+    border-radius: 0;
+    /*border-bottom: 2px solid #904E0F;*/
+}
+
+.button-bar .button.activated {
+    border: none;
+    border-radius: 0;
+}
+
+.trade-num {
+    position: absolute;
+    top: 6px;
+    right: 10px;
+    z-index: 99;
+}
+
+.trade-type-bar .button {
+    font-size: 12px;
+    color: #666;
+    line-height: 35px;
+    min-height: 35px;
+    background: url(../img/158/line.png) no-repeat right center;
+}
+
+.col-select {
+    position: relative;
+    background: url(../img/158/line.png) no-repeat right center;
+}
+
+.col-select select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding: 10px 30px 10px 20px;
+    max-width: 100%;
+    border: none;
+    background: #f2f2f2;
+    color: #333;
+    text-indent: .01px;
+    text-overflow: '';
+    white-space: nowrap;
+    font-size: 14px;
+    cursor: pointer;
+    direction: rtl;
+    text-align: center;
+}
+
+.col-select option {
+    direction: ltr;
+}
+
+.col-select:after {
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    margin-top: -3px;
+    width: 0;
+    height: 0;
+    border-top: 5px solid;
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+    color: #999;
+    content: "";
+    pointer-events: none;
+    z-index: 99;
+}
+
+.trade-type-bar select {
+    /*padding: 0 28px;
+    font-size: 12px;
+    color: #666;
+    line-height: 35px;
+    min-height: 35px;
+    background: url(../img/158/line.png) no-repeat right center;
+    border: none;
+    direction: ltr;*/
+}
+
+.button:after {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.trade-type-bar .button .ion-arrow-down-b {
+    font-size: 14px;
+    color: #999;
+}
+
+
+/*.trade-company-bar .button {
+    padding: 8px 0 0 0;
+    line-height: 0;
+    border: none;
+    min-width: 22%;
+    border-bottom: 1px solid #f5f5f5;
+    margin-top: 2px;
+    text-align: center;
+}
+
+.trade-company-bar .button .ion-arrow-up-b {
+    font-size: 18px;
+    color: #fff;
+    display: inline-block;
+    margin-bottom: -5px;
+    z-index: 99;
+}
+
+.trade-company-bar .button.active .ion-arrow-up-b {
+    color: #999;
+}
+
+.trade-company-bar .button img {
+    border: 1px solid #e8e8e8;
+    margin-bottom: 10px;
+}
+
+.trade-company-bar .button img.img-circle-no {
+    border: none;
+}
+
+.trade-company-bar .button span {
+    display: inline-block;
+    background: #f4f4f4;
+    border: 1px solid #e8e8e8;
+    margin-bottom: 10px;
+    color: #999;
+    line-height: 44px;
+}
+
+.trade-company-bar .button h6 {
+    width: 60px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-left: 13px;
+}
+
+.trade-company-bar .button.active h6 {
+    color: #333;
+}
+
+.trade-company-bar .button.active img {
+    border: 2px solid #7b9cf4;
+}*/
+
+
+/*banner下认证货主..*/
+
+.trade-company {
+    width: 1000px;
+}
+
+.trade-company li {
+    float: left;
+    text-align: center;
+    padding: 10px 15px;
+    position: relative;
+}
+
+.trade-company li span {
+    display: inline-block;
+    background: #f4f4f4;
+    border: 1px solid #e8e8e8;
+    margin-bottom: 5px;
+    color: #999;
+    line-height: 44px;
+}
+
+.trade-company li.active span {
+    border: 2px solid #7b9cf4;
+}
+
+.trade-company li h6 {
+    width: 60px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-bottom: 3px;
+}
+
+.trade-company li.active h6 {
+    color: #333;
+}
+
+.trade-company li .ion-arrow-up-b {
+    position: absolute;
+    bottom: -6px;
+    left: 45%;
+    font-size: 18px;
+    color: #fff;
+    display: inline-block;
+    z-index: 99;
+}
+
+.trade-company li.active .ion-arrow-up-b {
+    color: #999;
+}
+
+.trade-company li.active img {
+    border: 2px solid #7b9cf4;
+}
+
+
+/*新字*/
+
+.label-new {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+
+/*我的报价-进行中*/
+
+.trade-bar-status .button {
+    font-size: 12px;
+    background: #f2f2f2;
+    color: #666;
+    line-height: 35px;
+    min-height: 35px;
+}
+
+.trade-bar-status .button.active {
+    color: #8b572a;
+    border: none;
+}
+
+.third-bar {
+    font-size: 12px;
+    background: #f2f2f2;
+    color: #666;
+    line-height: 35px;
+    min-height: 35px;
+}
+
+.third-bar .col.active {
+    color: #8b572a;
+}
+
+
+/*发布报价图*/
+
+.offer-way {
+    padding: 7px 0;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.offer-way h4 {
+    margin: 10px 0;
+}
+
+
+/*我的报价*/
+
+.price-bar {
+    padding: 0 15px;
+}
+
+.price-bar li {
+    font-size: 12px;
+    float: left;
+    padding: 10px 20px 10px 0;
+    color: #666;
+}
+
+.price-bar li.active {
+    color: #8b572a;
+}
+
+.item-offer-checkbox {
+    padding-left: 40px;
+}
+
+.item-offer-checkbox .checkbox {
+    position: absolute;
+    left: 5px;
+    top: 5px;
+}
+
+.btn-myoffer button {
+    border: none;
+    line-height: 35px;
+    height: 45px;
+}
+
+.btn-check {
+    position: relative;
+    background: #fff;
+    color: #666;
+}
+
+.btn-check .checkbox {
+    position: absolute;
+    left: 5px;
+    top: 2px;
+}
+
+.btn-republish {
+    background: #db4226;
+    color: #fff;
+}
+
+
+/*扣款标准*/
+
+.list-item .item-type-standard {
+    padding-top: 10px;
+    padding-bottom: 0;
+}
+
+.list-item .list-input-standard {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+
+/*订单详情*/
+
+.item-order {
+    border: none;
+    min-height: 0;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.item-avatar img.item-order-icon {
+    /*top: 13px;*/
+}
+
+.item-order .item-face {
+    top: 8px;
+}
+
+.item-order h2 {
+    font-size: 14px;
+}
+
+.item-order p {
+    font-size: 12px;
+    color: #999;
+}
+
+
+/*运-物流企业-搜索框*/
+
+.item-search {
+    border: none;
+    background: transparent;
+    padding: 0 15px;
+}
+
+.item-search .item-input-wrapper {
+    background: #fff;
+}
+
+.item-search .item-input-wrapper input {
+    height: 35px;
+    padding-top: 2px;
+}
+
+
+/*产品详情*/
+
+.list-checkbox {
+    margin-left: 15px;
+}
+
+.list-checkbox .item {
+    border: none;
+    padding-left: 0;
+    border-bottom: 1px solid #f0f0f0;
+    margin: 0;
+    padding: 12px 15px 12px 30px;
+}
+
+.list-checkbox .item-checkbox .checkbox {
+    left: -6px;
+    margin-top: -17px;
+}
+
+
+/*运输详情*/
+
+
+/*进度*/
+
+progress {
+    width: 100%;
+    margin: 10px 0 0 0;
+    height: 3px;
+    background-color: #f2f2f2;
+    color: #3c35fe;
+}
+
+progress::-moz-progress-bar {
+    background: #3c35fe;
+}
+
+progress::-webkit-progress-bar {
+    background: #f2f2f2;
+}
+
+progress::-webkit-progress-value {
+    background: #3c35fe;
+}
+
+.item-transdetail {
+    padding: 12px 15px;
+}
+
+.transdetail {
+    border-left: 2px solid #d3d3d3;
+    padding-left: 10px;
+    margin: 15px 0;
+}
+
+.transdetail p {
+    font-size: 12px;
+    padding: 2px 0;
+}
+
+.transdetail-car {
+    width: 18px;
+    height: 14px;
+    vertical-align: middle;
+}
+
+.driverdetail-car {
+    width: 24px;
+    height: 17px;
+    vertical-align: top;
+}
+
+
+/*定价指派*/
+
+.list-appoint .item {
+    border: none;
+    padding: 5px 15px 0 0;
+}
+
+.list-appoint .item-input input {
+    padding-right: 15px;
+}
+
+.list-appoint .icon {
+    font-size: 15px;
+    top: 2px;
+}
+
+
+/*发布抢单*/
+
+.rush-input-label {
+    width: 40%;
+}
+
+.rush-input {
+    height: 35px;
+}
+
+.rush-input input {
+    width: 100px;
+    border: 1px solid #f0f0f0;
+    border-radius: 3px;
+    display: inline-block;
+    /*margin-right: 12px;*/
+}
+
+.list-rush-checkbox .rush-checkbox {
+    position: relative;
+    margin-left: 15px;
+}
+
+.rush-checkbox .checkbox {
+    position: absolute;
+    left: -8px;
+    top: 6px;
+    z-index: 99;
+}
+
+.rush-checkbox .item {
+    padding-left: 30px;
+    border: none;
+    border-bottom: 1px solid #f0f0f0;
+    margin: 0;
+}
+
+.rush-checkbox .rush-input-label {
+    width: 45%;
+}
+
+.rush-checkbox .rush-input input {
+    padding-left: 20px;
+}
+
+
+/*定价管理 立即设置*/
+
+.list-set-checkbox.item-checkbox.item-checkbox-right {
+    padding-left: 10px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.list-set-checkbox .item {
+    padding: 10px 0 10px 50px;
+}
+
+.list-set-checkbox .item-avatar {
+    min-height: 55px;
+}
+
+
+/*文本可以选择*/
+
+.selectable {
+    user-select: auto;
+    -webkit-user-select: auto;
+    -ms-user-select: auto;
+    -moz-user-select: auto;
+}
+
+
+/*选择时文本背景颜色*/
+
+
+/*::selection {
+  background: #ffdd6f;
+  color: #8B572A;
+}
+::-moz-selection {
+  background: #ffdd6f;
+  color: #8B572A; 
+}*/

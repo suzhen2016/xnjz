@@ -1,0 +1,113 @@
+<ion-view hide-tabs="true">
+    <!--顶部导航-->
+    <ion-nav-title>
+        <div class="bar bar-positive">
+            <h1 class="title">订单详情</h1>
+        </div>
+    </ion-nav-title>
+    <ion-nav-buttons side="right">
+      <button class="button button-clear" xn-call>
+        联系客服
+      </button>
+    </ion-nav-buttons>
+    <!--内容区域-->
+    <ion-content class="bg-gray">
+        <div class="text-center gap-50" ng-if="!vm.dele.isLoading">
+            <h4 class="text-gray">数据加载中...</h4>
+        </div>
+        <div ng-if='vm.dele.isLoading'>
+            <div class="list gap-8">
+                <li class="item item-avatar item-address-master ">
+                    <img src="./img/common/landmark-1.png" class="landmark">
+                    <h2 class="text-gray1">送货地址：{{vm.order.addrinfo[0].cgn_daddr}}</h2>
+                    <p>联系人：{{vm.order.addrinfo[0].cgn_name}} &nbsp;&nbsp;&nbsp;&nbsp;<span>手机号：{{vm.order.addrinfo[0].cgn_tel}}&nbsp&nbsp</span>                        </p>
+                </li>
+            </div>
+            <div class="list">
+                <div class='item_box item gap-10 padding-none first-bottom pa-btm-5'>
+                    <h3 class='pa-left-10 pa-top-5'>
+                        <span>西南家政</span>
+                        <!--<span class="pull-right pa-right-10" ng-if='vm.dele.data.pipeulock.length>0' ui-sref='tab.homeMore({id:"17",title:"管道疏通与开锁服务"})'>更多 ></span>-->
+                    </h3>
+                </div>
+                <a class="item item-thumbnail-left item-icon-right">
+                    <img src="{{imgUrl + vm.order.goods_log}}">
+                    <h2>名称：{{vm.order.goods_name}}</h2>
+                    <p>简介：{{vm.order.goods_introduce}}</p>
+                    <!--<p>服务星级：<span class="text-red {{ii.class}}" ng-repeat="ii in i.start_class"></span>                   
+                    </p>-->
+                    <h2>数量：X {{vm.order.goods_number}}</h2>
+                    <h2>单价：<span>￥{{vm.order.order_price}}</span></h2>
+                </a>
+            </div>
+            <div class="list gap-8">
+                <li class="item ">
+                    <p>订单编号：{{vm.order.order_number}}</p>
+                    <p>订单创建时间：{{vm.order.order_creat_time}}</p>
+                </li>
+                <li class="item ">
+                    <p>支付方式：在线支付</p>
+                    <p class="text-redd">支付状态：{{vm.order.order_status == 1 ?"未支付":'已支付'}}</p>
+                </li>
+                <li class="item ">
+                    <p>配送方式：普通快递</p>
+                    <p>运费：具体费用按到货实际费用由买家支付</p>
+                </li>
+            </div>
+            <div class="list gap-8">
+                <li class="item ">
+                    <p>商品总额：<span class="pull-right">￥{{vm.order.order_price}}</span></p>
+                </li>
+                <li class="item ">
+                    <p><span class="pull-right">实付款：￥{{vm.order.order_price}}</span></p>
+                </li>
+
+            </div>
+        </div>
+
+    </ion-content>
+    <div class="bar bar-footer bar-light" ng-if='vm.order.order_status=="1"'>
+        <div class="row button-foot">
+            <div class="col col-33 col-mar border-right-1 text-center"  ng-click='vm.deleOrder(vm.order.order_id,"cancel")'>
+                取消订单
+            </div>
+            <div class="col col-red text-center" nav-transition="ios" nav-direction="forward" ui-sref='pinkUp'>
+                <span >立即支付</span>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="bar bar-footer bar-light" ng-if='vm.order.order_status=="3"'>
+        <div class="row button-foot">
+            <div class="col col-33 col-mar border-right-1 text-center" ng-click='vm.deleOrder(vm.order.order_id)'>
+                删除订单
+            </div>
+            <div class="col col-red text-center" ng-click='vm.confirmOrder(vm.order.order_id)'>
+                <span>已收到货物</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="bar bar-footer bar-light" ng-if='vm.order.order_status=="4"'>
+        <div class="row button-foot" >
+            <div class="col col-33 col-mar border-right-1 text-center" ng-click='vm.deleOrder(vm.order.order_id)'>
+                删除订单
+            </div>
+            <div class="col col-red text-center" nav-transition="ios" nav-direction="forward" ui-sref='tab.appraise'>
+                <span >{{vm.order.is_cmt=='0'?"评价晒单":'追加评价'}}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="bar bar-footer bar-light" ng-if='vm.order.order_status=="2"' >
+        <div class="row button-foot" >
+            <div class="col col-33 col-mar border-right-1 text-center" ng-click='vm.deleOrder(vm.order.order_id)'>
+                删除订单
+            </div>
+            <div class="col col-red text-center">
+                <span nav-transition="ios" nav-direction="forward" ui-sref='pinkUp'>再次购买</span>
+            </div>
+        </div>
+    </div>
+</ion-view>

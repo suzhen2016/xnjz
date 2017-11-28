@@ -1,0 +1,58 @@
+<ion-view hide-tabs="true">
+  <!--中间内容区-->
+  <ion-nav-title>
+    <div class="bar bar-positive">
+      <div class="button-bar nav-bar">
+        <a class="button">招贤纳士</a>
+      </div>
+    </div>
+  </ion-nav-title>
+  <ion-content class="bg-gray xn-content" ng-init='vm.init()'>
+    <ion-slide-box on-slide-changed="slideHasChanged($index)" auto-play="false" does-continue="false" show-pager="false">
+      <ion-slide>
+        <img src="./img/xn/first/zhaopin/hire.png" class="img-responsive">
+      </ion-slide>
+    </ion-slide-box>
+    <div class="bg-white">
+      <div class='row bg-gray padding-6'>
+        <div class="col col-25">
+          <h3 class="text-center">职位名称</h3>
+        </div>
+        <div class="col col-25">
+          <h3 class="text-center">招聘区域</h3>
+        </div>
+        <div class="col col-25">
+          <h3 class="text-center">工作地点</h3>
+        </div>
+        <div class="col col-25">
+          <h3 class="text-center">发布时间</h3>
+        </div>
+      </div>
+      <div ng-if='!vm.dele.isLoading && vm.dele.list.length >0 ' class='row item-padding-10' ui-sref='tab.recruitmentDetails({id:i.hire_id})'
+        ng-repeat="i in vm.dele.list">
+        <div class="col col-25">
+          <h4 class="text-center line-one">{{i.hire_name}}</h4>
+        </div>
+        <div class="col col-25">
+          <h4 class="text-center line-one">{{i.hire_area}}</h4>
+        </div>
+        <div class="col col-25">
+          <h4 class="text-center line-one">{{i.work_area}}</h4>
+        </div>
+        <div class="col col-25">
+          <h4 class="text-center line-one">{{i.upd_time}}</h4>
+        </div>
+      </div>
+      <div ng-if='!vm.dele.isLoading && vm.dele.list.length==0'>
+        <h4 class="text-center gap-30" style="padding-bottom:30px">
+          当前暂无数据
+        </h4>
+      </div>
+      <div ng-if='vm.dele.isLoading'>
+        <h4 class="text-center gap-30" style="padding-bottom:30px">
+          <ion-spinner icon="spiral"></ion-spinner>
+        </h4>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

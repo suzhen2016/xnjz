@@ -1,0 +1,83 @@
+<ion-view hide-back-button='true' hide-nav-bar='true'>
+  <!--中间内容区-->
+  <ion-content class="bg-gray xn-content" style="padding-bottom:44px" scroll='false'>
+    <div class="list">
+      <div class="item item-input-inset">
+        <label class="item-input-wrapper">
+          <input type="text" placeholder="请输入你要查询的宝贝">
+        </label>
+        <button class="button button-small">
+          查询
+        </button>
+      </div>
+    </div>
+    <div class="row row-height">
+      <!--left-->
+      <div class='col col-height col-25 pa-top-8'>
+        <ion-scroll zooming="false" direction="y" scrollbar-y='false' style="width: 100%; height: 100%">
+          <div class="list" ng-repeat="i in vm.order_menu">
+            <div class="item border-top-1" ui-sref-active='link' nav-transition="none" nav-transition="ios" nav-direction="enter" ui-sref='tab.menu({id:i.id})'>
+              <span>{{i.name}}</span>
+            </div>
+          </div>
+        </ion-scroll>
+      </div>
+      <!--right-->
+      <div class='col col-height col-75 col-color'>
+        <ion-scroll zooming="false" direction="y" scrollbar-y='false' style="width: 100%; height: 100%">
+          <div class="list">
+            <div class="item padding-5">
+              <span class="img_box">
+                    <img src="./img/xn/first/slied-1.jpg" alt="">
+                </span>
+            </div>
+            <div ng-if='!vm.isLoadding'>
+              <h4 class="text-center gap-30" style="padding-bottom:30px">
+                数据加载中...
+              </h4>
+            </div>
+            <div ng-if='vm.isLoadding && vm.isNull'>
+              <h4 class="text-center gap-30" style="padding-bottom:30px">
+                当前暂无数据
+              </h4>
+            </div>
+            <div ng-if='vm.isLoadding && vm.isError'>
+              <h4 class="text-center gap-30" style="padding-bottom:30px">
+                服务器正忙，请稍后再访问
+              </h4>
+            </div>
+            <div ng-repeat="(key,val) in vm.order"  ng-if='vm.isLoadding && !vm.isNull'>
+              <h3>
+                <span>{{key | menuName}}</span>
+                <span class='pull-right pa-right-10 pa-top-5 small-font' ng-if='val.length!=0' ng-click="vm.goMore(key)">更多<i class="icon ion-ios-arrow-right"></i></span>
+              </h3>
+              <div class='item_box item gap-5 gbp-5' >
+                <div class="row row-wrap" ng-if='val.length>0'>
+                  <!--家政服务-->
+                  <div class='col col-33' ng-if='i.yuangong_name' ui-sref='tab.menuhomePerson({id:i.yuangong_id})' ng-repeat="i in val track by $index">
+                    <span class='img_box menu-item padding-6'>
+                      <img src="{{imgUrl + i.yuangong_s_tx}}" alt="">
+                    </span>
+                    <h4>{{i.yuangong_name}}</h4>
+                  </div>
+                  <!--购物商城-->
+                  <div class='col col-33' ui-sref='tab.menushoppDetail({id:i.goods_id})' ng-if='i.goods_name && $index<3' ng-repeat="i in val track by $index">
+                    <span class='img_box menu-item padding-6'>
+                      <img src="{{imgUrl + i.goods_s_logo}}" alt="">
+                    </span>
+                    <h4>{{i.goods_name}}</h4>
+                  </div>
+                </div>
+                <div ng-if='val.length==0'>
+                    <h4 class="text-center">当前暂无数据，敬请期待</h4>
+                </div>
+              </div>
+              
+            </div>
+
+          </div>
+        </ion-scroll>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

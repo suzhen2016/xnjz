@@ -1,0 +1,60 @@
+<ion-view hide-tabs="true" hide-back-button='true'>
+  <ion-nav-title>
+    <div class="bar bar-positive">
+      <h1 class="title">提交订单</h1>
+    </div>
+  </ion-nav-title>
+  <!--<ion-nav-buttons side="left">
+    <i class="icon ion-ios-arrow-back" nav-transition="ios" nav-direction="back" ng-click='GoBack()'></i>
+  </ion-nav-buttons>-->
+  <ion-nav-buttons side="left">
+        <i class="icon ion-ios-arrow-back" nav-transition="ios" nav-direction="back" ng-click='GoBack()'></i>
+        <span  class="default-title" ng-click='GoBack()'>返回</span>
+    </ion-nav-buttons>
+  <!--内容区域-->
+  <ion-content class="bg-gray">
+  
+    <div class="list list-item" ng-if='vm.dele.null'>
+      <li class="item  item-icon-right item-address item-avatar item-type gap-10" ui-sref='selectAddress'>
+        <img src="./img/common/landmark-1.png" style='top:6px' class="landmark">
+        <span class="gap-left-30 text-gray">你当前没有地址，请先去设置地址</span>
+        <!--<i class="icon ion-ios-arrow-right"></i>-->
+      </li>
+    </div>
+    <div class="list list-item" ng-if='vm.dele.address'>
+      <li class="item item-icon-right item-avatar item-address item-type gap-10" ui-sref='selectAddress'>
+        <img src="./img/common/landmark-1.png" class="landmark">
+        <h2 class="text-gray1 gap-left-30">详细地址：{{vm.dele.address.cgn_daddr}}</h2>
+        <h4 class="text-gray1 gap-left-30">联系人：{{vm.dele.address.cgn_name}} &nbsp;&nbsp;&nbsp;&nbsp;手机号：{{vm.dele.address.cgn_tel}}</h4>
+        <i class="icon ion-ios-arrow-right"></i>
+      </li>
+    </div>
+
+    <div class="list">
+      <div class='item_box item gap-10 padding-none first-bottom pa-btm-5'>
+        <h3 class='pa-left-10 pa-top-5'>
+          <span>商品</span>
+        </h3>
+      </div>
+      <a class="item item-thumbnail-left" ng-repeat="item in vm.order track by $index">
+        <img src="{{imgUrl + item.goods_log}}">
+        <h2>【西南家政】</h2>
+        <h2>名称：{{item.goods_name}}</h2>
+        <p>{{'数量：'+item.goods_buy_number}}{{item.is_goods==1 ? '位':'件'}}</p>
+      </a> 
+
+    </div>
+
+
+  </ion-content>
+  <div class="bar bar-footer bar-light">
+    <div class="row button-foot">
+      <div class="col col-67 text-center">
+        <span class="text-red pa-right-10">实付款：{{vm.order[0].sum_all |currency:"￥"}}</span>
+      </div>
+      <div class="col col-red text-center" ng-click='vm.pinkUp()'>
+        提交订单
+      </div>
+    </div>
+  </div>
+</ion-view>

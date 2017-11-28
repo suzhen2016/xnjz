@@ -1,0 +1,93 @@
+<ion-view hide-tabs="true">
+  <!--中间内容区-->
+  <ion-nav-title>
+    <div class="bar bar-positive">
+      <div class="button-bar nav-bar">
+        <a class="button">商品详情</a>
+      </div>
+    </div>
+  </ion-nav-title>
+  <ion-content class="bg-gray xn-content has-footer" >
+    <ion-refresher
+    pulling-text="下拉刷新..."
+    on-refresh="vm.init()">
+  </ion-refresher>
+    <div class="list card">
+      <div class="item item-body">
+        <ion-slide-box on-slide-changed="slideHasChanged($index)" auto-play="false" does-continue="true" slide-interval=3000 show-pager="true">
+          <ion-slide>
+            <img src="{{imgUrl+vm.order.header.goods_s_xc1}}" class="img-responsive">
+          </ion-slide>
+          <ion-slide>
+            <img src="{{imgUrl + vm.order.header.goods_s_xc2}}" class="img-responsive">
+          </ion-slide>
+          <ion-slide>
+            <img src="{{imgUrl + vm.order.header.goods_s_xc3}}" class="img-responsive">
+          </ion-slide>
+        </ion-slide-box>
+      </div>
+      <a class="item item-icon-left assertive">
+        <i class="icon ion-heart"></i>
+              {{vm.order.header.goods_price | currency:'￥'}}
+      </a>
+      <div class="item item-body" style='padding:0 16px 5px 16px'>
+        <p>{{vm.order.header.goods_introduce}}
+        </p>
+      </div>
+    </div>
+
+    <div class="list">
+      <div class='item_box item gap-10 padding-none first-bottom pa-btm-5'>
+        <h3 class='pa-left-10 pa-top-5'>
+          <span>商品详情</span>
+        </h3>
+      </div>
+      <a class="item">
+        重量：{{vm.order.header.goods_weight}}
+      </a>
+    </div>
+
+    <div class="list">
+      <div class="item item-button-right gap-10">
+        已选择 ({{vm.order.header.goods_name}} {{vm.query.order.num}}件)
+        <button class="button button-clear button-stable" ng-click='vm.selectOrder()'>
+          <i class="icon ion-more"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="list">
+      <div class='item_box item gap-10 padding-none first-bottom pa-btm-5'>
+        <h3 class='pa-left-10 pa-top-5'>
+          <span>用户评价({{vm.cmtCount}})</span>
+          <span class="pull-right">好评度：100% &nbsp</span>
+        </h3>
+      </div>
+      <a class="item item-avatar" ng-repeat="i in vm.cmtList">
+        <img src="./img/xn/first/homeWork/suzhen.jpg">
+        <h2>李嘉诚</h2>
+        <p style="white-space: normal">才能查出啊吉大吉大的几啊的较大，大大劫案加上达到阿克达到</p>
+        <p class="text-right">时间：2015-06-07</p>
+      </a>
+    </div>
+
+    <ion-infinite-scroll ng-if="hasMore" immediate-check="false" icon="ion-loading-c" on-infinite="vm.loadMore()" distance="1%">
+    </ion-infinite-scroll>
+
+  </ion-content>
+
+  <div class="bar bar-footer bar-light">
+    <div class="row button-foot">
+       <div  class="col col-30 col-mar border-right-1 text-center" nav-transition="ios" nav-direction="forward" ui-sref='car'>
+        购物车<span class="text-red">({{vm.query.num}})</span>
+      </div>
+      <div class="col col-37 col-mar text-center"   ng-click='vm.addCar()'>
+        加入购物车
+      </div>
+      <div class="col col-red text-center" xn-call>
+        联系客服
+      </div>
+    </div>
+  </div>
+
+</ion-view>

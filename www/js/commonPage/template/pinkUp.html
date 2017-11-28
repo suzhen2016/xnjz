@@ -1,0 +1,51 @@
+<ion-view hide-tabs="true">
+  <ion-nav-title>
+    <div class="bar bar-positive">
+      <h1 class="title">支付订单</h1>
+    </div>
+  </ion-nav-title>
+  <!--<ion-nav-buttons side="left">
+    <i class="icon ion-ios-arrow-back" nav-transition="ios" nav-direction="back" ></i>
+  </ion-nav-buttons>-->
+  <!--<ion-nav-buttons side="left" >
+        <i class="icon ion-ios-arrow-back" nav-transition="ios" nav-direction="back" ng-click='GoBack()'></i>
+        <span  class="default-title" ng-click='GoBack()'>返回</span>
+    </ion-nav-buttons>-->
+  <!--内容区域-->
+  <ion-content ng-init="vm.init()" class="bg-gray">
+    <!--<div class="list">
+      <div class="item item-button-right gap-10">
+        西南家政订单详情
+      </div>
+    </div>-->
+
+    <div class="bg-white pa-top-8">
+      <div class="card">
+        <div class="item item-text-wrap">
+            <h3 class="text-center">订单支付时间剩余：
+              <timer end-time="vm.times" finish-callback="select_finsh()" language="zh-CN">
+                    {{hours}}:{{minutes}}:{{seconds}}
+              </timer>
+            </h3> 
+        </div>
+      </div>
+      <div class="list  list-plan">
+        <div class="item  item-offer item-zhi item-offer-plan" ng-repeat="item in [{}]">
+          <a class="item item-car ">
+            <h4>支付宝</h4>
+          </a>
+           <label class="checkbox">
+							<input type="radio" name='zhifu' checked="checked" ng-model="item.checked" ng-change="">
+						</label>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+  <div class="bar bar-footer bar-light">
+    <div class="row button-foot" ng-click='vm.alipayXn()'>
+      <div class="col col-red text-center">
+        支付({{vm.order.data.order_total_price| currency:'￥'}})
+      </div>
+    </div>
+  </div>
+</ion-view>

@@ -1,0 +1,30 @@
+<div>
+    <ul class="nav-select" style="border-bottom: 1px solid #ddd;margin-bottom: 0;">
+        <li ng-if="(!data.options.limit||data.options.limit.indexOf('province')==-1||!data.options.limit)" style="float: left;
+    padding: 10px 15px;" ng-click="currentProClick()" ng-class="{'hover':current=='pro'}">
+            {{currentPro?currentPro.name:'请选择'}}
+        </li>
+        <li ng-if="(!data.options.limit||data.options.limit.indexOf('city')==-1)&&currentCity" style="float: left;
+    padding: 10px 15px;" ng-click="currentCityClick()" ng-class="{'hover':current=='city'}">
+            {{currentCity?currentCity.name:'请选择'}}
+        </li>
+        <li ng-if="(!data.options.limit||data.options.limit.indexOf('ares')==-1)&&currentArea" style="float: left;
+    padding: 10px 15px;" ng-click="currentAreaClick()" ng-class="{'hover':current=='ares'}">
+            {{currentArea?currentArea.name:'请选择'}}
+        </li>
+        <div class="clearfix"></div>
+    </ul>
+
+    <ol class="select-list">
+        <li ng-if="(!data.options.limit||data.options.limit.indexOf('province')==-1)" style="padding: 10px 15px; border-bottom: 1px solid #ddd;"   ng-class="{'hover':currentPro.ProID==item.ProID}" ng-show="current=='pro'||!current" ng-click="selectPro(item)" ng-repeat="item in provinces" class="">
+            {{item.name}}
+        </li>
+        <li ng-if="(!data.options.limit||data.options.limit.indexOf('city')==-1)" style="padding: 10px 15px; border-bottom: 1px solid #ddd;"  ng-class="{'hover':currentCity.CityID==item.CityID}" ng-show="current=='city'" ng-click="selectCity(item);" ng-repeat="item in citys" class="">
+            {{item.name}}
+        </li>
+        <li ng-if="(!data.options.limit||data.options.limit.indexOf('ares')==-1)" style="padding: 10px 15px; border-bottom: 1px solid #ddd;"  ng-class="{'hover':currentArea.DisID==item.DisID}" ng-show="current=='ares'" ng-click="selectAres(item);" ng-repeat="item in areas" class="">
+            {{item.name}}
+        </li>
+    </ol>
+
+</div>

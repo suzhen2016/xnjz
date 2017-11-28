@@ -1,0 +1,40 @@
+/* Empty. Add your own CSS if you like */
+/*财页面*/
+.account-list {
+    padding: 25px 10px;
+}
+.order-title {
+    background: #f7f7f7;
+    padding: 2px 15px;
+    border-radius: 4px;
+    display: inline-block;
+    font-size: 12px;
+}
+.order-title-deep {
+    background: #d6d6d6;
+    color: #fff;
+    padding: 2px 10px;
+}
+.item-offer .label-icon1 {
+    margin-right: 10px;
+}
+.item-offer .label-icon1 {
+    margin-right: 10px;
+}
+.item-offer h4 {
+    font-size: 14px;
+}
+.item-offer h4 small{
+    font-size: 11px;
+}
+.list-offer {
+    margin: 0 15px;
+}
+.item-offer-border {
+    margin: 0;
+    padding-left: 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+.item-offer-border p {
+    margin-right: 0;
+}

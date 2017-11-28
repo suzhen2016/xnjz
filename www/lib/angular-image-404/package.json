@@ -1,0 +1,37 @@
+{
+  "name": "angular-image-404",
+  "version": "0.1.6",
+  "description": "AngualrJS directive that shows a fallback image when img element can not show picture correct",
+  "main": "gulpfile.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stiekel/angular-image-404.git"
+  },
+  "keywords": [
+    "angular"
+  ],
+  "author": "stiekel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/stiekel/angular-image-404/issues"
+  },
+  "homepage": "https://github.com/stiekel/angular-image-404#readme",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-jade": "^1.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.5.1",
+    "gulp-webserver": "^0.9.1",
+    "gulp-concat": "^2.6.0",
+    "angular": "^1.4.8"
+  },
+  "dependencies": {},
+  "_from": "angular-image-404@0.1.6",
+  "_resolved": "http://registry.npm.taobao.org/angular-image-404/download/angular-image-404-0.1.6.tgz"
+}

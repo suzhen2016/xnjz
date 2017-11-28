@@ -1,0 +1,41 @@
+<ion-view hide-tabs="true">
+  <!--中间内容区-->
+  <ion-nav-title>
+    <div class="bar bar-positive">
+      <div class="button-bar nav-bar">
+        <a class="button">设置</a>
+      </div>
+    </div>
+  </ion-nav-title>
+  <ion-content class="bg-gray xn-content has-footer">
+    <div class="list  gap-8">
+      <a nav-transition="ios" nav-direction="forward" href="#/tab/user" class="item  item-icon-left item-icon-right">
+        <i class="icon ion-person"></i> 账户资料
+         <i class="icon ion-ios-arrow-right"></i>
+      </a>
+    </div>
+
+    <div class="list  gap-8">
+      <a  class="item item-icon-left">
+        <i class="icon ion-key"></i> 修改密码
+      </a>
+
+      <a  class="item item-icon-left item-icon-right" ui-sref='tab.addressList'>
+        <i class="icon ion-android-pin"></i> 收货地址管理
+         <i class="icon ion-ios-arrow-right"></i>
+      </a>
+    </div>
+
+    <!--<div class="list  gap-8">
+      <a  class="item item-icon-left">
+        <i class="icon ion-ios-paperplane"></i> 版本更新
+      </a>
+      <a class="item item-icon-left">
+        <i class="icon ion-android-alert"></i> 关于
+      </a>
+    </div>-->
+  </ion-content>
+  <div class="bar bar-footer bar-balanced">
+    <div class="title" ng-click='vm.logOut()'>安全退出</div>
+  </div>
+</ion-view>

@@ -1,0 +1,214 @@
+<ion-view hide-tabs="true" ng-init='vm.init("13")'>
+  <!--中间内容区-->
+  <ion-nav-title>
+    <div class="bar bar-positive">
+      <div class="button-bar nav-bar">
+        <a class="button">家政服务</a>
+      </div>
+    </div>
+  </ion-nav-title>
+  <ion-content class="bg-gray xn-content">
+    <ion-slide-box on-slide-changed="slideHasChanged($index)" auto-play="false" does-continue="false" show-pager="false">
+      <ion-slide>
+        <img src="./img/xn/first/homeWork/dingbu.png" class="img-responsive">
+      </ion-slide>
+    </ion-slide-box>
+
+    <div ng-if='!vm.dele.isLoading'>
+
+      <div class="list">
+        <div class='item_box item gap-10 padding-none first-bottom pa-btm-5'>
+          <h3 class='pa-left-10 pa-top-5'>
+            <img style="width: 25px" class="img_icon" src="./img/xn/first/homeWork/baojieyuan.png" alt="">
+            <span>保洁员</span>
+            <span class="pull-right pa-right-10" ng-if='vm.dele.data.cleaner.length>0' ui-sref='tab.homeMore({id:"10",title:"保洁员"})'>更多 ></span>
+          </h3>
+        </div>
+        <a class="item item-thumbnail-left item-icon-right" ng-if='vm.dele.data.cleaner.length>0' ui-sref='tab.homePerson({id:i.yuangong_id})' ng-repeat='i in vm.dele.data.cleaner'>
+          <img src="{{imgUrl + i.yuangong_s_tx}}">
+          <h2>姓名：{{i.yuangong_name}}</h2>
+          <p>简介：{{i.yuangong_jianjie}}</p>
+          <p>服务星级：<span class="text-red {{ii.class}}"ng-repeat="ii in i.start_class"></span></p>
+          <h2>价格：<span>￥{{i.yuangong_price}}</span></h2>
+          <i class="icon ion-ios-arrow-right"></i>
+        </a>
+        <a class="item " ng-if='vm.dele.data.cleaner.length==0'>
+             <h3 class="text-center">该条暂无数据,敬请期待</h3>
+        </a>
+      </div>
+
+      <div class="list">
+        <div class='item_box item gap-10 padding-none first-bottom pa-btm-5'>
+          <h3 class='pa-left-10 pa-top-5'>
+            <img style="width: 25px" class="img_icon" src="./img/xn/first/homeWork/baojieyuan.png" alt="">
+            <span>保姆</span>
+            <span class="pull-right pa-right-10" ng-if='vm.dele.data.duenna.length>0' ui-sref='tab.homeMore({id:"11",title:"保姆"})'>更多 ></span>
+          </h3>
+        </div>
+        <a class="item item-thumbnail-left item-icon-right" ng-if='vm.dele.data.duenna.length>0' ui-sref='tab.homePerson({id:i.yuangong_id})' 
+        ng-repeat='i in vm.dele.data.duenna'>
+          <img src="{{imgUrl + i.yuangong_s_tx}}">
+          <h2>姓名：{{i.yuangong_name}}</h2>
+          <p>简介：{{i.yuangong_jianjie}}</p>
+          <p>服务星级：<span class="text-red {{i.class}}"   ng-repeat="i in i.start_class"></span>                   
+          </p>
+          <h2>价格：<span>￥{{i.yuangong_price}}</span></h2>
+          <i class="icon ion-ios-arrow-right"></i>
+        </a>
+         <a class="item"  ng-if='vm.dele.data.duenna.length==0'>
+          <h3 class="text-center">该条暂无数据,敬请期待</h3>
+        </a>
+      </div>
+
+      <div class="list">
+        <div class='item_box item gap-10 padding-none first-bottom pa-btm-5'>
+          <h3 class='pa-left-10 pa-top-5'>
+            <img style="width: 25px" class="img_icon" src="./img/xn/first/homeWork/baojieyuan.png" alt="">
+            <span>营养师</span>
+            <span class="pull-right pa-right-10" ng-if='vm.dele.data.nutritionist.length>0' ui-sref='tab.homeMore({id:"12",title:"营养师"})'>更多 ></span>
+          </h3>
+        </div>
+        <a class="item item-thumbnail-left item-icon-right" ng-if='vm.dele.data.nutritionist.length>0' ui-sref='tab.homePerson({id:i.yuangong_id})' 
+        ng-repeat='i in vm.dele.data.nutritionist'>
+          <img src="{{imgUrl + i.yuangong_s_tx}}">
+          <h2>姓名：{{i.yuangong_name}}</h2>
+          <p>简介：{{i.yuangong_jianjie}}</p>
+          <p>服务星级：<span class="text-red {{i.class}}"   ng-repeat="i in i.start_class"></span>                   
+          </p>
+          <h2>价格：<span>￥{{i.yuangong_price}}</span></h2>
+          <i class="icon ion-ios-arrow-right"></i>
+        </a>
+         <a class="item"  ng-if='vm.dele.data.nutritionist.length==0'>
+          <h3 class="text-center">该条暂无数据,敬请期待</h3>
+        </a>
+      </div>
+
+      <div class="list">
+        <div class='item_box item gap-10 padding-none first-bottom pa-btm-5'>
+          <h3 class='pa-left-10 pa-top-5'>
+            <img style="width: 25px" class="img_icon" src="./img/xn/first/homeWork/baojieyuan.png" alt="">
+            <span>育婴师</span>
+            <span class="pull-right pa-right-10" ui-sref='tab.homeMore({id:"13",title:"育婴师"})' ng-if='vm.dele.data.nursery.length>0'>更多 ></span>
+          </h3>
+        </div>
+        <a class="item item-thumbnail-left item-icon-right" ui-sref='tab.homePerson({id:i.yuangong_id})' ng-if='vm.dele.data.nursery.length>0' ng-repeat='i in vm.dele.data.nursery'>
+          <img src="{{imgUrl + i.yuangong_s_tx}}">
+          <h2>姓名：{{i.yuangong_name}}</h2>
+          <p>简介：{{i.yuangong_jianjie}}</p>
+          <p>服务星级：<span class="text-red {{i.class}}"   ng-repeat="i in i.start_class"></span>                   
+          </p>
+          <h2>价格：<span>￥{{i.yuangong_price}}</span></h2>
+          <i class="icon ion-ios-arrow-right"></i>
+        </a>
+        <a class="item"  ng-if='vm.dele.data.nursery.length==0'>
+          <h3 class="text-center">该条暂无数据,敬请期待</h3>
+        </a>
+      </div>
+
+      <div class="list">
+        <div class='item_box item gap-10 padding-none first-bottom pa-btm-5'>
+          <h3 class='pa-left-10 pa-top-5'>
+            <img style="width: 25px" class="img_icon" src="./img/xn/first/homeWork/baojieyuan.png" alt="">
+            <span>催乳师</span>
+            <span class="pull-right pa-right-10" ui-sref='tab.homeMore({id:"14",title:"催乳师"})' ng-if='vm.dele.data.prolactor.length>0'>更多 ></span>
+          </h3>
+        </div>
+        <a class="item item-thumbnail-left item-icon-right" ng-if='vm.dele.data.prolactor.length>0' ui-sref='tab.homePerson({id:i.yuangong_id})' 
+        ng-repeat='i in vm.dele.data.prolactor'>
+          <img src="{{imgUrl + i.yuangong_s_tx}}">
+          <h2>姓名：{{i.yuangong_name}}</h2>
+          <p>简介：{{i.yuangong_jianjie}}</p>
+          <p>服务星级：<span class="text-red {{i.class}}"   ng-repeat="i in i.start_class"></span>                   
+          </p>
+          <h2>价格：<span>￥{{i.yuangong_price}}</span></h2>
+          <i class="icon ion-ios-arrow-right"></i>
+        </a>
+        <a class="item"  ng-if='vm.dele.data.prolactor.length==0'>
+          <h3 class="text-center">该条暂无数据,敬请期待</h3>
+        </a>
+      </div>
+
+      <div class="list">
+        <div class='item_box item gap-10 padding-none first-bottom pa-btm-5'>
+          <h3 class='pa-left-10 pa-top-5'>
+            <img style="width: 25px" class="img_icon" src="./img/xn/first/homeWork/baojieyuan.png" alt="">
+            <span>护工</span>
+            <span class="pull-right pa-right-10" ui-sref='tab.homeMore({id:"15",title:"护工"})' ng-if='vm.dele.data.careworker.length>0'>更多 ></span>
+          </h3>
+        </div>
+        <a class="item item-thumbnail-left item-icon-right" ng-if='vm.dele.data.careworker.length>0' ui-sref='tab.homePerson({id:i.yuangong_id})' 
+        ng-repeat='i in vm.dele.data.careworker'>
+          <img src="{{imgUrl + i.yuangong_s_tx}}">
+          <h2>姓名：{{i.yuangong_name}}</h2>
+          <p>简介：{{i.yuangong_jianjie}}</p>
+          <p>服务星级：<span class="text-red {{i.class}}"   ng-repeat="i in i.start_class"></span>                   
+          </p>
+          <h2>价格：<span>￥{{i.yuangong_price}}</span></h2>
+          <i class="icon ion-ios-arrow-right"></i>
+        </a>
+         <a class="item"  ng-if='vm.dele.data.careworker.length==0'>
+          <h3 class="text-center">该条暂无数据,敬请期待</h3>
+        </a>
+      </div>
+
+      <div class="list">
+        <div class='item_box item gap-10 padding-none first-bottom pa-btm-5'>
+          <h3 class='pa-left-10 pa-top-5'>
+            <img style="width: 25px" class="img_icon" src="./img/xn/first/homeWork/baojieyuan.png" alt="">
+            <span>外墙清洗</span>
+            <span class="pull-right pa-right-10" ui-sref='tab.homeMore({id:"16",title:"外墙清洗"})' ng-if='vm.dele.data.ewclean.length>0'>更多 ></span>
+          </h3>
+        </div>
+        <a class="item item-thumbnail-left item-icon-right" ng-if='vm.dele.data.ewclean.length>0' ui-sref='tab.homePerson({id:i.yuangong_id})' 
+        ng-repeat='i in vm.dele.data.ewclean'>
+          <img src="{{imgUrl + i.yuangong_s_tx}}">
+          <h2>姓名：{{i.yuangong_name}}</h2>
+          <p>简介：{{i.yuangong_jianjie}}</p>
+          <p>服务星级：<span class="text-red {{ii.class}}"   ng-repeat="ii in i.start_class"></span>                   
+          </p>
+          <h2>价格：<span>￥{{i.yuangong_price}}</span></h2>
+          <i class="icon ion-ios-arrow-right"></i>
+        </a>
+         <a class="item"  ng-if='vm.dele.data.ewclean.length==0'>
+          <h3 class="text-center">该条暂无数据,敬请期待</h3>
+        </a>
+      </div>
+
+      <div class="list">
+        <div class='item_box item gap-10 padding-none first-bottom pa-btm-5'>
+          <h3 class='pa-left-10 pa-top-5'>
+            <img style="width: 25px" class="img_icon" src="./img/xn/first/homeWork/baojieyuan.png" alt="">
+            <span>管道疏通与开锁服务</span>
+            <span class="pull-right pa-right-10" ng-if='vm.dele.data.pipeulock.length>0' ui-sref='tab.homeMore({id:"17",title:"管道疏通与开锁服务"})'>更多 ></span>
+          </h3>
+        </div>
+        <a class="item item-thumbnail-left item-icon-right" ng-if='vm.dele.data.pipeulock.length>0' ui-sref='tab.homePerson({id:i.yuangong_id})'
+         ng-repeat='i in vm.dele.data.pipeulock'>
+          <img src="{{imgUrl + i.yuangong_s_tx}}">
+          <h2>姓名：{{i.yuangong_name}}</h2>
+          <p>简介：{{i.yuangong_jianjie}}</p>
+          <p>服务星级：<span class="text-red {{ii.class}}" ng-repeat="ii in i.start_class"></span>                   
+          </p>
+          <h2>价格：<span>￥{{i.yuangong_price}}</span></h2>
+          <i class="icon ion-ios-arrow-right"></i>
+        </a>
+        <a class="item"  ng-if='vm.dele.data.pipeulock.length==0'>
+          <h3 class="text-center">该条暂无数据,敬请期待</h3>
+        </a>
+      </div>
+
+    </div>
+    <div ng-if='vm.dele.isLoading'>
+        <h4 class="text-center gap-30" style='margin-bottom:30px'>正在加载中...</h4>
+    </div>
+
+
+
+    <ion-slide-box on-slide-changed="slideHasChanged($index)" auto-play="false" does-continue="false" show-pager="false">
+      <ion-slide>
+        <img src="./img/xn/first/homeWork/dibu.png" class="img-responsive">
+      </ion-slide>
+    </ion-slide-box>
+  </ion-content>
+
+</ion-view>

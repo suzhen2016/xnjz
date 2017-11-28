@@ -1,0 +1,63 @@
+<ion-view hide-tabs="true">
+  <!--中间内容区-->
+  <ion-nav-title>
+    <div class="bar bar-positive">
+      <div class="button-bar nav-bar">
+        <a class="button">账户资料</a>
+      </div>
+    </div>
+  </ion-nav-title>
+  <ion-content class="bg-gray xn-content">
+    <div class="list gap-8">
+       <a class="item item-icon-right" >
+         基本信息
+      </a>
+      <a class="item item-icon-right user-icon" ng-click='vm.selectSheet()'>
+         <span class="pull-left gap-10">头像</span>
+         <span class="pull-right text-gray" > <img  src="./img/xn/login-user.png"></span>
+         <i class="icon ion-ios-arrow-right"></i>
+      </a>
+      <a class="item item-icon-right" ng-click='vm.changeUser("username",confin)'>
+         昵称
+         <span class="pull-right text-gray">{{vm.userChange.username}}</span>
+         <i class="icon ion-ios-arrow-right"></i>
+      </a>
+      <a class="item item-icon-right" ng-click='vm.changeUser("phone",confin)'>
+         修改手机号
+         <span class="pull-right text-gray">{{vm.userChange.gender}}</span>
+         <i class="icon ion-ios-arrow-right"></i>
+      </a>
+      <!--<a class="item item-icon-right" ng-click='vm.openDatePicker()'>
+         生日
+         <span class="pull-right text-gray">{{(vm.data.time_sheng | date:'yyyy-MM-dd') || '请选择'}}</span>
+         <i class="icon ion-ios-arrow-right"></i>
+      </a>-->
+      
+    </div>
+     <!--<div class="list gap-8">
+       <a class="item item-icon-right" >
+         实名认证信息
+      </a>
+      <a class="item item-icon-right">
+        真实姓名
+         <span class="pull-right text-gray">野原新之助</span>
+         <i class="icon ion-ios-arrow-right"></i>
+      </a>
+      <a class="item item-icon-right" >
+        证件号码
+         <span class="pull-right text-gray">31727273273183318173</span>
+         <i class="icon ion-ios-arrow-right"></i>
+      </a>
+      <a class="item item-icon-right" >
+         手机号
+         <span class="pull-right text-gray">137960032266</span>
+         <i class="icon ion-ios-arrow-right"></i>
+      </a>
+    </div>-->
+    
+  </ion-content>
+
+
+
+
+</ion-view>

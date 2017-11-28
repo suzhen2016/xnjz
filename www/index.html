@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link rel="manifest" href="manifest.json">
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <link href="js/common/lib/ion_bottomSheet/ng_bottomSheet.css" rel="stylesheet">
+    <link href="lib/ionic.atlas.progress/dist/ionic.atlas.progress.min.css" rel="stylesheet">
+
+    <link href="css/common.css" rel="stylesheet">
+    <link href="css/158.css" rel="stylesheet">
+    <link href="css/pass.css" rel="stylesheet">
+    <link href="css/general.css" rel="stylesheet">
+    <link href="css/me.css" rel="stylesheet">
+    <link href="css/ebank.css" rel="stylesheet">
+    <link href="css/xinan_style.css" rel="stylesheet">
+
+    <link href="lib/ion-gallery/dist/ion-gallery.css" rel="stylesheet">
+   
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="lib/ngCordova/dist/ng-cordova.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!--lib-->
+    <script src="lib/angular-cache/dist/angular-cache.min.js"></script>
+    <script src="lib/angular-jwt/dist/angular-jwt.min.js"></script>
+    <script src="lib/underscore/underscore.js"></script>
+    <script src="lib/angular-touch/angular-touch.min.js"></script>
+    <script src="lib/angular-image-404/dist/angular-image-404.js"></script>
+    <script src="lib/restangular/dist/restangular.js"></script>
+    <script src="lib/ionic.atlas.progress/dist/ionic.atlas.progress.min.js"></script>
+
+    <script src="lib/angular-messages/angular-messages.js"></script>
+    <script src="lib/angular-linq/angular-linq.js"></script>
+    <!--时间插件所需要文件-->
+    <script src="lib/moment/min/moment.min.js"></script>
+    <script src="lib/moment/min/locales.min.js"></script>
+    <script src="lib/humanize-duration/humanize-duration.js"></script>
+    <script src="lib/angular-timer/dist/angular-timer.min.js"></script>
+    <script src="lib/ionic-timepicker/dist/ionic-timepicker.bundle.min.js"></script>
+    <script src="lib/ionic-datepicker/dist/ionic-datepicker.bundle.min.js"></script>
+    <script src="lib/ionic-toast/dist/ionic-toast.bundle.min.js"></script>
+
+    <script src="lib/ion-gallery/dist/ion-gallery.min.js"></script>
+
+    <!--webIM-->
+    <script src="lib/webIM/webim.config.js"></script>
+    <script src="lib/webIM/strophe-1.2.8.js"></script>
+    <script src="lib/webIM/websdk-1.4.10.js"></script>
+
+    <!--common-->
+    <script src="js/common/services/rest_angular.js"></script>
+    <script src="js/common/services/service.js"></script>
+    <script src="js/common/filters/filter.js"></script>
+    <script src="js/common/services/account.js"></script>
+    <script src="js/common/directives/main.js"></script>
+    <script src="js/common/services/areas.js"></script>
+    <script src="js/common/lib/ion_bottomSheet/bottomSheet.js"></script>
+    <script src="js/common/services/dictionary.js"></script>
+
+
+    <!--config-->
+    <script src="js/config/app.development.config.js"></script>
+    <script src="js/config/app.development.config.test.js"></script>
+    <script src="js/config/app.production.config.js"></script>
+    <script src="js/config/app.production.config.test.js"></script>
+
+    <!-- your app's js -->
+
+    <!--account-->
+    <script src="js/account/app_account.js"></script>
+    <script src="js/account/router.js"></script>
+    <script src="js/account/service.js"></script>
+    <script src="js/account/controller.js"></script>
+    <script src="js/account/filter.js"></script>
+
+    <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
+
+    <!--common-->
+    <script src="js/common/services/rest_angular.js"></script>
+
+    <!--config-->
+    <script src="js/config/app.development.config.js"></script>
+    <script src="js/config/app.development.config.test.js"></script>
+    <script src="js/config/app.production.config.js"></script>
+    <script src="js/config/app.production.config.test.js"></script>
+
+
+
+    <!--临时文件！！！-->
+    <script src="js/common/temp/services.js"></script>
+    <script src="js/common/temp/common.js"></script>
+    <script src="js/common/temp/phone.js"></script>
+    <script src="js/common/temp/restangular.js"></script>
+
+
+    <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=f5d5510b14936d8755b11eafc587bd4b&plugin=AMap.Driving"></script>
+   
+
+
+    <!--西南家政项目文件-->
+    <script src='js/menu/controller.js'></script>
+    <script src='js/menu/route.js'></script>
+    <script src='js/xnMy/controller.js'></script>
+    <script src='js/xnMy/route.js'></script>
+
+    <script src='js/first/controller.js'></script>
+    <script src='js/first/serves.js'></script>
+    <script src='js/first/router.js'></script>
+    <script src='js/xnGovern/controller.js'></script>
+    <script src='js/xnGovern/route.js'></script>
+    <!--公共页面-->
+    <script src="js/commonPage/controller.js"></script>
+    <script src="js/commonPage/route.js"></script>
+
+</head>
+
+<body ng-app="starter">
+    <ion-nav-bar class="bar-stable">
+        <ion-nav-back-button class="button-clear">
+            <i class="icon ion-ios-arrow-back"></i><span class="default-title">返回</span>
+        </ion-nav-back-button>
+    </ion-nav-bar>
+    <ion-nav-view></ion-nav-view>
+</body>
+
+</html>

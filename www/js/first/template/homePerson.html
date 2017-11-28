@@ -1,0 +1,91 @@
+<ion-view hide-tabs="true">
+  <!--中间内容区-->
+  <ion-nav-title>
+    <div class="bar bar-positive">
+      <div class="button-bar nav-bar">
+        <a class="button">员工详情</a>
+      </div>
+    </div>
+  </ion-nav-title>
+  <ion-content class="bg-gray xn-content " ng-class="{hasFooter: !vm.dele.isLoading}">
+    <ion-refresher pulling-text="下拉刷新..." on-refresh="vm.doRefresh()">
+    </ion-refresher>
+    <div ng-if='!vm.dele.isLoading'>
+      <div class="list card">
+
+        <div class="item item-avatar">
+          <img src="{{imgUrl + vm.order.employeeinfo.yuangong_s_tx}}">
+          <h2>姓名：{{vm.order.employeeinfo.yuangong_name}}</h2>
+          <p>服务次数：{{vm.order.employeeinfo.service_num}}</p>
+        </div>
+
+        <div class="item item-body" style='padding:0 16px 5px 16px'>
+          <!--<img class="full-image" src="delorean.jpg">-->
+          <p>
+            简介：{{vm.order.employeeinfo.yuangong_jianjie}}
+          </p>
+        </div>
+      </div>
+
+      <div class="list">
+        <div class='item_box item gap-10 padding-none first-bottom pa-btm-5'>
+          <h3 class='pa-left-10 pa-top-5'>
+            <span>经理推荐</span>
+          </h3>
+        </div>
+        <div class="item item-body">
+          {{vm.order.employeeinfo.yuangong_tuijian}}
+        </div>
+      </div>
+
+      <div class="list">
+        <div class='item_box item gap-10 padding-none first-bottom pa-btm-5'>
+          <h3 class='pa-left-10 pa-top-5'>
+            <span>公司报价</span>
+          </h3>
+        </div>
+        <div class="item item-body text-center">
+          ￥{{vm.order.employeeinfo.yuangong_price}}
+        </div>
+      </div>
+
+      <div class="list">
+        <div class='item_box item gap-10 padding-none first-bottom pa-btm-5'>
+          <h3 class='pa-left-10 pa-top-5'>
+            <span>用户评价</span>
+          </h3>
+        </div>
+        <a class="item item-avatar" ng-repeat="i in vm.order.appraiseList track by $index">
+          <img src="./img/xn/first/homeWork/suzhen.jpg">
+          <h4>{{i.username}} <span class="pull-right"><span class="text-red  {{ii.class}}"  ng-repeat="ii in i.start_class"></span></span></h4>
+          <p style="white-space: normal">{{i.cmt_msg}}</p>
+          <p class="text-right">时间：{{i.cmttime}}</p>
+        </a>
+      </div>
+
+    </div>
+    <div ng-if='vm.dele.isLoading'>
+         <h4 class="text-center gap-30" style="padding-bottom:30px">
+          数据加载中...
+        </h4>
+    </div>
+
+    <ion-infinite-scroll ng-if="vm.query.hasMore" immediate-check="false" icon="ion-loading-c" on-infinite="vm.loadMore()" distance="1%">
+    </ion-infinite-scroll>
+  </ion-content>
+
+  <div class="bar bar-footer bar-light"  ng-if='!vm.dele.isLoading'>
+    <div class="row button-foot">
+      <div  class="col col-30 col-mar border-right-1 text-center"  nav-transition="ios" nav-direction="forward" ui-sref='car'>
+        购物车<span class="text-red">({{vm.query.num}})</span>
+      </div>
+      <div class="col col-37 col-mar text-center" ng-click='vm.addCar()'>
+        加入购物车
+      </div>
+      <div class="col col-red text-center" xn-call>
+        联系客服
+      </div>
+    </div>
+  </div>
+
+</ion-view>

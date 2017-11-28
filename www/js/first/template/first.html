@@ -1,0 +1,125 @@
+<ion-view >
+  <!--中间内容区-->
+  <ion-nav-title>
+    <div class="bar bar-positive">
+      <div class="button-bar nav-bar">
+        <a class="button" nav-transition="ios" nav-direction="enter">西南家政</a>
+      </div>
+    </div>
+  </ion-nav-title>
+  <ion-content class="bg-gray xn-content">
+    <ion-slide-box on-slide-changed="slideHasChanged($index)" auto-play="true" does-continue="true" slide-interval=3000 show-pager="true">
+      <ion-slide>
+        <img src="./img/xn/first/lash1.jpg" class="img-responsive">
+      </ion-slide>
+      <ion-slide>
+        <img src="./img/xn/first/slash2.jpg" class="img-responsive">
+      </ion-slide>
+      <ion-slide>
+        <img src="./img/xn/first/slash3.jpg" class="img-responsive">
+      </ion-slide>
+    </ion-slide-box>
+<!--
+    <div class="list list-inset">
+      <label class="item item-input">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="text" placeholder="请输入你要查询的产品">
+      </label>
+    </div>-->
+    <div class="list">
+        <div class='item_box item gap-10 padding-none'>
+          <!--<h3 class="gap-10">
+            <img style="width: 25px" class="img_icon" src="./img/xn/first/jiazheng.png" alt="">
+              <span>家政服务</span>
+          </h3>-->
+          <div class="row row-wrap xn-first">
+            <div class='col col-33 border-bot-right' ui-sref='tab.homeWork' >
+              <span class='icon_box icon_bg'>
+                <img src="./img/xn/first/jiazhengfw.png" alt="">
+              </span>
+              <h4>家政服务</h4>
+            </div>
+            <div class='col col-33 border-bot-right' ui-sref='tab.workxun'>
+              <span class='icon_box icon_bg'>
+                <img src="./img/xn/first/peixun.png" alt="">
+              </span>
+              <h4 >培训服务</h4>
+            </div>
+            <div class='col col-33 border-bot-first' ui-sref='tab.industryUser'>
+              <span class='icon_box icon_bg'>
+              <img src="./img/xn/first/kehu.png" alt="">
+              </span>
+              <h4 >行业客户</h4>
+            </div>
+            <div class='col col-33 border-bot-right' ui-sref='tab.recruitment'>
+              <span class='icon_box icon_bg'>
+                 <img src="./img/xn/first/zhaopin.png" alt="">
+              </span>
+              <h4>招贤纳士</h4>
+            </div>
+            <div class='col col-33 border-bot-right' ui-sref='tab.shoppingMall'>
+              <span class='icon_box icon_bg'>
+                 <img src="./img/xn/first/shopping.png" alt="">
+              </span>
+              <h4 >购物商城</h4>
+            </div>
+            <div class='col col-33 border-bot-first' ui-sref='tab.condition({id:"ss"})'>
+              <span class='icon_box icon_bg'>
+                 <img src="./img/xn/first/more-l.png" alt="">
+              </span>
+              <h4 >公司动态</h4>
+            </div>
+            <!--<div class='col col-33 border-bot-right'>
+              <span class='icon_box icon_bg'>
+                 <img src="./img/xn/first/more-l.png" alt="">
+              </span>
+              <h4 >预留</h4>
+            </div>
+            <div class='col col-33 border-bot-right'>
+              <span class='icon_box icon_bg'>
+                 <img src="./img/xn/first/more-l.png" alt="">
+              </span>
+              <h4 >预留</h4>
+            </div>
+            <div class='col col-33 border-bot-first'>
+              <span class='icon_box icon_bg'>
+                 <img src="./img/xn/first/more-l.png" alt="">
+              </span>
+              <h4 >预留</h4>
+            </div>-->
+          </div>
+        </div>
+        
+      <div class='item_box item gap-10 padding-none first-bottom pa-btm-5'>
+        <h3 class='pa-left-10 pa-top-5'>
+            <img style="width: 25px" class="img_icon" src="./img/xn/first/host.png" alt="">
+              <span>热门推荐</span>
+          </h3>
+        <div class="row row-wrap" >
+          <div class='col col-50' ui-sref='tab.shoppingMore({id:57})'>
+            <div style="width: 100%" class="pa-right-5">
+              <img style="width: 100%" src="./img/xn/first/qingjie.jpg" alt=""></div>
+            <h4>清洁用品</h4>
+          </div>
+          <div class='col col-50' ui-sref='tab.shoppingMore({id:56})'>
+            <div style="width: 100%" class="pa-left-5">
+              <img style="width: 100%" src="./img/xn/first/guizhou.jpg" alt=""></div>
+            <h4>贵州特产</h4>
+          </div>
+
+           <div class='col col-50' ui-sref='tab.workxun'>
+            <div style="width: 100%" class="pa-right-5">
+              <img style="width: 100%" src="./img/xn/first/pwixun-banner.jpg" alt=""></div>
+            <h4>培训服务</h4>
+          </div>
+
+          <div class='col col-50'>
+            <div style="width: 100%" class="pa-left-5" ui-sref='tab.recruitment'>
+              <img style="width: 100%" src="./img/xn/first/renli.jpg" alt=""></div>
+            <h4>人力资源</h4>
+        </div>
+      </div>
+      </div>
+    </div>   
+  </ion-content>
+</ion-view>

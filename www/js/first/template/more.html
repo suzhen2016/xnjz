@@ -1,0 +1,41 @@
+<ion-view hide-tabs="true">
+  <!--中间内容区-->
+  <ion-nav-title>
+    <div class="bar bar-positive">
+      <div class="button-bar nav-bar">
+        <a class="button">{{vm.query.text}}</a>
+      </div>
+    </div>
+  </ion-nav-title>
+  <ion-content class="bg-gray xn-content">
+    <ion-refresher pulling-text="下拉刷新..." on-refresh="vm.doRefresh()">
+    </ion-refresher>
+    <div ng-if='!vm.dele.isLoading && vm.order.userList.length>0' class="list pos-father">
+      <a class="item item-icon-right gap-10 item-thumbnail-left" ng-repeat="i in vm.order.userList" ui-sref='tab.homePerson({id:i.yuangong_id})'>
+        <img src="{{imgUrl+i.yuangong_s_tx}}">
+        <h2>姓名：{{i.yuangong_name}}</h2>
+        <p>简介：{{i.yuangong_jianjie}}</p>
+        <p>服务星级：<span class="text-red {{i.class}}"   ng-repeat="i in [{class:'ion-ios-star'},{class:'ion-ios-star'},
+        {class:'ion-ios-star-half'},{class:'ion-ios-star-outline'}]"></span>
+           </p>
+        <h2>价格：<span>￥{{i.yuangong_price}}</span></h2>
+        <i class="icon ion-ios-arrow-right"></i>  
+      </a>
+      <button class="button button-clear button-stable login-text text-center pos-bot-40">
+        {{"没有更多了..."}}
+      </button>
+    </div>
+    <div ng-if='vm.dele.isLoading'>
+      <h4 class="text-center gap-30" style="padding-bottom:30px">
+        数据加载中...
+      </h4>
+    </div>
+    <div ng-if='!vm.dele.isLoading && vm.order.userList.length==0'>
+      <h4 class="text-center gap-30" style="padding-bottom:30px">
+        当前暂无数据
+      </h4>
+    </div>
+    <ion-infinite-scroll ng-if="vm.query.hasMore" immediate-check="false" icon="ion-loading-c" on-infinite="vm.loadMore()" distance="1%">
+    </ion-infinite-scroll>
+  </ion-content>
+</ion-view>

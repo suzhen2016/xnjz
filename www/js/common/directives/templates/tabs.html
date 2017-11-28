@@ -1,0 +1,11 @@
+<div class="tabs-positive tabs-bottom tabs-standard">
+    <div class="tab-nav tabs">
+        <a menu-close nav-direction="enter" ng-repeat="tab in vm.tabs" class="tab-item " ng-class="{'tab-item-active':tab.active}"
+            ui-sref="{{tab.link}}">
+            <span class="tab-title ng-binding">
+                {{tab.text}}
+                <span class="label-num tab-num" ng-if="tab.link == 'trade.message||pass.message' && vm.unreadMsg != 0">{{vm.unreadMsg}}</span>
+            </span>
+        </a>
+    </div>
+</div>

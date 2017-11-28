@@ -1,0 +1,49 @@
+<ion-view view-title="找回密码">
+	<ion-content>
+		<div class="bg-white item-login">
+			<form name="frm_findPassword">
+				<div class="list">
+					<li class="item item-input item-icon-left">
+						<i class="icon ion-iphone"></i>
+						<input class="font-col" name="phone" type="tel"
+							   autofocus="autofocus"
+							   ng-model="vm.data.phone"
+							   placeholder="输入手机号"
+							   maxlength="11"
+							   phone-check
+							   find-password="true"
+							   ng-pattern="/(^13[0-9]{9}$)|(^15[0-9]{9}$)|(^17[0-9]{9}$)|(^18[012356789][0-9]{8}$)/"
+						>
+						<button ng-click="vm.getCode()" ng-disabled="vm.isDisabled" class="button button-small button-assertive">
+							{{vm.btn_text}}
+						</button>
+					</li>
+					<div class="form-error" ng-messages="frm_findPassword.phone.$dirty&&frm_findPassword.phone.$error">
+						<!--<div ng-message="required">手机号不能为空</div>-->
+						<div ng-message="pattern">请输入11位手机号码</div>
+						<div ng-message="phone">手机号码未注册</div>
+					</div>
+					<li class="item-input item-icon-left">
+						<i class="icon"><img src="./img/general/code.png" class="code"></i>
+						<input class="font-col" name="verify_code"
+							   type="tel"
+							   ng-model="vm.data.verify_code"
+							   placeholder="输入验证码"
+							   ng-pattern="/^[0-9]{6}$/"
+							   maxlength="6"
+						>
+					</li>
+					<div class="form-error" ng-messages="frm_findPassword.verify_code.$dirty&&frm_findPassword.verify_code.$error">
+						<!--<div ng-message="required">验证码不能为空</div>-->
+						<div ng-message="pattern">请输入6位验证码数字</div>
+					</div>
+				</div>
+				<div class="clear"></div>
+				<button class="button button-block button-stable" ng-disabled="frm_findPassword.$invalid" ng-click="vm.next()">
+					下一步
+				</button>
+			</form>
+
+		</div>
+	</ion-content>
+</ion-view>

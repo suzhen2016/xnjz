@@ -1,0 +1,41 @@
+<ion-modal-view class="bg-modal">
+  <!--<ion-header-bar>
+      <h1 class="title">My Modal title</h1>
+    </ion-header-bar>-->
+  <ion-content class="has-footer" scroll="false" style="width:100%;height:100%">
+    <div class="bg-white pos-bot-43" style="width:100%">
+      <div class="list">
+        <div class="item item-icon-right" ng-click='vm.closeModal()'>
+
+          <i class="icon ion-ios-close-outline"></i>
+        </div>
+      </div>
+      <div class="list">
+        <div>
+          <div>
+            <p class="text-center gaq-10">价格：{{vm.order.header.goods_price | currency:'￥'}}</p>
+            <span class="box-span">
+              <!--<img src="img/xn/xiyiyi.jpg" alt="">-->
+              <img style='width: 88px;' src="{{imgUrl + vm.order.header.goods_s_xc1}}" alt="">
+            </span>
+           
+            <div class="pull-right driver-input" style="margin-top: 40px">
+              <img src="./img/xn/first/shopping/minus.png" class="pull-left" ng-if='vm.query.order.num>1' ng-click="vm.count('sub')">
+              <input type="tel" placeholder="1" class="pull-left" ng-model="vm.query.order.num" ng-change="vm.count()">
+              <img src="./img/xn/first/shopping/plus.png" class="pull-left" ng-click="vm.count('add')">
+            </div>
+          </div>
+        </div>
+        <div class="item item-text-wrap">
+          <div class="row row-wrap border-col">
+            <div class="col col-25 text-center " ng-class='{"active":vm.order_model_name ==i.goods_name}' ng-click='vm.changeOrder(i)' ng-repeat="i in vm.order.att.goodsAttr track by $index">{{i.goods_name}}</div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+  <ion-footer-bar class="bar bar-assertive bar-footer">
+    <h2 style="text-align:center;width:100%;line-height: 33px;" ng-click='vm.addCar()'>加入购物车</h2>
+  </ion-footer-bar>
+</ion-modal-view>

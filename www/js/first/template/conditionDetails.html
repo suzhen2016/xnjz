@@ -1,0 +1,33 @@
+<ion-view hide-tabs="true">
+  <!--中间内容区-->
+  <ion-nav-title>
+    <div class="bar bar-positive">
+      <div class="button-bar nav-bar">
+        <a class="button">动态详情</a>
+      </div>
+    </div>
+  </ion-nav-title>
+  <ion-content class="bg-gray xn-content" ng-init ='vm.init()'>
+    <!--<ion-slide-box on-slide-changed="slideHasChanged($index)" auto-play="false" does-continue="false" show-pager="false">
+      <ion-slide>
+        <img src="./img/xn/first/zhaopin/hire.png" class="img-responsive">
+      </ion-slide>
+    </ion-slide-box>-->
+    <div class="bg-white">
+      <div class="list card">
+        <div class="item">
+          <!--<img src="mcfly.jpg">-->
+          <h2 class="text-center">{{vm.dele.order.dyn_title}}</h2>
+        </div>
+
+        <div class="item item-body">
+          <img class="full-image" src="{{imgUrl + vm.dele.order.dyn_pho_centerimg}}">
+            <p>{{vm.dele.order.dyn_content}}</p>
+            <p>
+              <a class="subdued">更新日期：</a>
+              <a class="subdued">{{vm.dele.order.upd_time}}</a>
+            </p>
+        </div>
+    </div>
+  </ion-content>
+</ion-view>
