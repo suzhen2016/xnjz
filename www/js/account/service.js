@@ -56,6 +56,14 @@ angular.module('rsc.common.account.service', ['rsc.common.service.rest','rsc.com
                     var all = XnRestAngular.allUrl('/User/updatePhoneNumber?'+str);
                     return all.get('');
                 },
+                /**
+                 * 获取客服手机号
+                 */
+                xnGetPhonekf:function(){
+                    var all = XnRestAngular.allUrl('/user/getCosterTelPhone');
+                    return all.post();
+                }
+
             }
         }
     ])

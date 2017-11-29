@@ -3,7 +3,7 @@
  */
 
 angular.module('rsc.common.directives', ['ion-BottomSheet'])
-    
+
     .directive('citysItem', function ($log) {
         return {
             restrict: 'EAC',
@@ -340,24 +340,22 @@ angular.module('rsc.common.directives', ['ion-BottomSheet'])
     /**
      * 打电话指令
      * */
-    .directive('xnCall',function(iAlert,$rootScope,ionicToast,Storage){
-         return {
+    .directive('xnCall', function (iAlert, AccountService,$rootScope, ionicToast, Storage) {
+        return {
             restrict: 'EAC',
             replace: true,
             scope: {
                 iphones: "="
             },
-            link: function ($scope,element,attributes) {
+            link: function ($scope, element, attributes) {
                 var vm = $scope.vm = this;
                 vm.query = {};
-                vm.query.iphoneList=Storage.get('userInfo').cosSerinfo;
-              
                 vm.telPhone = function () {
                     var query = {
-                            type: 'radio'
-                        };
+                        type: 'radio'
+                    };
                     var obj = {
-                            templateUrl: `<ul class="list genderRadio">
+                        templateUrl: `<ul class="list genderRadio">
                                 <li class="item item-checkbox item-checkbox1 item-icon-right" ng-repeat="item in vm.query.iphoneList track by $index">
                                     <label class="checkbox" style="width:250px;">
                                         <input type="radio" ng-value='item.cos_phone' ng-model="vm.query.phone">
@@ -365,16 +363,35 @@ angular.module('rsc.common.directives', ['ion-BottomSheet'])
                                     {{item.cos_phone}}&nbsp;
                                 </li>
                             </ul>`,
-                            btn:'拨号'
-                        };    
+                        btn: '拨号'
+                    };
                     if (vm.query.iphoneList) {
                         //iAlert.confirm('', '13796003244', vm.success, vm.err, obj)
-                        iAlert.tPopup($scope,obj,query,vm.success,vm.err)
+                        iAlert.tPopup($scope, obj, query, vm.success, vm.err)
 
                     } else {
                         ionicToast.alert('获取电话失败，稍后再试')
                     }
                 }
+                //vm.query.iphoneList = Storage.get('userInfo').cosSerinfo;
+                vm.getPhone = function(){
+                    AccountService.xnGetPhonekf().then(function(res){
+                        if(res.status==200){
+                            vm.query.iphoneList = res.data;
+                            if(_.size(vm.query.iphoneList)>0){
+                                vm.telPhone();
+                            }else{
+                                ionicToast.alert('客服电话更新中，请稍后再访问')
+                            }
+                           
+                        }else{
+                            ionicToast.alert('获取电话失败，请稍后再访问')
+                        }
+                    },function(){
+                        ionicToast.alert('网络延迟，请稍后再访问')
+                    })
+                }
+                
                 //成功打电话
                 vm.success = function () {
                     window.plugins.CallNumber.callNumber(function onSuccess(res) {
@@ -390,8 +407,143 @@ angular.module('rsc.common.directives', ['ion-BottomSheet'])
                     //$log.debug('取消拨号')
                     console.log('233')
                 }
-                element.on('click',vm.telPhone);
+                element.on('click', vm.telPhone);
             }
         }
     })
 
+    /**
+     *
+     * 上传图片组件
+     */
+    .directive('tradeImgTool',
+    function (iAlert, FileUpload, fileReader, $rootScope, TradeServe, $ionicHistory, $log, $http, ionicToast, ENV, $ionicLoading) {
+
+        return {
+            restrict: 'ECA',
+            replace: true,
+            scope: {
+                imgUrl: '=',
+                count: '@'
+            },
+            // templateUrl: 'js/common/directives/templates/company_page.html',
+            link: function ($scope, element, attr) {
+                element.on('click', function () {
+                    $scope.upLoadOrderImg();
+                });
+                //获取input中files 信息
+                $scope.getUploadPic = function (e) {
+                    $scope.file = e;
+                    //console.log($scope.file);
+                    $scope.getFile()
+                };
+
+                $scope.getFile = function () {
+
+                    fileReader.readAsDataUrl($scope.file[0], $scope).then(function (result) {
+                        if (result) {
+                            $scope.previewImageSrc = result;
+                            // $scope.imgUrl.push(result)
+                        }
+                    })
+                };
+
+                var _upimg = function (file, _url, $http) {
+                    var c = new FormData();
+                    c.append('file', file);
+                    c.append('type', 'tou_xiang')
+                    // 上传图片
+                    return $http({
+                        method: 'POST',
+                        url: _url,
+                        data: c,
+                        headers: {
+                            "Content-Type": undefined
+                        },
+                        transformRequest: angular.identity
+                    })
+                };
+                //上传图片方法
+                $scope.upLoadOrderImg = function () {
+                    $scope.previewImageSrc = '';
+                    if (ionic.Platform.isWebView()) { //APP端
+                        var opt = {
+                            // params: {
+                            //     'type': 'tou_xiang'
+                            // },
+                            url: ENV.api.trade + 'file/img_upload',
+                            headers: {
+                                'x-access-token': $rootScope.currentUser.token,
+                                "Content-Type": undefined
+                            }
+                        }
+                        FileUpload.upload('resizeImg', opt, function (res) {
+                            res.then(function (json) {
+                                $log.debug('上传图片的回调', json)
+                                var result = JSON.parse(json.response);
+
+                                if (result.status == "success") {
+                                    $ionicLoading.hide();
+                                    $scope.imgUrl.push(result.data);
+                                    $log.debug(result)
+                                } else {
+                                    ionicToast.alert('上传失败!');
+                                    $ionicLoading.hide();
+                                }
+                            }, function (err) {
+                                console.log(err)
+                                $ionicLoading.hide();
+                                ionicToast.alert('上传失败!');
+                            }, function (progress) {
+
+                            }).finally(function () {
+                                $ionicLoading.hide();
+
+                            });
+                        })
+                    } else {   //pc端
+                        var data = {
+                            type: 'file'
+                        }
+                        var obj = {
+                            templateUrl: 'js/common/template/popupRadio.html',
+                            title: '上传产品图片'
+                        }
+                        iAlert.tPopup($scope, obj, data, function (res) {
+                            if (res) {
+                                //$scope.imgUrl.push(result);
+                                if ($scope.imgUrl.length < $scope.count) {
+                                    $log.debug($scope.imgUrl);
+                                } else {
+                                    ionicToast.alert('该区域最多能上传' + $scope.count + '张图片');
+                                    return false;
+                                }
+                            }
+                            if (res) {
+                                if (!$scope.file) {
+                                    ionicToast.alert('选择图片失败,再次上传');
+                                    return false;
+                                }
+                                var _url = ENV.api.trade + 'file/img_upload';
+
+                                _upimg($scope.file[0], _url, $http).success(function (data) {
+
+                                    if (data.status == "success") {
+                                        $log.debug('图片上传成功 进入下一步', data)
+                                        $scope.imgUrl.push(data.data);
+                                    } else {
+                                        ionicToast.alert('图片上传失败,请稍后重试')
+                                    }
+                                })
+                            }
+
+                        })
+                    }
+                }
+
+            }
+
+        }
+    })
+
+    

@@ -128,7 +128,7 @@ angular.module('rsc.service.phone', [])
                             break;
 
                         case 'send-link-thumb-local':
-                            // params.message.thumb = "www/img/rsc-icon.png";
+                            // params.message.thumb = "www/img/icon-76@2x.png";
                             params.message.media.type = Wechat.Type.LINK;
                             params.message.media.webpageUrl = args.url;
                             if (type == EnumType.shareWeXinType.TIMELINE) {
@@ -212,14 +212,13 @@ angular.module('rsc.service.phone', [])
 
 
                 }
-                //alert(JSON.stringify(params));
+                // alert(JSON.stringify(params));
 
                 Wechat.share(params, function () {
-                    // iAlert.alert('分享成功!');
                     iAlert.alert('分享成功!');
                 }, function (reason) {
-                    iAlert.alert('分享失败!' + reason);
-                    // iAlert.alert('分享失败!' + reason)
+                    // $log.debug('分享参数',params);
+                    iAlert.alert('分享失败!' + reason)
                 });
 
 
@@ -232,15 +231,53 @@ angular.module('rsc.service.phone', [])
     .service('PictureSelect', function ($q, $timeout, $cordovaCamera, $ionicActionSheet, $log, $ionicLoading, $cordovaImagePicker) {
         //选择相册文件
         var hideSheet = null;
-        var pickImage = function (cb) {
-            var options = {
-                maximumImagesCount: 1,
-                width: 800,
-                height: 800,
-                quality: 80
-            };
+        var pickImage = function (cb, resize) {
+            if (resize) {
+                var options = {
+                    quality: 50,
+                    destinationType: Camera.DestinationType.FILE_URI,
+                    sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+                    allowEdit: true,
+                    encodingType: Camera.EncodingType.JPEG,
+                    targetWidth: 700,
+                    targetHeight: 700,
+                    popoverOptions: CameraPopoverOptions,
+                    saveToPhotoAlbum: true,
+                    correctOrientation: true
+                };
+
+            } else {
+                var options = {
+                    maximumImagesCount: 1,
+                    width: 800,
+                    height: 800,
+                    quality: 80
+                };
+            }
+
+
+
             $cordovaImagePicker.getPictures(options)
                 .then(function (results) {
+                    console.log(results)
+                    if (!!resize) {
+                        if (ionic.Platform.isAndroid()) {
+                            plugins.crop.promise(results[0], options)
+                                .then(function success(newPath) {
+                                    results[0] = newPath
+                                })
+                                .catch(function fail(error) {
+                                    $log.error('选取照片出错', error)
+                                })
+                        } else {
+                            cordova.plugins.imageCrop.crop(results[0], 700, 700,
+                                function (newPath) {
+                                    results[0] = newPath
+                                }, function (error) {
+                                    $log.error('选取照片出错', error)
+                                })
+                        }
+                    }
                     //vm.imgUrl = results[0];
                     if (results && results.length > 0) {
                         cb(results[0]);
@@ -295,11 +332,11 @@ angular.module('rsc.service.phone', [])
 
         };
         return {
-            selectOrTakePhoto: function (cb) {
-                var buttons = [{ text: '<b class="text-center">拍照</b>' },
-                { text: '<b class="text-center">从手机相册选择</b>' }];
+            selectOrTakePhoto: function (cb, resize) {
+                var buttons = [{ text: '<i class="text-center">拍照</i>' },
+                { text: '<i class="text-center">从手机相册选择</i>' }];
                 if (ionic.Platform.isAndroid()) {
-                    buttons.push({ text: '<b class="text-center">取消</b>' })
+                    buttons.push({ text: '<i class="text-center">取消</i>' })
                 }
                 hideSheet = $ionicActionSheet.show({
                     buttons: buttons,
@@ -313,14 +350,31 @@ angular.module('rsc.service.phone', [])
                     buttonClicked: function (index) {
                         switch (index) {
                             case 0:
-                                var options = {
-                                    quality: 80,
-                                    destinationType: Camera.DestinationType.DATA_URI,
-                                    sourceType: Camera.PictureSourceType.CAMERA,
-                                    // saveToPhotoAlbum: true,//bug 789 华为拍照后无响应。zhoudd
-                                    targetWidth: 1024,
-                                    targetHeight: 768,
-                                };
+                                if (resize) {
+                                    var options = {
+                                        quality: 50,
+                                        destinationType: Camera.DestinationType.DATA_URI,
+                                        sourceType: Camera.PictureSourceType.CAMERA,
+                                        allowEdit: true,
+                                        encodingType: Camera.EncodingType.JPEG,
+                                        targetWidth: 700,
+                                        targetHeight: 700,
+                                        popoverOptions: CameraPopoverOptions,
+                                        saveToPhotoAlbum: true,
+                                        correctOrientation: true
+                                    };
+                                } else {
+                                    var options = {
+                                        quality: 80,
+                                        destinationType: Camera.DestinationType.DATA_URI,
+                                        sourceType: Camera.PictureSourceType.CAMERA,
+                                        // saveToPhotoAlbum: true,//bug 789 华为拍照后无响应。zhoudd
+                                        targetWidth: 1024,
+                                        targetHeight: 768
+                                    }
+
+                                }
+
                                 $cordovaCamera.getPicture(options).then(function (imageURI) {
                                     // window.alert(imageURI);
                                     cb(imageURI);
@@ -336,7 +390,7 @@ angular.module('rsc.service.phone', [])
                                 });
                                 break;
                             case 1:
-                                pickImage(cb);
+                                pickImage(cb, resize);
                                 break;
                             case 2:
                                 hide();
@@ -353,23 +407,99 @@ angular.module('rsc.service.phone', [])
                 // }, 2000);
 
             },
+
             hideSheet: function () {
                 $cordovaCamera.cleanup();
                 hide();
+            },
+            // 修改头像用含裁剪
+            selectOrTakeAvatar: function (cb, resize) {
+                return this.selectOrTakePhoto(cb, resize)
             }
         }
 
 
     })
+
+    /** 
+    * 小视频 
+    */
+    .service('VideoSelect', function () {
+        function videoCaptureSuccess(success, err) {
+            // Wrap this below in a ~100 ms timeout on Android if 
+            // you just recorded the video using the capture plugin. 
+            // For some reason it is not available immediately in the file system. 
+            return function (mediaFiles) {
+                var file = mediaFiles[0];
+                var videoFileName = 'video-name-here'; // I suggest a uuid 
+
+                VideoEditor.transcodeVideo(
+                    videoTranscodeSuccess(success),
+                    videoTranscodeError(err),
+                    {
+                        fileUri: file.fullPath,
+                        outputFileName: videoFileName,
+                        outputFileType: VideoEditorOptions.OutputFileType.MPEG4,
+                        optimizeForNetworkUse: VideoEditorOptions.OptimizeForNetworkUse.YES,
+                        saveToLibrary: true,
+                        maintainAspectRatio: true,
+                        width: 640,
+                        height: 640,
+                        videoBitrate: 1000000, // 1 megabit 
+                        audioChannels: 2,
+                        audioSampleRate: 44100,
+                        audioBitrate: 128000, // 128 kilobits 
+                        // progress: function(info) { 
+                        //     console.log('transcodeVideo progress callback, info: ' + info); 
+                        // } 
+                    }
+                );
+            }
+        }
+
+        function videoTranscodeSuccess(success) {
+            return function (result) {
+                console.log('videoTranscodeSuccess, result: ' + result);
+                success(result)
+            }
+        }
+
+        function videoTranscodeError(err) {
+            return function (result) {
+                console.log('videoTranscodeError, err: ' + result);
+                err(result)
+            }
+        }
+
+        function videoCaptureError(err) {
+            return function (result) {
+                console.log('videoCaptureError:' + result)
+                err(result)
+            }
+        }
+
+        return {
+            getVideo: function (time, success, err) {
+                return function () {
+                    navigator.device.capture.captureVideo(
+                        videoCaptureSuccess(success, err),
+                        videoCaptureError(err),
+                        {
+                            limit: 1,
+                            duration: time
+                        }
+                    )
+                }
+            }
+        }
+    })
+
     /**
      * 文件上传
      */
-    .service('FileUpload', function ($q, $ionicLoading, PictureSelect, $cordovaFileTransfer, Storage, $log) {
+    .service('FileUpload', function ($q, $ionicLoading, PictureSelect, $cordovaFileTransfer, Storage, VideoSelect, $log) {
 
         var uploadImg = function (fileUrl, options) {
-            $ionicLoading.show({
-                template: '图片上传中...'
-            });
 
             var opt = new FileUploadOptions();
             opt.fileKey = "file";
@@ -377,20 +507,57 @@ angular.module('rsc.service.phone', [])
             opt.mimeType = "text/plain";
             opt.headers = options.headers ? options.headers : { 'x-access-token': Storage.get('userInfo').token, "Content-Type": undefined };
             opt.timeout = 10000;
-            opt.params = options.params ? opt.params : null;
+            opt.params = options.params ? options.params : null;
             return $cordovaFileTransfer.upload(options.url, fileUrl, opt);
         };
+
+        var resizeImg = function (fileUrl, options, cb) {
+            var opt = {
+                uri: fileUrl,
+                folderName: "Protonet Messenger",
+                quality: 90,
+                width: 700,
+                height: 700
+            };
+            return window.ImageResizer.resize(opt, function (url) {
+                cb(uploadImg(url, options));
+            }, function (err) {
+                console.log(err)
+            })
+        }
         return {
             upload: function (type, options, cb) {
                 switch (type) {
                     case 'image':
                         PictureSelect.selectOrTakePhoto(function (imgUrl) {
                             if (imgUrl != 'error') {
+                                console.log(imgUrl)
+                                $ionicLoading.show({
+                                    template: '图片上传中...'
+                                });
                                 cb(uploadImg(imgUrl, options));
                             } else {
                                 $log.error('未选择图片!', imgUrl);
                             }
                         })
+                        break;
+                    case 'resizeImg':
+                        PictureSelect.selectOrTakeAvatar(function (imgUrl) {
+                            if (imgUrl != 'error') {
+                                console.log(imgUrl)
+                                if (ionic.Platform.isAndroid()) {
+                                    resizeImg(imgUrl, options, cb);
+                                } else {
+                                    $ionicLoading.show({
+                                        template: '图片上传中...'
+                                    });
+                                    cb(uploadImg(imgUrl, options));
+                                }
+
+                            } else {
+                                $log.error('未选择图片!', imgUrl);
+                            }
+                        }, true)
                         break;
                     case 'file':
 
@@ -398,6 +565,20 @@ angular.module('rsc.service.phone', [])
                     default:
                         break;
                 }
+            },
+
+            video: function (time, options, cb) {
+                console.log(arguments)
+                VideoSelect.getVideo(time,
+                    function (success) {
+                        $ionicLoading.show({
+                            template: '小视频上传中...'
+                        });
+                        cb(uploadImg(success, options));
+                    },
+                    function (error) {
+                        $log.error(error);
+                    })()
             }
         }
     })
@@ -618,3 +799,37 @@ angular.module('rsc.service.phone', [])
             send: send
         }
     })
+
+    .factory('fileReader', ['$q', '$log', function ($q, $log) {
+        var onLoad = function (reader, deferred, scope) {
+            return function () {
+                scope.$apply(function () {
+                    deferred.resolve(reader.result)
+                })
+            }
+        };
+        var onError = function (reader, deferred, scope) {
+            return function () {
+                scope.$apply(function () {
+                    deferred.reject(reader.result)
+                })
+            }
+        };
+        var getReader = function (deferred, scope) {
+            var reader = new FileReader();
+            reader.onload = onLoad(reader, deferred, scope);
+            reader.onerror = onError(reader, deferred, scope);
+            return reader
+
+        };
+        var readAsDataURL = function (file, scope) {
+            var deferred = $q.defer()
+            var reader = getReader(deferred, scope);
+            reader.readAsDataURL(file)
+            return deferred.promise
+        };
+        return {
+            readAsDataUrl: readAsDataURL
+        }
+
+    }])
