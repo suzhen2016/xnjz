@@ -314,11 +314,26 @@ angular.module('xn.commonpage.ctrl', [])
                 $ionicNavBarDelegate.back();
                 $ionicViewSwitcher.nextDirection("back")
             }
+            //成功的回调
+            vm.alipaySuccessOrder= function(arr){
+                FirstService.clientNotifyUrl(arr).then(function (res) {
+                    if (res.status == 200) {
+                        $state.go('tab.order',{'status':3})
+                    } else {
+                       
+                    }
+                }, function () {
+                   
+                }).finally(function(){
+                    
+                })
+            }
             //支付宝支付;
             vm.alipayXn = function () {
 
                 var myDate = new Date();
                 var tradeNo = myDate.getTime();
+                //var arr = _.pluck(vm.order.data,'id')
                 //alert(JSON.stringify(vm.order.data));
                 cordova.plugins.alipay.payment({
                     "app_id": '2017091608772582' ,//vm.order.data.appid,                //APP-ID
@@ -330,19 +345,20 @@ angular.module('xn.commonpage.ctrl', [])
                     "timestamp": '2016-07-29 16:55:53'  //vm.order.data.order_creat_time   //订单时间  
                 }, function success(e) {
                     if (e) {
-                        alert(JSON.stringify(e))
+                        //alert(JSON.stringify(e))
                         if(e.resultStatus==9000){
                              ionicToast.alert('订单支付成功')
-                             $state.go('tab.order',{'status':3})  
+                             vm.alipaySuccessOrder([])
+                               
                         }else if(e.resultStatus==8000){
                             //支付中;
-                             ionicToast.alert('订单支付中，请求订单列表查询订单状态')
+                             ionicToast.alert('订单支付中，请求订单列表查询订单状态,如果已扣款请联系客服')
                              $state.go('tab.order',{'status':1})   
                         }
                     }
                 }, function error(e) {
                     if (e) {
-                        alert(JSON.stringify(e));
+                        //alert(JSON.stringify(e));
                         if(e.resultStatus==4000){
                             ionicToast.alert('订单支付失败')
                             $state.go('tab.order',{'status':1})
@@ -356,6 +372,8 @@ angular.module('xn.commonpage.ctrl', [])
                     }
                 });
             };
+
+            
         }
     ])
 

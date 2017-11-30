@@ -182,9 +182,13 @@ angular.module('xn.first.service', [])
                 addAppraise:function(obj){
                     var all = XnRestAngular.allUrl('/Comment/addCmt');
                     return all.post(obj); 
-                }
+                },
                 // 修改手机号的接口
-
+                //订单支付成功的回调
+                clientNotifyUrl:function(order_numbers){
+                    var all = XnRestAngular.allUrl('/Order/clientNotifyUrl');
+                    return all.post({order_numbers:order_numbers}); 
+                }
 
 
             }
