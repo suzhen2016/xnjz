@@ -246,13 +246,12 @@ angular.module('rsc.controllers.account', ['rsc.common.account.service'])
     /**
      * 找回密码
      */
-    .controller('find_pwd_ctrl', function ($scope, $log, AccountService, Storage, $state, $interval, $stateParams, ionicToast) {
+    .controller('find_pwd_ctrl', function ($scope, $log, AccountService, Storage, $state, $interval, 
+    $stateParams, ionicToast) {
         var vm = this;
         vm.btn_text = '获取验证码';
         vm.data = {
-            phone: '',
-            verify_code: '',
-            new_password: ''
+            phone: ''
         };
 
         vm.inputSel = true;
@@ -265,7 +264,7 @@ angular.module('rsc.controllers.account', ['rsc.common.account.service'])
          */
         vm.getCode = function () {
             if (!vm.data.phone) {
-                RscAlert.alert('请输入正确手机号码');
+                ionicToast.alert('请输入正确手机号码');
                 return false
             } else {
                 AccountService.getCode(vm.data.phone).then(function (result) {
@@ -299,49 +298,31 @@ angular.module('rsc.controllers.account', ['rsc.common.account.service'])
             if (!vm.data.phone) {
                 ionicToast.show('请输入正确手机号码', 'middle', false, 2500);
                 return false
-            } else if (!vm.data.verify_code) {
+            } else if (!vm.data.verifyNum) {
                 ionicToast.show('请输入正确验证码', 'middle', false, 2500);
                 return false
-            } else {
+            } else if(vm.data.newpwdone!=vm.data.newpwdtwo){
+                ionicToast.show('两次密码不一致', 'middle', false, 2500);
+                return false
+            }else{
                 $log.debug(vm.data)
                 AccountService.checkVerifyCode(vm.data).then(function (result) {
-                    $log.debug('验证是否进入下一步', result);
-                    if (result.status == 'success') {
+                  
+                    if (result.status == '200') {
                         if (result.data) {
-                            $state.go('reset_pwd', {
-                                phone: vm.data.phone,
-                                code: vm.data.verify_code
-                            })
+                           Storage.remove('userInfo');
+                            $state.go('login');
+                            $ionicHistory.clearHistory()
+                            $ionicHistory.clearCache()
                         }
-                    } else {
-                        ionicToast.show('请不要重复点击', 'middle', false, 2500);
+                    }else if(result.status =='403'){
+                        ionicToast.show('验证码错误', 'middle', false, 2500);
+                    }else{
+                        ionicToast.show('重置密码失败', 'middle', false, 2500);
                     }
+                },function(){
+                     ionicToast.show('网络延迟，重置密码失败', 'middle', false, 2500);
                 });
             }
         };
-
-        /**
-         * 完成重置密码
-         */
-        vm.update = function () {
-            vm.data = {
-                phone: $stateParams.phone,
-                verify_code: $stateParams.code,
-                password: vm.data.new_password
-            };
-            AccountService.forGetPassword(vm.data).then(function (result) {
-                $log.debug('完成重置密码', result);
-                if (result.status == 'success') {
-                    if (result.data) {
-                        ionicToast.show('密码重置成功', 'middle', false, 2500);
-                        $state.go('login');
-                    }
-                } else {
-                    ionicToast.show(result.msg, 'middle', false, 2500);
-                }
-            });
-            // $state.go('login')
-        }
-
-
     })
