@@ -3,6 +3,7 @@
 		<div class="bg-white item-login">
 			<form name="frm_findPassword">
 				<div class="list">
+					<!--手机号-->
 					<li class="item item-input item-icon-left">
 						<i class="icon ion-iphone"></i>
 						<input class="font-col" name="phone" type="tel"
@@ -23,24 +24,41 @@
 						<div ng-message="pattern">请输入11位手机号码</div>
 						<div ng-message="phone">手机号码未注册</div>
 					</div>
-					<li class="item-input item-icon-left">
-						<i class="icon"><img src="./img/general/code.png" class="code"></i>
-						<input class="font-col" name="verify_code"
+					<!--验证码-->
+					<li class="item item-input item-icon-left">
+						<i class="icon"><img src="./img/common/code.png" class="code"></i>
+						<input class="font-col" name="verifyNum"
 							   type="tel"
-							   ng-model="vm.data.verify_code"
+							   ng-model="vm.data.verifyNum"
 							   placeholder="输入验证码"
 							   ng-pattern="/^[0-9]{6}$/"
 							   maxlength="6"
 						>
 					</li>
-					<div class="form-error" ng-messages="frm_findPassword.verify_code.$dirty&&frm_findPassword.verify_code.$error">
+					<div class="form-error" ng-messages="frm_findPassword.verifyNum.$dirty&&frm_findPassword.verifyNum.$error">
 						<!--<div ng-message="required">验证码不能为空</div>-->
 						<div ng-message="pattern">请输入6位验证码数字</div>
 					</div>
+					<!--密码设置-->
+					 <!--密码-->
+          <li class="item item-input item-icon-left">
+            <i class="icon ion-key"></i>
+            <input class="font-col" type="password" name="password" id="one" required ng-model="vm.data.newpwdone" placeholder="输入您的密码"
+              maxlength="13" ng-pattern="/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,13}$/">
+          </li>
+          <div class="form-error" ng-messages="frm_findPassword.password.$dirty&&frm_findPassword.password.$error">
+            <div ng-message="pattern">请输入6-13个字母和数字</div>
+          </div>
+          <!--再次确认密码-->
+          <li class=" item-input item-icon-left">
+            <i class="icon ion-key"></i>
+            <input class="font-col" type="password" name="password-two" id="two" required ng-model="vm.data.newpwdtwo" placeholder="请再次确认你的密码"
+              maxlength="13" ng-pattern="/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,13}$/">
+          </li>
 				</div>
 				<div class="clear"></div>
 				<button class="button button-block button-stable" ng-disabled="frm_findPassword.$invalid" ng-click="vm.next()">
-					下一步
+					重置密码
 				</button>
 			</form>
 

@@ -3,16 +3,16 @@ angular.module('rsc.common.account.service', ['rsc.common.service.rest','rsc.com
         function ($q, Restangular, $window, Storage, AccountRestAngular, XnRestAngular,AccountRestAngularNoToken) {
            
             return {
-                //检验手机号是否被邀请
-                phoneInvitationVerify: function (data) {
-                    var all = AccountRestAngular.allUrl('user_trade/invitation_verify');
+                //确定忘记密码重置密码
+                checkVerifyCode: function (data) {
+                    var all = XnRestAngular.allUrl('/User/modifyPwd');
                     return all.post(data);
                 },
                 /**
                  * 根据手机号获取注册验证码
                  */
                 getCode: function (phone) {
-                    var Phone = Restangular.one('/phone/get_verify_code/', phone);
+                    var Phone = XnRestAngular.one('/User/wjPwdGetVerifyCode?phone='+phone);
                     var promis = $q.defer();
                     Phone.get().then(function (result) {
                         promis.resolve(result);
