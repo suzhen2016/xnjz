@@ -82,4 +82,13 @@ angular.module('xn.my', ['ui.router', 'xn.my.ctrl'])
                     }
                 }
             })
+            .state('tab.pinUp',{
+                url: '/pinUp',
+                views: {
+                    'tab-my': {
+                        templateUrl: 'js/commonPage/template/pinkUp.html',
+                        controller: 'pink_up_ctrl'
+                    }
+                }
+            })
     }])

@@ -59,19 +59,25 @@
     <div class="list">
       <div class='item_box item gap-10 padding-none first-bottom pa-btm-5'>
         <h3 class='pa-left-10 pa-top-5'>
-          <span>用户评价({{vm.cmtCount}})</span>
-          <span class="pull-right">好评度：100% &nbsp</span>
+          <span>用户评价</span>
+          <span class="pull-right pa-right-10">评论条数({{vm.dele.all_count}})</span>
         </h3>
       </div>
-      <a class="item item-avatar" ng-repeat="i in vm.cmtList">
+      <!--<a class="item item-avatar" ng-repeat="i in vm.cmtList">
         <img src="./img/xn/first/homeWork/suzhen.jpg">
         <h2>李嘉诚</h2>
         <p style="white-space: normal">才能查出啊吉大吉大的几啊的较大，大大劫案加上达到阿克达到</p>
         <p class="text-right">时间：2015-06-07</p>
-      </a>
+      </a>-->
+      <a class="item item-avatar" ng-repeat="i in vm.dele.appraiseList track by $index">
+          <img src="{{imgUrl+i.user_pho ||'./img/xn/login-user.png'}}">
+          <h4>{{i.username}} <span class="pull-right"><span class="text-red  {{ii.class}}"  ng-repeat="ii in i.start_class"></span></span></h4>
+          <p style="white-space: normal">{{i.cmt_msg}}</p>
+          <p class="text-right">时间：{{i.cmttime}}</p>
+        </a>
     </div>
 
-    <ion-infinite-scroll ng-if="hasMore" immediate-check="false" icon="ion-loading-c" on-infinite="vm.loadMore()" distance="1%">
+    <ion-infinite-scroll ng-if="vm.query.hasMore" immediate-check="false" icon="ion-loading-c" on-infinite="vm.loadMore()" distance="1%">
     </ion-infinite-scroll>
 
   </ion-content>

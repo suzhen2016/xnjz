@@ -318,8 +318,8 @@ angular.module('xn.my.ctrl', [])
         }
     ])
 
-    .controller('order_details_ctrl', ['$log','ionicToast','$stateParams', '$scope', '$ionicHistory', '$ionicViewSwitcher', '$timeout','FirstService','xnData',
-        function ($log,ionicToast,$stateParams, $scope, $ionicHistory, $ionicViewSwitcher, 
+    .controller('order_details_ctrl', ['$log','$state','ionicToast','$stateParams', '$scope', '$ionicHistory', '$ionicViewSwitcher', '$timeout','FirstService','xnData',
+        function ($log,$state,ionicToast,$stateParams, $scope, $ionicHistory, $ionicViewSwitcher, 
         $timeout,FirstService,xnData) {
             $log.debug('订单详情')
             var vm = $scope.vm = this;
@@ -337,9 +337,9 @@ angular.module('xn.my.ctrl', [])
                         vm.dele.isLoading = true;
                         if(vm.order){
                             if(vm.order.order_status=='1'){
-                                xnData.set({order_time_end:res.data.order_time_end},'pinkUp')
+                               
                             }else if(vm.order.order_status=='4'){
-                                xnData.set({yuangong_id:res.data.yuangong_id,goodtype_id:vm.order.goodtype_id},'appraise')
+                    xnData.set({yuangong_id:res.data.yuangong_id,goodtype_id:vm.order.goodtype_id,order_id:res.data.order_id},'appraise')
                             }
                                
                         }
@@ -390,6 +390,24 @@ angular.module('xn.my.ctrl', [])
                 },function(){
                     ionicToast.alert('网络延迟，确定失败')
                 })
+            }
+
+            vm.goPinkUp = function(){
+                var obj = {};
+                obj.appid = '2017091608772582';
+                obj.order_time_end = vm.order.order_time_end;
+                obj.order_total_price = vm.order.order_price;
+                obj.subject = '西南家政商品';
+                obj.rsa_private = 'MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCtnjStPeDSZOv6O83qcHbgto/y11OfUkEOxRiwi0lZg4KmySqFHXH12sA1PupHVN7dCtaZzrBKIe/YhNkGkqpq0dzY0lFg52ASVtPgrkC0gJNDGM59KicuJkv1EirzKrkSzI9hvtJ4B/S0MLrkQDJPK8AWh/MwN1khF5JsdQHzWMtyT0FgB2DaiNbzVcYSrBeSAet+3c2pF2qee6dBFYJQ4r2rVSj+LFB5innGKNA8RHdiyssEzXZwazPeHF5L+J2/7qCfvksA7yQxIx++EOaKdH1gxW1CWwNSeFkWl46FwfGSZfv11V0jXCzmLyF+b0gmoTHJ+YnsTKdo7Ap5ba5RAgMBAAECggEAHk3B5gcp6a9B3RB5NZVhuoFDCOD6sJFb16chUxdMuzoQIOp16HwmOwJukBymKcMvjydoI7qG3LmlsoYll1ccNb7hrFqxZ5ebFjhfjRT9KERU794xlHk6E30Nvv3nzz/Cw/w+fpIfDGJfHOBwjoyB+32oboZWNTFD9lm17gZSS9YHK1jGACP4VamkOhko8FVcFTxRGdyAMF1vk3pKKBJjgu3VpYQ+QxeVgjwITz5xGoKTRC9+VFlH6wCN3cMStavCWXcpRTddons+qba3tNN0vLHM4jZ+fSICfQg0fosAbZ6ohmgI67NUWuL+RJVZ0rtQXCQ/vIQJHXYG+UfKwaM+AQKBgQDb5H5ydQiC7gFJaCjP7JAFHS5KvUIgQS5ddW9d+KA/lioRG4c/IN4G2D+CB9YzCc49XeArbkRjppkHUrp/pHx5qLWoJ70i0s+kM5QRI6545ImhPTRkyr9KNlT9yKhq6GIfSdzwMEISFpaQKDG3jDsLx/uhq/pL6stBusF1TNEC4QKBgQDKIH4hXcI63+K1GB0SOWTohq03kXqCfCCkwvSSdMegeGcnnoKcd+hKWaqEMQYLtWO5RlwZRPK+aThcsr/Uvu2gmwyZCKbhjbs2vjdR126uAidtsgbHWdrMFjychi9vsP/PTi9RpZEkuzDI3J0a/TY0Aw5NV37KrDxvnCfw68GJcQKBgASOcYhRoIGGCQTKYb4dOsbAWgs2bL5aW2mYW1xpIHjw1aJRHbZTKgaeSIKbQvb/xwRCg7iiqkweUaFzN2YZtHKY6lq3qBWmpKLUZscMJDthEPEEYaeNA/W3tn8jv0mn0xCu6SMY/OV/DlOiYZVaFIcj97Tb6W3VSazs/8E8fEBBAoGAXGeYYhaj+hhqY1H/0FoOyMLxI4tNj6PBpLE/8EiVDsacmh88JN4ogv0VGFP1KJsnWQdSiXbc5rHhw3cwfck/h4H6s2eiK1GJOhCh57ducPypG9wcfzyT62NrGD+8JfqsKBDdTx07CqjNN7ar2C/UfNi8zBzo6SzugDPKiritBPECgYEAlW1zmMU8phIfrN4gUrGNf7fbB1TXzPCgBT+cmz0F7U0cmAzCtzl1xlgIvMVGy1ikr313B2fjfhbMsgB7rzcHNWcUZKJwljwSA5Tfpe+eICx5RouRxiC1q0Q9YC0kx9ydikD2xUusemHvIf3firtywtK2hVGQDjZgcF2oDQSNTmI='
+                obj.orderRetInfo = [];
+                var info = {};
+                info.is_cmt= '0';
+                info.order_id = vm.order.order_id;
+                info.goods_name = vm.order.goods_name;
+                info.order_number = vm.order.order_number;
+                obj.orderRetInfo.push(info);
+                xnData.set(obj,'pinkUp')
+                $state.go('tab.pinUp',{})
             }
 
             $scope.$on("$ionicView.beforeEnter", function () {
@@ -548,7 +566,7 @@ angular.module('xn.my.ctrl', [])
         function ($log, FirstService,$scope, $state, Storage, $ionicHistory,$ionicModal,xnData,ionicToast) {
            var vm = $scope.vm = this;
            vm.info = xnData.get('appraise');
-           vm.query = {};
+           vm.query = {order_id:vm.info.order_id};
            $log.debug(vm.info)
            
            vm.getStart = function (num) {

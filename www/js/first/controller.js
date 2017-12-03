@@ -181,14 +181,13 @@ angular.module('xn.first.ctrl', [])
             vm.query.yuangong_id = $stateParams.id;
             vm.dele = {}
             vm.dele.isLoading = true;
-            vm.query.page = 1;
+            vm.query.page_index = 1;
             vm.query.num = 0;   
             vm.init = function () {
                 FirstService.getPersonDetails($stateParams.id).then(function (res) {
                     if (res.status == 200) {
                         vm.order.employeeinfo = res.data.employeeinfo;
                         vm.dele.isLoading = false;
-                        console.log(vm.order);
                     } else {
                        $timeout(function(){
                             ionicToast.alert('数据加载失败，请稍后再试');
@@ -207,8 +206,10 @@ angular.module('xn.first.ctrl', [])
             vm.getPersonCmtList = function () {
                 FirstService.getPersonNews(vm.query).then(function (res) {
                     if (res.status == 200) {
+                         vm.dele.all_count = res.data.all_count;
                         if (res.data.comment.length > 0) {
-                            res.data.comment.leength == 5 ? vm.query.hasMore = true : vm.query.hasMore = false;
+                            res.data.comment.length == 5 ? vm.query.hasMore = true : vm.query.hasMore = false;
+                           
                             res.data.comment.forEach(function (i) {
                                 angular.forEach(i, function (val, key) {
                                     if (key == 'cmt_star') {
@@ -261,14 +262,14 @@ angular.module('xn.first.ctrl', [])
             vm.doRefresh = function () {
                 vm.order.appraiseList = [];
                 vm.query.hasMore = true;
-                vm.query.page = 1;
+                vm.query.page_index = 1;
                 vm.getPersonCmtList();
                 $scope.$broadcast('scroll.refreshComplete');
 
             }
 
             vm.loadMore = function () {
-                vm.query.page += 1;
+                vm.query.page_index += 1;
                 vm.getPersonCmtList();
                 $scope.$broadcast('scroll.infiniteScrollComplete');
             }
@@ -563,13 +564,14 @@ angular.module('xn.first.ctrl', [])
             $log.debug("商品详情");
             vm.order = {};
             vm.query = {};
+            vm.dele = {};
             vm.query.order = {};
             vm.query.order.num = 1;
             vm.cmt = {};
             $scope.hasMore = true;
             vm.cmt.page_index  =1;
             vm.cmt.goodtype_id = $stateParams.id;
-            vm.cmtList = [];
+            vm.dele.appraiseList = [];
 
             vm.getConFirm = function () {
                 iAlert.confirm('', '13796003244', vm.success, vm.err)
@@ -709,16 +711,37 @@ angular.module('xn.first.ctrl', [])
             }
 
             vm.getCmtList = function(type){
+                if(type=='refresh'){
+                    vm.cmt.page_index =1;
+                     vm.dele.appraiseList = [];
+                }
                 FirstService.getPersonNews(vm.cmt).then(function (res) {
                     if (res.status == 200) {
-                        vm.cmtList = vm.cmtList.concat(res.data.comment);
-                        vm.cmtCount = res.data.comment.length;
-                        res.data.comment.length < 5 ? $scope.hasMore = false : $scope.hasMore = true;
-                        $log.debug('评论数',vm.cmtList);
+                        vm.dele.all_count = res.data.all_count;
+                        if (res.data.comment.length > 0) {
+                            
+                            res.data.comment.length == 5 ? vm.query.hasMore = true : vm.query.hasMore = false;
+                           
+                            res.data.comment.forEach(function (i) {
+                                angular.forEach(i, function (val, key) {
+                                    if (key == 'cmt_star') {
+                                        val == null ? val == 0 : val == val;
+                                        // val.cmt_star = 0;
+                                        i.start_class = vm.getStart(val);
+                                    }
+                                })
+                            })
+
+                            vm.dele.appraiseList = vm.dele.appraiseList.concat(res.data.comment);
+
+                        } else {
+                            vm.query.hasMore = false;
+                        }
                     }else{
                         ionicToast.alert('服务忙，请稍后再访问')
                     }
                 },function(){
+                    vm.query.hasMore = false;
                     ionicToast.alert('网络有延时，请稍后再访问')
                 }).finally(function() {
                     // 停止广播ion-refresher
@@ -730,6 +753,31 @@ angular.module('xn.first.ctrl', [])
                     
                 });
             }
+            vm.getStart = function (num) {
+                var arr = [];
+                if (!num) {
+                    num = 0;
+                }
+                var numArr = num.toString().split('.');
+
+                for (var i = 0; i < numArr[0]; i++) {
+
+                    arr.push({ class: 'ion-ios-star' })
+
+                }
+                if (numArr[1]) {
+                    arr.push({ class: 'ion-ios-star-half' });
+                    for (var i = 0; i < 5 - numArr[0] - 1; i++) {
+                        arr.push({ class: 'ion-ios-star-outline' })
+                    }
+                } else {
+                    for (var i = 0; i < 5 - numArr[0]; i++) {
+                        arr.push({ class: 'ion-ios-star-outline' })
+                    }
+                }
+                return arr;
+            }
+
             vm.loadMore = function(){
                 vm.cmt.page_index ++;
                 vm.getCmtList('load')

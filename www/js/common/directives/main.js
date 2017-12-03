@@ -345,12 +345,15 @@ angular.module('rsc.common.directives', ['ion-BottomSheet'])
             restrict: 'EAC',
             replace: true,
             scope: {
-                iphones: "="
+               
             },
             link: function ($scope, element, attributes) {
                 var vm = $scope.vm = this;
                 vm.query = {};
+                vm.query.isFalg = true;
                 vm.telPhone = function () {
+                    console.log(22)
+                    //vm.getPhone();
                     var query = {
                         type: 'radio'
                     };
@@ -365,20 +368,27 @@ angular.module('rsc.common.directives', ['ion-BottomSheet'])
                             </ul>`,
                         btn: '拨号'
                     };
+                    
                     if (vm.query.iphoneList) {
                         //iAlert.confirm('', '13796003244', vm.success, vm.err, obj)
-                        iAlert.tPopup($scope, obj, query, vm.success, vm.err)
+                        iAlert.tPopup($scope, obj, query, vm.success, vm.err);
 
                     } else {
                         ionicToast.alert('获取电话失败，稍后再试')
                     }
                 }
-                //vm.query.iphoneList = Storage.get('userInfo').cosSerinfo;
+
                 vm.getPhone = function(){
+                     if(!vm.query.isFalg){
+                        return false;
+                    }
+                    vm.query.isFalg = false;
                     AccountService.xnGetPhonekf().then(function(res){
                         if(res.status==200){
                             vm.query.iphoneList = res.data;
+                           
                             if(_.size(vm.query.iphoneList)>0){
+                                vm.query.isFalg = true;
                                 vm.telPhone();
                             }else{
                                 ionicToast.alert('客服电话更新中，请稍后再访问')
@@ -389,11 +399,14 @@ angular.module('rsc.common.directives', ['ion-BottomSheet'])
                         }
                     },function(){
                         ionicToast.alert('网络延迟，请稍后再访问')
+                    }).finally(function(){
+                         vm.query.isFalg = true;
                     })
                 }
                 
                 //成功打电话
                 vm.success = function () {
+                   
                     window.plugins.CallNumber.callNumber(function onSuccess(res) {
                         $log.debug('Succcess:call number' + res)
                     },
@@ -404,10 +417,9 @@ angular.module('rsc.common.directives', ['ion-BottomSheet'])
                 }
 
                 vm.err = function () {
-                    //$log.debug('取消拨号')
-                    console.log('233')
                 }
-                element.on('click', vm.telPhone);
+                element.on('click', vm.getPhone);
+                
             }
         }
     })
@@ -416,8 +428,7 @@ angular.module('rsc.common.directives', ['ion-BottomSheet'])
      *
      * 上传图片组件
      */
-    .directive('tradeImgTool',
-    function (iAlert, FileUpload, fileReader, $rootScope, TradeServe, $ionicHistory, $log, $http, ionicToast, ENV, $ionicLoading) {
+    .directive('tradeImgTool',function (iAlert,XnAlert, FileUpload, fileReader, $rootScope,AccountService, $ionicHistory, $log, $http, ionicToast, ENV, $ionicLoading) {
 
         return {
             restrict: 'ECA',
@@ -471,7 +482,8 @@ angular.module('rsc.common.directives', ['ion-BottomSheet'])
                             // params: {
                             //     'type': 'tou_xiang'
                             // },
-                            url: ENV.api.trade + 'file/img_upload',
+                            //url: ENV.api.trade + 'file/img_upload',
+                            url:'http://www.zgxnjz.cn/index.php/Home/User/setUserPhoto',
                             headers: {
                                 'x-access-token': $rootScope.currentUser.token,
                                 "Content-Type": undefined
@@ -502,6 +514,7 @@ angular.module('rsc.common.directives', ['ion-BottomSheet'])
                             });
                         })
                     } else {   //pc端
+                        
                         var data = {
                             type: 'file'
                         }
@@ -509,23 +522,23 @@ angular.module('rsc.common.directives', ['ion-BottomSheet'])
                             templateUrl: 'js/common/template/popupRadio.html',
                             title: '上传产品图片'
                         }
-                        iAlert.tPopup($scope, obj, data, function (res) {
+                        XnAlert.tPopup($scope, obj, data, function (res) {
                             if (res) {
                                 //$scope.imgUrl.push(result);
-                                if ($scope.imgUrl.length < $scope.count) {
-                                    $log.debug($scope.imgUrl);
-                                } else {
-                                    ionicToast.alert('该区域最多能上传' + $scope.count + '张图片');
-                                    return false;
-                                }
+                                // if ($scope.imgUrl.length < $scope.count) {
+                                //     $log.debug($scope.imgUrl);
+                                // } else {
+                                //     ionicToast.alert('该区域最多能上传' + $scope.count + '张图片');
+                                //     return false;
+                                // }
                             }
                             if (res) {
                                 if (!$scope.file) {
                                     ionicToast.alert('选择图片失败,再次上传');
                                     return false;
                                 }
-                                var _url = ENV.api.trade + 'file/img_upload';
-
+                               // var _url = ENV.api.trade + 'file/img_upload';
+                               var _url ='http://www.zgxnjz.cn/index.php/Home/User/setUserPhoto';
                                 _upimg($scope.file[0], _url, $http).success(function (data) {
 
                                     if (data.status == "success") {

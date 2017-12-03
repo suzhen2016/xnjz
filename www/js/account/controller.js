@@ -279,14 +279,18 @@ angular.module('rsc.controllers.account', ['rsc.common.account.service'])
                             vm.isDisabled = false;
                         }
                     }, 1000);
-                    if (result.status == 'success') {
+                    if (result.status == '200') {
                         if (result.data.code) {
                             vm.data.verify_code = result.data.code;
                         }
                         $log.debug('验证码登录获取验证码', result)
-                    } else {
-                        ionicToast.show(result.msg, 'middle', false, 2500);
-                        $log.error('手机号输入不正确', result)
+                    }else if(result.status == '402'&& result.msg=='Phone Number Have Not Register'){
+                        ionicToast.show('该手机号未注册', 'middle', false, 2500);
+                       
+                    }else if(result.status == '301'){
+                        ionicToast.show('验证码超出同模板同号码天发送上限', 'middle', false, 2500);
+                    }else{
+                         ionicToast.show('获取验证码失败', 'middle', false, 2500);
                     }
                 }, function (error) {
                     $log.error('获取验证码失败', error)

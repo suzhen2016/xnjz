@@ -11,7 +11,7 @@
       </button>
     </ion-nav-buttons>
     <!--内容区域-->
-    <ion-content class="bg-gray">
+    <ion-content class="bg-gray has-footer">
         <div class="text-center gap-50" ng-if="!vm.dele.isLoading">
             <h4 class="text-gray">数据加载中...</h4>
         </div>
@@ -47,7 +47,7 @@
                 </li>
                 <li class="item ">
                     <p>支付方式：在线支付</p>
-                    <p class="text-redd">支付状态：{{vm.order.order_status == 1 ?"未支付":'已支付'}}</p>
+                    <p class="text-redd">支付状态：{{vm.order.order_status == 1 ?"未支付":vm.order.order_status==2?'已取消支付':'已支付'}}</p>
                 </li>
                 <li class="item ">
                     <p>配送方式：普通快递</p>
@@ -71,7 +71,7 @@
             <div class="col col-33 col-mar border-right-1 text-center"  ng-click='vm.deleOrder(vm.order.order_id,"cancel")'>
                 取消订单
             </div>
-            <div class="col col-red text-center" nav-transition="ios" nav-direction="forward" ui-sref='pinkUp'>
+            <div class="col col-red text-center" nav-transition="ios" nav-direction="forward" ng-click='vm.goPinkUp()'>
                 <span >立即支付</span>
             </div>
         </div>
@@ -102,12 +102,12 @@
 
     <div class="bar bar-footer bar-light" ng-if='vm.order.order_status=="2"' >
         <div class="row button-foot" >
-            <div class="col col-33 col-mar border-right-1 text-center" ng-click='vm.deleOrder(vm.order.order_id)'>
+            <div class="col col-mar border-right-1 text-center" ng-click='vm.deleOrder(vm.order.order_id)'>
                 删除订单
             </div>
-            <div class="col col-red text-center">
+            <!--<div class="col col-red text-center">
                 <span nav-transition="ios" nav-direction="forward" ui-sref='pinkUp'>再次购买</span>
-            </div>
+            </div>-->
         </div>
     </div>
 </ion-view>

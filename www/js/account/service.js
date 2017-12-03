@@ -5,7 +5,7 @@ angular.module('rsc.common.account.service', ['rsc.common.service.rest','rsc.com
             return {
                 //确定忘记密码重置密码
                 checkVerifyCode: function (data) {
-                    var all = XnRestAngular.allUrl('/User/modifyPwd');
+                    var all = XnRestAngular.allUrl('/User/wjUpdPwdVerify');
                     return all.post(data);
                 },
                 /**

@@ -12,7 +12,7 @@
         <span  class="default-title" ng-click='GoBack()'>返回</span>
     </ion-nav-buttons>-->
   <!--内容区域-->
-  <ion-content ng-init="vm.init()" class="bg-gray">
+  <ion-content  ng-init='vm.init()' class="bg-gray">
     <!--<div class="list">
       <div class="item item-button-right gap-10">
         西南家政订单详情
@@ -26,6 +26,7 @@
               <timer end-time="vm.times" finish-callback="select_finsh()" language="zh-CN">
                     {{hours}}:{{minutes}}:{{seconds}}
               </timer>
+            
             </h3> 
         </div>
       </div>

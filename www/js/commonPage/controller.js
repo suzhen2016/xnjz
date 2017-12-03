@@ -295,20 +295,18 @@ angular.module('xn.commonpage.ctrl', [])
     ])
 
     .controller('pink_up_ctrl', ['$stateParams','$state', '$log', '$scope', '$ionicLoading'
-        , 'ionicToast', '$ionicHistory', '$ionicViewSwitcher', '$ionicNavBarDelegate', 'xnData',
+        , 'ionicToast', '$ionicHistory', '$ionicViewSwitcher', '$ionicNavBarDelegate', 'xnData','FirstService',
         function ($stateParams,$state, $log, $scope, $ionicLoading, ionicToast
-            , $ionicHistory, $ionicViewSwitcher, $ionicNavBarDelegate, xnData) {
+            , $ionicHistory, $ionicViewSwitcher, $ionicNavBarDelegate, xnData,FirstService) {
             var vm = $scope.vm = this;
 
             vm.order = {};
-
-            vm.order.data = xnData.get('pinkUp');
-
-            $log.debug("订单详情", vm.order.data);
-
-            //var s = new Date(vm.order.data.order_time_end).getTime();
-
-            vm.times = new Date(vm.order.data.order_time_end);
+           
+            vm.init = function(){
+                vm.order.data = xnData.get('pinkUp');
+                vm.times = new Date(vm.order.data.order_time_end);
+                $log.debug("订单详情",vm.times, vm.order.data);
+            }
 
             vm.goBack = function () {
                 $ionicNavBarDelegate.back();
@@ -316,14 +314,15 @@ angular.module('xn.commonpage.ctrl', [])
             }
             //成功的回调
             vm.alipaySuccessOrder= function(arr){
+              
                 FirstService.clientNotifyUrl(arr).then(function (res) {
                     if (res.status == 200) {
                         $state.go('tab.order',{'status':3})
                     } else {
-                       
+                        $state.go('tab.order',{'status':1})
                     }
                 }, function () {
-                   
+                   $state.go('tab.order',{'status':1})
                 }).finally(function(){
                     
                 })
@@ -331,9 +330,10 @@ angular.module('xn.commonpage.ctrl', [])
             //支付宝支付;
             vm.alipayXn = function () {
 
-                var myDate = new Date();
-                var tradeNo = myDate.getTime();
-                //var arr = _.pluck(vm.order.data,'id')
+                var arr = _.pluck(vm.order.data.orderRetInfo,'order_number')
+                var tradeNo = 'XN'+arr[0];
+                $log.debug(tradeNo)
+            
                 //alert(JSON.stringify(vm.order.data));
                 cordova.plugins.alipay.payment({
                     "app_id": '2017091608772582' ,//vm.order.data.appid,                //APP-ID
@@ -345,11 +345,11 @@ angular.module('xn.commonpage.ctrl', [])
                     "timestamp": '2016-07-29 16:55:53'  //vm.order.data.order_creat_time   //订单时间  
                 }, function success(e) {
                     if (e) {
-                        //alert(JSON.stringify(e))
+                       
                         if(e.resultStatus==9000){
                              ionicToast.alert('订单支付成功')
-                             vm.alipaySuccessOrder([])
-                               
+                             vm.alipaySuccessOrder(arr)
+                            
                         }else if(e.resultStatus==8000){
                             //支付中;
                              ionicToast.alert('订单支付中，请求订单列表查询订单状态,如果已扣款请联系客服')
@@ -373,6 +373,10 @@ angular.module('xn.commonpage.ctrl', [])
                 });
             };
 
+            //  $scope.$on("$ionicView.beforeEnter", function () {
+               
+            //     vm.init();
+            // })    
             
         }
     ])

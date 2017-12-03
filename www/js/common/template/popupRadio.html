@@ -143,8 +143,8 @@
         <input type="file" name="file" accept=".jpg,.png,.jpeg,.bmp" ng-model="data.file" onchange="angular.element(this).scope().getUploadPic(this.files)" ng-disabled="0" />
 
     </label>
-    <span class="text-red">请选择小于5M的jpg格式的图片</span>
-    <img ng-if="previewImageSrc" class="card2" ng-src="{{previewImageSrc}}" alt="预览图片">
+    <h6 class="text-red">请选择小于5M的jpg格式的图片</h6>
+    <img ng-if="previewImageSrc" class="img-size center-block" ng-src="{{previewImageSrc}}" alt="预览图片">
 </div>
 
 

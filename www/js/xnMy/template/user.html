@@ -12,9 +12,10 @@
        <a class="item item-icon-right" >
          基本信息
       </a>
-      <a class="item item-icon-right user-icon" ng-click='vm.selectSheet()'>
+      <!--ng-click='vm.selectSheet()'ng-click='vm.selectSheet()' trade-img-tool-->
+      <a class="item item-icon-right user-icon"  >
          <span class="pull-left gap-10">头像</span>
-         <span class="pull-right text-gray" > <img  src="./img/xn/login-user.png"></span>
+         <span class="pull-right text-gray" > <img  src="{{imgUrl+vm.userChange.user_pho || './img/xn/login-user.png'}}"></span>
          <i class="icon ion-ios-arrow-right"></i>
       </a>
       <a class="item item-icon-right" ng-click='vm.changeUser("username",confin)'>
