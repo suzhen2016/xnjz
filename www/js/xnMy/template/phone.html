@@ -1,0 +1,8 @@
+<ul class="list genderRadio">
+  <li class="item item-checkbox item-checkbox1 item-icon-right" ng-repeat="item in vm.query.iphoneList track by $index">
+    <label class="checkbox" style="width:250px;">
+      <input type="radio" ng-value='item.tel' ng-model="vm.query.phone">
+      </label>{{item.tel}}&nbsp;
+  </li>
+  <ul class="list genderRadio"><li class="item item-checkbox item-checkbox1 item-icon-right" ng-repeat="item in vm.query.iphoneList track by $index"><label class="checkbox" style="width:250px;"><input type="radio" ng-value="item.tel" ng-model="vm.query.phone"></label>{{item.tel}}&nbsp;</li></ul>
+</ul>

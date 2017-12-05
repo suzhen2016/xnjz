@@ -358,14 +358,14 @@ angular.module('rsc.common.directives', ['ion-BottomSheet'])
                         type: 'radio'
                     };
                     var obj = {
-                        templateUrl: `<ul class="list genderRadio">
-                                <li class="item item-checkbox item-checkbox1 item-icon-right" ng-repeat="item in vm.query.iphoneList track by $index">
-                                    <label class="checkbox" style="width:250px;">
-                                        <input type="radio" ng-value='item.cos_phone' ng-model="vm.query.phone">
-                                    </label>
-                                    {{item.cos_phone}}&nbsp;
-                                </li>
-                            </ul>`,
+                        templateUrl: '<ul class="list genderRadio">'+
+                                '<li class="item item-checkbox item-checkbox1 item-icon-right" ng-repeat="item in vm.query.iphoneList track by $index">'+
+                                    '<label class="checkbox" style="width:250px;">'+
+                                        '<input type="radio" ng-value="item.cos_phone" ng-model="vm.query.phone">'+
+                                    '</label>'+
+                                    '{{item.cos_phone}}&nbsp'+
+                                "</li>"+
+                            '</ul>',
                         btn: '拨号'
                     };
                     

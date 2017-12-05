@@ -12,18 +12,18 @@ angular.module('xn.my.ctrl', [])
             
            
             vm.telPhone = function () {
+               
                 var query = {
                         type: 'radio'
                     };
                 var obj = {
-                        templateUrl: `<ul class="list genderRadio">
-                            <li class="item item-checkbox item-checkbox1 item-icon-right" ng-repeat="item in vm.query.iphoneList track by $index">
-                                <label class="checkbox" style="width:250px;">
-                                    <input type="radio" ng-value='item.tel' ng-model="vm.query.phone">
-                                </label>
-                                {{item.tel}}&nbsp;
-                             </li>
-                        </ul>`,
+                        template: '<ul class="list genderRadio">'+
+                            '<li class="item item-checkbox item-checkbox1 item-icon-right" ng-repeat="item in vm.query.iphoneList track by $index">'+
+                                '<label class="checkbox" style="width:250px;">'+
+                                    '<input type="radio" ng-value="item.tel" ng-model="vm.query.phone">'+
+                                '</label>{{item.tel}}&nbsp;'+
+                             '</li>'+
+                        '</ul>',
                         btn:'拨号'
                     };    
                 if (vm.query.iphoneList) {
@@ -111,21 +111,19 @@ angular.module('xn.my.ctrl', [])
                 }else if(str=='phone'){
                     //ng-pattern="/(^13[0-9]{9}$)|(^15[0-9]{9}$)|(^17[0-9]{9}$)|(^18[012356789][0-9]{8}$)/"
                     var obj = {
-                        templateUrl:`<div class="list">
-                            <div class="item item-input-inset">
-                                <label class="item-input-wrapper">
-                                   <input type="tel" ng-model="data.phone"  maxlength="11"  placeholder="请输入手机号">
-                                </label>
-                            </div>
-                            <div class="item item-input-inset">
-                                <label class="item-input-wrapper">
-                                   <input type="tel" maxlength="6" ng-model="data.verifyNum" placeholder="请输入验证码">
-                                </label>
-                                <button ng-disabled="isDisabled" class="button button-small button-assertive" ng-click='getCoke(data.phone)'>
-                                    {{textTs}}
-                                </button>
-                            </div>
-                        </div>`,
+                        templateUrl:'<div class="list">'+
+                            '<div class="item item-input-inset">'+
+                                '<label class="item-input-wrapper">'+
+                                   '<input type="tel" ng-model="data.phone"  maxlength="11"  placeholder="请输入手机号">'+
+                                '</label>'+
+                            '</div>'+
+                           '<div class="item item-input-inset">'+
+                                '<label class="item-input-wrapper">'+
+                                   '<input type="tel" maxlength="6" ng-model="data.verifyNum" placeholder="请输入验证码">'+
+                                '</label>'+
+                                '<button ng-disabled="isDisabled" class="button button-small button-assertive" ng-click="getCoke(data.phone)">'+
+                                    '{{textTs}}'+
+                                '</button> </div></div>',
                         btn:'确定'
                     }
                     var query = {
