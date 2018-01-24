@@ -1,0 +1,45 @@
+<ion-view hide-tabs="true">
+  <!--顶部导航-->
+  <ion-nav-title>
+    <div class="bar bar-positive">
+      <h1 class="title">我要反馈</h1>
+    </div>
+  </ion-nav-title>
+
+  <!--内容区域-->
+  <ion-content class="bg-gray">
+    <div class="list gap-8">
+      <li class="item ">
+        <p class="warp">请陈述你要反馈的问题，我们将在第一时间给你答复，请保持你的手机畅通。</p>
+      </li>
+    </div>
+    
+    <div class="list gap-8">
+      <li class="item">
+        <p>问题的标题：<span class="text-red appraise-start pa-right-5 {{i.class}}" ng-repeat="i in vm.obj track by $index" ng-click='vm.appStart($index)'></span></p>
+      </li>
+    </div>
+    <div class="bg-white">
+      <div class="list list-item list-type-input">
+        <label class="item item-input list-input">
+            <textarea class="text-gray1" ng-model='vm.query.cmt_msg' maxlength="200" rows="3" wrap="soft" placeholder="请描述问题标题..."></textarea>
+        </label>
+      </div>
+    </div>
+    <div class="list gap-8">
+      <li class="item">
+        <p>问题的内容：<span class="text-red appraise-start pa-right-5 {{i.class}}" ng-repeat="i in vm.obj track by $index" ng-click='vm.appStart($index)'></span></p>
+      </li>
+    </div>
+    <div class="bg-white">
+      <div class="list list-item list-type-input">
+        <label class="item item-input list-input">
+            <textarea class="text-gray1" ng-model='vm.query.cmt_msg' maxlength="200" rows="3" wrap="soft" placeholder="请描述问题内容..."></textarea>
+        </label>
+      </div>
+    </div>
+    <button class="button button-block button-positive" ng-click='vm.submitAppraise()' style="margin-top:100px">
+      提交反馈
+    </button>
+  </ion-content>
+</ion-view>

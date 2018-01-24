@@ -629,3 +629,79 @@ angular.module('xn.my.ctrl', [])
            
         }
     ])
+
+     // 客户反馈
+    .controller('feedback_list_ctrl', ['$log', 'FirstService', "$scope", '$state', 'Storage',
+        "$ionicHistory", '$ionicModal', 'xnData', 'ionicToast',
+        function ($log, FirstService, $scope, $state, Storage, $ionicHistory, $ionicModal, xnData, ionicToast) {
+            var vm = $scope.vm = this;
+            vm.query = {};
+            vm.data = {};
+            var run = false;
+            vm.init = function (page) {
+                if (!run) {
+                    run = true;
+                    FirstService.getfeedbacklist(vm.query.age).then(function (result) {
+                        run = false;
+                        $log.debug("获取反馈列表", result)
+                        if (result.status == '200') {
+                            vm.query.has_more = result.data.exist;
+
+                            if (vm.query.query_type == 'initOrSearch') {
+                                vm.data.list = result.data;//???
+
+                            } else {
+                                vm.data.list = result.data;//???
+                            }
+
+                        } else {
+                            ionicToast.alert("获取失败");
+                        }
+                    }, function () {
+                        vm.company_query.has_more = false;
+                    }).finally(function () {
+                        if (vm.query.query_type == 'initOrSearch') {
+                            $scope.$broadcast('scroll.refreshComplete');
+                        } else {
+                            $scope.$broadcast('scroll.infiniteScrollComplete');
+                        }
+                        run = false;
+                    })
+                } else {
+                    if (vm.query.query_type == 'loadMore') {
+                        vm.company_query.page--;
+                    }
+                }
+
+            }
+            vm.doRefresh = function () {
+                vm.query.page = 1;
+                vm.data.list = [];
+                vm.query.query_type = 'initOrSearch'
+                vm.init(vm.query.page);
+            }
+            vm.load_more = function () {
+                vm.query.page++;
+                vm.query.query_type = "loadMore";
+                vm.init(vm.query.page);
+            };
+
+
+            $scope.$on("$ionicView.beforeEnter", function () {
+                vm.doRefresh();
+                //$ionicScrollDelegate.$getByHandle('mainScroll').scrollTop()
+            })
+
+
+
+        }
+    ])
+    .controller('feedback_ctrl', ['$log', 'FirstService', "$scope", '$state', 'Storage',
+        "$ionicHistory", '$ionicModal', 'xnData', 'ionicToast',
+        function ($log, FirstService, $scope, $state, Storage, $ionicHistory, $ionicModal, xnData, ionicToast) {
+            var vm = $scope.vm = this;
+            vm.query = {};
+
+
+        }
+    ])

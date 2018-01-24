@@ -54,11 +54,9 @@ angular.module('starter', ['ionic',
                 // $cordovaStatusbar.style(1);
                 // StatusBar.styleLightContent();
             }
-        //     setTimeout(function () {  
-        //        navigator.splashscreen.hide();  
-        //    }, 1000); 
+       
         });
-         // $ionicConfig.views.swipeBackEnabled(false);
+         
         $rootScope.$state = $state;
         $rootScope.Platform = ionic.Platform;
         $rootScope.$on('$stateChangeSuccess', function (event, toState, roParams, fromState, fromParams) {

@@ -188,6 +188,11 @@ angular.module('xn.first.service', [])
                 clientNotifyUrl:function(order_numbers){
                     var all = XnRestAngular.allUrl('/Order/clientNotifyUrl');
                     return all.post({order_numbers:order_numbers}); 
+                },
+                //获取反馈列表
+                getfeedbacklist:function(page){
+                    var all = XnRestAngular.allUrl('/Backinfo/setCustomerBack');
+                    return all.post({page:page}); 
                 }
 
 
