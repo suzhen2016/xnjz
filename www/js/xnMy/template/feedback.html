@@ -22,7 +22,7 @@
     <div class="bg-white">
       <div class="list list-item list-type-input">
         <label class="item item-input list-input">
-            <textarea class="text-gray1" ng-model='vm.query.cmt_msg' maxlength="200" rows="3" wrap="soft" placeholder="请描述问题标题..."></textarea>
+            <textarea class="text-gray1" ng-model=vm.query.binfo_title maxlength="200" rows="3" wrap="soft" placeholder="请描述问题标题..."></textarea>
         </label>
       </div>
     </div>
@@ -34,11 +34,11 @@
     <div class="bg-white">
       <div class="list list-item list-type-input">
         <label class="item item-input list-input">
-            <textarea class="text-gray1" ng-model='vm.query.cmt_msg' maxlength="200" rows="3" wrap="soft" placeholder="请描述问题内容..."></textarea>
+            <textarea class="text-gray1" ng-model=vm.query.binfo_content maxlength="200" rows="3" wrap="soft" placeholder="请描述问题内容..."></textarea>
         </label>
       </div>
     </div>
-    <button class="button button-block button-positive" ng-click='vm.submitAppraise()' style="margin-top:100px">
+    <button class="button button-block button-positive" ng-click='vm.submitAddFeedback()' style="margin-top:100px">
       提交反馈
     </button>
   </ion-content>

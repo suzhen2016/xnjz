@@ -15,34 +15,21 @@
       pulling-text="下拉刷新..."
       on-refresh="vm.doRefresh()">
     </ion-refresher>
-     <div>
+     <div ng-if='vm.data.list.length==0'>
         <h4 class="text-center gap-30" style="padding-bottom:30px">
           当前暂无历史反馈
         </h4>
       </div>
-    <div class="list">
+    <div class="list" ng-repeat='item in vm.data.list'>
       <div class='item_box item gap-10 padding-none first-bottom pa-btm-5'>
         <h3 class='pa-left-10 pa-top-5'>
-          <span>用户评价还打算打打哈实打实打算打算</span>
-          <span class="pull-right">处理中.. &nbsp&nbsp&nbsp</span>
+          <span>{{item.binfo_title}}</span>
+          <span class="pull-right">{{item.binfo_status==='0'?'处理中..':'已解决'}} &nbsp&nbsp&nbsp</span>
         </h3>
       </div>
       <a class="item item-avatar">
-        <p style="white-space: normal">ajdjasdjasidasjdasdjasjdasjdasj</p>
-        <p class="text-right">时间：1221211</p>
-      </a>
-    </div>
-
-     <div class="list">
-      <div class='item_box item gap-10 padding-none first-bottom pa-btm-5'>
-        <h3 class='pa-left-10 pa-top-5'>
-          <span>用户评价阿基啊实打实大师</span>
-          <span class="pull-right">处理中.. &nbsp&nbsp&nbsp</span>
-        </h3>
-      </div>
-      <a class="item item-avatar">
-        <p style="white-space: normal">ajdjasdjasidasjdasdjasjdasjdasj</p>
-        <p class="text-right">时间：1221211</p>
+        <p style="white-space: normal">{{item.binfo_content}}</p>
+        <p class="text-right">时间：{{item.add_time}}</p>
       </a>
     </div>
     <ion-infinite-scroll ng-if="vm.query.has_more" immediate-check="false" icon="ion-loading-c" on-infinite="vm.load_more()"

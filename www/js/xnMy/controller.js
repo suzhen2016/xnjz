@@ -641,12 +641,12 @@ angular.module('xn.my.ctrl', [])
             vm.init = function (page) {
                 if (!run) {
                     run = true;
-                    FirstService.getfeedbacklist(vm.query.age).then(function (result) {
+                    FirstService.getfeedbacklist(page).then(function (result) {
                         run = false;
                         $log.debug("获取反馈列表", result)
                         if (result.status == '200') {
-                            vm.query.has_more = result.data.exist;
-
+                            vm.query.has_more = 'false';
+                             
                             if (vm.query.query_type == 'initOrSearch') {
                                 vm.data.list = result.data;//???
 
@@ -658,7 +658,7 @@ angular.module('xn.my.ctrl', [])
                             ionicToast.alert("获取失败");
                         }
                     }, function () {
-                        vm.company_query.has_more = false;
+                        vm.query.has_more = false;
                     }).finally(function () {
                         if (vm.query.query_type == 'initOrSearch') {
                             $scope.$broadcast('scroll.refreshComplete');
@@ -701,7 +701,23 @@ angular.module('xn.my.ctrl', [])
         function ($log, FirstService, $scope, $state, Storage, $ionicHistory, $ionicModal, xnData, ionicToast) {
             var vm = $scope.vm = this;
             vm.query = {};
-
-
+            vm.submitAddFeedback = function(){
+                if(!vm.query.binfo_title){
+                    ionicToast.alert('请填写反馈标题');
+                    return false;
+                }else if(!vm.query.binfo_content){
+                     ionicToast.alert('请填写反馈内容');
+                    return false;
+                }
+                FirstService.setfeedback(vm.query).then(function (result) {
+                        if (result.status == '200') {
+                         $ionicHistory.goBack();
+                        } else {
+                            ionicToast.alert("获取失败");
+                        }
+                    }, function () {
+                      
+                    })
+            }
         }
     ])

@@ -191,11 +191,14 @@ angular.module('xn.first.service', [])
                 },
                 //获取反馈列表
                 getfeedbacklist:function(page){
-                    var all = XnRestAngular.allUrl('/Backinfo/setCustomerBack');
+                    var all = XnRestAngular.allUrl('/Backinfo/getSelfBinfo');
                     return all.post({page:page}); 
+                },
+                //设置反馈
+                setfeedback:function(data){
+                    var all = XnRestAngular.allUrl('/Backinfo/setCustomerBack');
+                    return all.post(data); 
                 }
-
-
             }
         }
     ])
