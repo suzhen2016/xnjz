@@ -129,12 +129,3 @@ angular.module('rsc.common.account.filters', [])
             return status[type]
         }
     })
-    .filter('dynamicTime', function ($filter) {
-        return function (time) {
-            if (time) {
-                return $filter('date')(new Date(time), 'yyyy.MM.dd HH:mm');
-            } else {
-                return '';
-            }
-        }
-    })

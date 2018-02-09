@@ -440,10 +440,6 @@ p.text-redd {
 .item-order-list .item-content {
   padding: 16px;
 }
-/*不省略*/
-.item .warp {
-  white-space: normal;
-}
 /* 调节 */
 .bar .bar-stable .on-ios-arrow-back {
   font-weight: 600;

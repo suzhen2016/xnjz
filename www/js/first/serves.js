@@ -183,7 +183,7 @@ angular.module('xn.first.service', [])
                     var all = XnRestAngular.allUrl('/Comment/addCmt');
                     return all.post(obj); 
                 },
-                // 修改手机号的接口
+                 // 修改手机号的接口
                 //订单支付成功的回调
                 clientNotifyUrl:function(order_numbers){
                     var all = XnRestAngular.allUrl('/Order/clientNotifyUrl');
@@ -199,6 +199,8 @@ angular.module('xn.first.service', [])
                     var all = XnRestAngular.allUrl('/Backinfo/setCustomerBack');
                     return all.post(data); 
                 }
+
+
             }
         }
     ])

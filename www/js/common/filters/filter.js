@@ -15,7 +15,16 @@ angular.module('rsc.common.filters', [])
         }
     })
 
-    
+    .filter('dynamicTime', function ($filter) {
+        return function (time) {
+            if (time) {
+                return $filter('date')(new Date(time), 'yyyy.MM.dd HH:mm');
+            } else {
+                return '';
+            }
+        }
+    })
+
     .filter('statustime', function ($filter) {
         return function (time) {
             if (time) {
