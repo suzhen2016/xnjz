@@ -15,7 +15,7 @@
   <ion-content ng-init="vm.init()" class="bg-gray has-footer">
     <div class="list car">
       <div class="item item-button-right gap-10">
-        西南家政购物车
+        家政服务超市购物车
         <span ng-if='vm.carList.length>0' class="pull-right" ng-click='vm.editOrder(vm.isEdit)'>{{vm.isEdit?"编辑":'完成'}}</span>
       </div>
     </div>
@@ -45,7 +45,7 @@
 					</label>
           <a class="item item-car item-thumbnail-left">
             <img src="{{imgUrl+item.goods_log}}">
-            <h4>【西南家政】</h4>
+            <h4>【家政服务超市】</h4>
             <p>{{item.goods_introduce}}</p>
             <span>￥{{item.goods_price}}</span>
             <div class="pull-right driver-input">

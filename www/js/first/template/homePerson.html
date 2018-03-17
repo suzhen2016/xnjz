@@ -13,11 +13,24 @@
     <div ng-if='!vm.dele.isLoading'>
       <div class="list card">
 
-        <div class="item item-avatar">
+          <div class="list card">
+              <div class="item item-body">
+                <img class="full-image" src="{{imgUrl + vm.order.employeeinfo.yuangong_b_tx}}">
+                <p style="text-align: center;margin-top:5px;margin-bottom: 4px;">
+                    姓名：{{vm.order.employeeinfo.yuangong_name}}
+                </p>
+                <p style="text-align: center;margin-top:0px">
+                    服务次数：{{vm.order.employeeinfo.service_num}}
+                </p>
+               
+              </div>
+            </div>
+
+        <!-- <div class="item item-avatar">
           <img src="{{imgUrl + vm.order.employeeinfo.yuangong_s_tx}}">
           <h2>姓名：{{vm.order.employeeinfo.yuangong_name}}</h2>
           <p>服务次数：{{vm.order.employeeinfo.service_num}}</p>
-        </div>
+        </div> -->
 
         <div class="item item-body" style='padding:0 16px 5px 16px'>
           <!--<img class="full-image" src="delorean.jpg">-->

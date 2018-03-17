@@ -9,40 +9,55 @@
   </ion-nav-title>
   <ion-content class="bg-gray xn-content" ng-init='vm.init()'>
     <div ng-if='!vm.dele.isLoading && vm.dele.train'>
-      <div class="bg-white item-padding-10">
-        <h4><span>培训项目：{{vm.dele.train.train_cname}}</span></h4>
-        <h4><span>培训费用：￥{{vm.dele.train.train_price}}</span></h4>
+
+
+      <div class="list card">
+        <div class="item item-body">
+          <img class="full-image" src="{{imgUrl + vm.dele.train.teacher_yphoto}}">
+          <span>
+            讲师：{{vm.dele.train.train_teacher}}
+          </span>
+          </br>
+          <span>
+            讲师简介：{{vm.dele.train.teacher_profile}}
+          </span>
+          <!-- <p>
+            <a href="#" class="subdued">1 Like</a>
+            <a href="#" class="subdued">5 Comments</a>
+          </p> -->
+        </div>
       </div>
 
+      
       <div class="list">
         <div class='item_box item gap-10 padding-none first-bottom pa-btm-5'>
           <h3 class='pa-left-10 pa-top-5'>
             <span>培训简介</span>
           </h3>
         </div>
-        <!--<div class="item item-body">
-            
-        </div>-->
         <ul class="list">
-              <li class="item">
-                培训教师：{{vm.dele.train.train_teacher}}
-              </li>
-              <li class="item">
-                培训地点：{{vm.dele.train.train_addr}}
-              </li>
-              <li class="item">
-                培训周期：{{vm.dele.train.train_cycle}}
-              </li>
-              <li class="item">
-                开班人数：{{vm.dele.train.train_pnum}}
-              </li>
-               <li class="item">
-                报名截止日期：{{vm.dele.train.train_time}}
-              </li>
-              <li class="item">
-                开课时间：{{vm.dele.train.train_time}}
-              </li>
-          </ul>
+          <li class="item">
+              培训项目：{{vm.dele.train.train_cname}}
+          </li>
+          <li class="item">
+              培训费用：￥{{vm.dele.train.train_price}}
+          </li>
+          <li class="item">
+            培训地点：{{vm.dele.train.train_addr}}
+          </li>
+          <li class="item">
+            培训周期：{{vm.dele.train.train_cycle}}
+          </li>
+          <li class="item">
+            开班人数：{{vm.dele.train.train_pnum}}
+          </li>
+          <li class="item">
+            报名截止日期：{{vm.dele.train.train_btimend}}
+          </li>
+          <li class="item">
+            开课时间：{{vm.dele.train.train_time}}
+          </li>
+        </ul>
       </div>
 
       <div class="list">
@@ -66,7 +81,7 @@
         </div>
         <a class="item item-icon-left">
           <i class="icon ion-ios-person"></i>
-          联系人：{{vm.dele.hire.hire_person}}
+          联系人：{{vm.dele.train.train_person}}
         </a>
 
         <a class="item item-icon-left item-icon-right" ng-click='vm.telPhone()'>
@@ -86,7 +101,7 @@
       </div>
     </div>
     <div ng-if='vm.dele.isLoading'>
-        <h4 class="text-center gap-30">正在加载中...</h4>
+      <h4 class="text-center gap-30">正在加载中...</h4>
     </div>
   </ion-content>
 </ion-view>

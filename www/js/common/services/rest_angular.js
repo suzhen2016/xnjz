@@ -338,7 +338,7 @@ angular.module('rsc.common.service.rest', ['restangular'])
 
 
 
-    //西南家政请求接口
+    //家政服务超市请求接口
     .factory('XnRestAngular', function (Restangular, ENV, GetToken) {
         return Restangular.withConfig(function (RestangularConfigurer) {
             if (ENV.encode) {

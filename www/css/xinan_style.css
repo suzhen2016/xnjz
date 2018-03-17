@@ -288,7 +288,7 @@ margin: 0px;
 }
 .pos-bot-40 {
   position: fixed;
-  bottom:-500px;
+  /* bottom:-500px; */
 }
 .pos-moddle{
   position: absolute;
@@ -439,10 +439,6 @@ p.text-redd {
 }
 .item-order-list .item-content {
   padding: 16px;
-}
-/*不省略*/
-.item .warp {
-  white-space: normal;
 }
 /* 调节 */
 .bar .bar-stable .on-ios-arrow-back {
