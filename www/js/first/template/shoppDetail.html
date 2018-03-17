@@ -29,6 +29,7 @@
       <a class="item item-icon-left assertive">
         <i class="icon ion-heart"></i>
               {{vm.order.header.goods_price | currency:'￥'}}
+              <span style="color:black">商品名称：{{vm.order.header.goods_name}}</span>
       </a>
       <div class="item item-body" style='padding:0 16px 5px 16px'>
         <p>{{vm.order.header.goods_introduce}}

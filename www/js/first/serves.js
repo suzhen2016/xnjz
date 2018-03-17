@@ -23,6 +23,10 @@ angular.module('xn.first.service', [])
                     var all = XnRestAngular.allUrl('/Bigcustomer/getCustomerList');
                     return all.post();
                 },
+                getFirstPerTenGoodsList:function(page){
+                    var all = XnRestAngular.allUrl('/Index/RecommetPerTenGoodsList');
+                    return all.post({page_index:page})
+                },
                 // 家政人员个人的详情
                 getPersonDetails:function(id){
                     var all = XnRestAngular.allUrl('/Index/getOneEmployeeDetail');

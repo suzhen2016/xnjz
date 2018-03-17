@@ -5,7 +5,8 @@ angular.module('xn.first', ['ui.router', 'xn.first.ctrl','xn.first.service'])
                 url: '/first',
                 views: {
                     'tab-first': {
-                        templateUrl: 'js/first/template/first.html'
+                        templateUrl: 'js/first/template/first.html',
+                        controller:'first_ctrl'
                     }
                 }
             })

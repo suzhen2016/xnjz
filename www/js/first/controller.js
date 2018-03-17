@@ -5,9 +5,54 @@ angular.module('xn.first.ctrl', [])
     .controller('first_ctrl', ['$stateParams', '$log', '$scope', '$ionicLoading', 'Storage', 'ionicToast', '$filter', 'FirstService',
         function ($stateParams, $log, $scope, $ionicLoading, Storage, ionicToast, $filter, FirstService) {
             var vm = $scope.vm = this;
+            vm.query = {};
+            vm.dele ={};
+            vm.query.page = 1;
+            vm.list = [];
+            var run =true;
             $log.debug("首页面");
 
+            var init = function(){
+              
+                if(!run){
+                    return false;
+                }else{
+                    run = false;
+                    if(vm.query.page==1){
+                        vm.list = [];
+                    }
+                   
+                    FirstService.getFirstPerTenGoodsList(vm.query.page).then(function(res){
+                        console.log('11111111',res)
+                        if(res.status=='200'){
+                            vm.list = vm.list.concat(res.data.goodTenList);
+                            res.data.goodTenList.length <10 ? vm.dele.hasMore = false:vm.dele.hasMore=true;
+                        }else{
 
+                        }
+                    },function(){
+                        run= true;
+                        ionicToast.alert('您当前网络不佳，请稍后再试')
+                    }).finally(function(){
+                        run= true;
+                        $scope.$broadcast('scroll.refreshComplete');
+                    })
+                }
+            }
+            //下来刷新
+            vm.doRefresh = function(){
+                vm.query.page = 1;
+                init();
+            }
+            vm.loadMore = function(){
+                vm.query.page += 1;
+                init();
+            }
+            $scope.$on('$ionicView.beforeEnter',function(){
+                vm.list = [];
+                vm.query.page = 1;
+                init();
+            })
         }
     ])
 
@@ -504,22 +549,27 @@ angular.module('xn.first.ctrl', [])
             vm.order = {}
             vm.order.userList = []
             vm.query.hasMore = true;
-            vm.query.page = 1;
+            vm.query.page_index = 1;
             vm.query.cat_id = $stateParams.id;
             vm.order.kong = false;
+            var run  = true;
 
             vm.getAppraise = function () {
                  $ionicLoading.show({
                     template: '数据加载中...'
                     });
                 $log.debug(vm.query)
+                // if(!run){
+                //     return false;
+                // }
+                // run = false;
                 FirstService.getShopMoreList(vm.query).then(function (res) {
                     if (res.status == 200) {
-                        res.data.goodSixList.length == 5 ? vm.query.hasMore = true : vm.query.hasMore = false;
+                        res.data.goodSixList.length <10 ? vm.query.hasMore = false : vm.query.hasMore = true;
                         vm.order.userList = vm.order.userList.concat(res.data.goodSixList)
                         $log.debug('更多商品', vm.order.userList, res.data);
-                         vm.order.kong = true;
-                         $ionicLoading.hide();
+                        vm.order.kong = true;
+                        $ionicLoading.hide();
                     } else {
                         vm.order.kong = true;
                         vm.query.hasMore = false;
@@ -531,7 +581,10 @@ angular.module('xn.first.ctrl', [])
                         },500)
                     }
                 }, function () {
+                    run = true;
                     vm.query.hasMore = false;
+                    $scope.$broadcast('scroll.refreshComplete');
+                    $scope.$broadcast('scroll.infiniteScrollComplete');
                      $timeout(function(){
                         $ionicLoading.hide();
                         ionicToast.alert('数据加载失败，请稍后再试');
@@ -543,15 +596,18 @@ angular.module('xn.first.ctrl', [])
             }
           
             vm.doRefresh = function () {
+                var run  = true;
                 vm.order.userList = [];
+                vm.query.page_index = 1;
                 vm.query.hasMore = true;
                 vm.getAppraise();
                 $scope.$broadcast('scroll.refreshComplete');
 
             }
             vm.loadMore = function () {
-                vm.query.page += 1;
+                vm.query.page_index += 1;
                 vm.getAppraise()
+                var run  = true;
                 $scope.$broadcast('scroll.infiniteScrollComplete');
             }
         }
