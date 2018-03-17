@@ -163,6 +163,13 @@ angular.module('rsc.controllers.account', ['rsc.common.account.service'])
                 return false;
 
             }
+            $scope.$on("$ionicView.beforeEnter", function (event, data) {
+                ionic.Platform.showStatusBar(false);
+            });
+        
+            $scope.$on("$ionicView.afterLeave", function (event, data) {
+                ionic.Platform.showStatusBar(true);
+            });
         }
     ])
 

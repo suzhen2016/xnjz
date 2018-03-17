@@ -339,7 +339,7 @@ angular.module('xn.commonpage.ctrl', [])
                     "app_id": '2017091608772582' ,//vm.order.data.appid,                //APP-ID
                     "rsa_private": vm.order.data.rsa_private,      //私钥
                     "subject":vm.order.data.subject,              //商品名称
-                    "body": "西南家政出品",                    //商品详情
+                    "body": "家政服务超市出品",                    //商品详情
                     "total_amount":vm.order.data.order_total_price,     //金额
                     "out_trade_no": 'SE'+ tradeNo,                  //唯一的订单号
                     "timestamp": '2016-07-29 16:55:53'  //vm.order.data.order_creat_time   //订单时间  

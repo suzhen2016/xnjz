@@ -48,11 +48,12 @@ angular.module('starter', ['ionic',
 
             }
             if (window.StatusBar) {
+                
                 // org.apache.cordova.statusbar required
-                StatusBar.styleDefault();
-                // $cordovaStatusbar.overlaysWebView(false);
-                // $cordovaStatusbar.style(1);
-                // StatusBar.styleLightContent();
+                StatusBar.styleDefault(false);
+                //$cordovaStatusbar.overlaysWebView(false);
+                //$cordovaStatusbar.style(1);
+               //StatusBar.styleLightContent();
             }
         //     setTimeout(function () {  
         //        navigator.splashscreen.hide();  

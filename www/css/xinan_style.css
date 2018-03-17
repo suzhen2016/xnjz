@@ -440,3 +440,23 @@ p.text-redd {
 .item-order-list .item-content {
   padding: 16px;
 }
+/* 调节 */
+.bar .bar-stable .on-ios-arrow-back {
+  font-weight: 600;
+}
+.bar-stable .default-title {
+  font-weight: 600;
+}
+ion-tabs.tabs-color-active-positive .tab-item {
+  color: #444; 
+}
+ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-color-active-positive .tab-item.active, ion-tabs.tabs-color-active-positive .tab-item.activated {
+    color: #e42112; 
+}
+.xn-first .border-bot-first h4{
+  margin-bottom: 15px;
+}
+.bar-positive .title {
+  font-size: 16px;
+  font-weight: 600;
+}

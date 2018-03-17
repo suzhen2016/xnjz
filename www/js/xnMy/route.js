@@ -91,4 +91,22 @@ angular.module('xn.my', ['ui.router', 'xn.my.ctrl'])
                     }
                 }
             })
+            .state('tab.feedlist', {
+                url: '/feedback',
+                views: {
+                    'tab-my': {
+                        templateUrl: 'js/xnMy/template/feedlist.html',
+                        controller: 'feedback_list_ctrl'
+                    }
+                }
+            })
+            .state('tab.feedback', {
+                url: '/feedback',
+                views: {
+                    'tab-my': {
+                        templateUrl: 'js/xnMy/template/feedback.html',
+                        controller: 'feedback_ctrl'
+                    }
+                }
+            })
     }])
