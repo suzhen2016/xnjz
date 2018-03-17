@@ -19,7 +19,7 @@
         <h3 class='pa-left-10 pa-top-5'>
           <img style="width: 25px" class="img_icon" src="{{imgUrl + item.img_img}}" alt="">
           <span>{{item.img_name}}</span>
-          <span class="pull-right pa-right-10" ui-sref='tab.shoppingMore({id:item.more_id})'>更多 ></span>
+          <span ng-if='item.more_id' class="pull-right pa-right-10" ui-sref='tab.shoppingMore({id:item.more_id})'>更多 ></span>
         </h3>
       </div>
       <div class="row row-wrap">
