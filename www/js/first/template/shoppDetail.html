@@ -16,23 +16,25 @@
       <div class="item item-body">
         <ion-slide-box on-slide-changed="slideHasChanged($index)" auto-play="false" does-continue="true" slide-interval=3000 show-pager="true">
           <ion-slide>
-            <img src="{{imgUrl+vm.order.header.goods_s_xc1}}" class="img-responsive">
+            <img ng-src="{{imgUrl+vm.order.header.goods_s_xc1}}" class="img-responsive">
           </ion-slide>
           <ion-slide>
-            <img src="{{imgUrl + vm.order.header.goods_s_xc2}}" class="img-responsive">
+            <img ng-src="{{imgUrl + vm.order.header.goods_s_xc2}}" class="img-responsive">
           </ion-slide>
           <ion-slide>
-            <img src="{{imgUrl + vm.order.header.goods_s_xc3}}" class="img-responsive">
+            <img ng-src="{{imgUrl + vm.order.header.goods_s_xc3}}" class="img-responsive">
           </ion-slide>
         </ion-slide-box>
       </div>
       <a class="item item-icon-left assertive">
         <i class="icon ion-heart"></i>
               {{vm.order.header.goods_price | currency:'￥'}}
+      </a>
+      <a class="item  assertive">
               <span style="color:black">商品名称：{{vm.order.header.goods_name}}</span>
       </a>
       <div class="item item-body" style='padding:0 16px 5px 16px'>
-        <p>{{vm.order.header.goods_introduce}}
+        <p>简介：{{vm.order.header.goods_introduce}}
         </p>
       </div>
     </div>
@@ -71,7 +73,7 @@
         <p class="text-right">时间：2015-06-07</p>
       </a>-->
       <a class="item item-avatar" ng-repeat="i in vm.dele.appraiseList track by $index">
-          <img src="{{imgUrl+i.user_pho ||'./img/xn/login-user.png'}}">
+          <img ng-src="{{imgUrl+i.user_pho ||'./img/xn/login-user.png'}}">
           <h4>{{i.username}} <span class="pull-right"><span class="text-red  {{ii.class}}"  ng-repeat="ii in i.start_class"></span></span></h4>
           <p style="white-space: normal">{{i.cmt_msg}}</p>
           <p class="text-right">时间：{{i.cmttime}}</p>

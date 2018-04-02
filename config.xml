@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.ionicframework.myaoo103402" version="1.1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>西南家政</name>
+<widget id="com.ionicframework.myaoo103402" version="1.2.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>家政服务超市</name>
     <description>一家综合家政服务公司</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
     <content src="index.html" />
@@ -13,10 +13,6 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
-<<<<<<< HEAD
-=======
-    <preference name="AutoHideSplashScreen" value="false" />
->>>>>>> 806ee55829047f68db0beea7d1c49dfea6ca89ec
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />
     <preference name="DisallowOverscroll" value="true" />
@@ -26,12 +22,18 @@
     <preference name="FadeSplashScreenDuration" value="300" />
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="SplashScreen" value="screen" />
-    <preference name="SplashScreenDelay" value="5000" />
+    <preference name="SplashScreenDelay" value="3000" />
     <preference name="StatusBarOverlaysWebView" value="false" />
     <preference name="StatusBarBackgroundColor" value="#fe8a33" />
     <preference name="StatusBarStyle" value="lightcontent" />
     <platform name="android">
         <allow-intent href="market:*" />
+        <icon density="ldpi" src="resources\android\icon\drawable-ldpi-icon.png" />
+        <icon density="mdpi" src="resources\android\icon\drawable-mdpi-icon.png" />
+        <icon density="hdpi" src="resources\android\icon\drawable-hdpi-icon.png" />
+        <icon density="xhdpi" src="resources\android\icon\drawable-xhdpi-icon.png" />
+        <icon density="xxhdpi" src="resources\android\icon\drawable-xxhdpi-icon.png" />
+        <icon density="xxxhdpi" src="resources\android\icon\drawable-xxxhdpi-icon.png" />
         <splash density="land-ldpi" src="resources\android\splash\drawable-land-ldpi-screen.png" />
         <splash density="land-mdpi" src="resources\android\splash\drawable-land-mdpi-screen.png" />
         <splash density="land-hdpi" src="resources\android\splash\drawable-land-hdpi-screen.png" />
@@ -44,12 +46,6 @@
         <splash density="port-xhdpi" src="resources\android\splash\drawable-port-xhdpi-screen.png" />
         <splash density="port-xxhdpi" src="resources\android\splash\drawable-port-xxhdpi-screen.png" />
         <splash density="port-xxxhdpi" src="resources\android\splash\drawable-port-xxxhdpi-screen.png" />
-        <icon density="ldpi" src="resources\android\icon\drawable-ldpi-icon.png" />
-        <icon density="mdpi" src="resources\android\icon\drawable-mdpi-icon.png" />
-        <icon density="hdpi" src="resources\android\icon\drawable-hdpi-icon.png" />
-        <icon density="xhdpi" src="resources\android\icon\drawable-xhdpi-icon.png" />
-        <icon density="xxhdpi" src="resources\android\icon\drawable-xxhdpi-icon.png" />
-        <icon density="xxxhdpi" src="resources\android\icon\drawable-xxxhdpi-icon.png" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
@@ -85,17 +81,7 @@
         <splash height="960" src="resources/ios/splash/Default@2x~iphone.png" width="640" />
         <splash height="480" src="resources/ios/splash/Default~iphone.png" width="320" />
     </platform>
-<<<<<<< HEAD
-    <icon src="resources/ios/icon/icon-small@3x.png" />
-=======
-    <engine name="ios" spec="^4.5.4"/>
-    <plugin name="ionic-plugin-keyboard" spec="~2.2.1" />
-    <plugin name="cordova-plugin-whitelist" spec="1.3.1" />
-    <plugin name="cordova-plugin-console" spec="1.0.5" />
-    <plugin name="cordova-plugin-statusbar" spec="2.2.1" />
-    <plugin name="cordova-plugin-device" spec="1.1.4" />
-    <plugin name="cordova-plugin-splashscreen" spec="~4.0.1" />
->>>>>>> 806ee55829047f68db0beea7d1c49dfea6ca89ec
+    <icon src="resources\android\icon\drawable-xhdpi-icon.png" />
     <plugin name="call-number" spec="https://github.com/Rohfosho/CordovaCallNumberPlugin.git" />
     <plugin name="cordova-plugin-camera" spec="^2.4.1">
         <variable name="CAMERA_USAGE_DESCRIPTION" value=" " />
@@ -107,11 +93,11 @@
     <plugin name="cordova-plugin-console" spec="^1.0.5" />
     <plugin name="cordova-plugin-splashscreen" spec="^4.0.3" />
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
-    <plugin name="cordova-plugin-alipay-v2" spec="https://github.com/hhjjj1010/cordova-plugin-alipay-v2.git">
-        <variable name="APP_ID" value="2017091608772582" />
-    </plugin>
     <plugin name="cordova-plugin-whitelist" spec="^1.3.1" />
     <plugin name="cordova-plugin-device" spec="^1.1.4" />
-    <engine name="ios" spec="~4.5.4" />
     <plugin name="cordova-plugin-statusbar" spec="^2.2.1" />
+    <engine name="ios" spec="~4.5.4" />
+    <plugin name="cordova-plugin-alipay-v2" spec="C:\Users\Administrator\Desktop\sz\cordova-plugin-alipay-v2">
+        <variable name="APP_ID" value="2017091608772582" />
+    </plugin>
 </widget>

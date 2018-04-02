@@ -25,7 +25,7 @@
           </h3>
         </div>
         <a class="item item-thumbnail-left item-icon-right" ng-if='vm.dele.data.cleaner.length>0' ui-sref='tab.homePerson({id:i.yuangong_id})' ng-repeat='i in vm.dele.data.cleaner'>
-          <img src="{{imgUrl + i.yuangong_s_tx}}">
+          <img ng-src="{{imgUrl + i.yuangong_s_tx}}">
           <h2>姓名：{{i.yuangong_name}}</h2>
           <p>简介：{{i.yuangong_jianjie}}</p>
           <p>服务星级：<span class="text-red {{ii.class}}"ng-repeat="ii in i.start_class"></span></p>
@@ -47,7 +47,7 @@
         </div>
         <a class="item item-thumbnail-left item-icon-right" ng-if='vm.dele.data.duenna.length>0' ui-sref='tab.homePerson({id:i.yuangong_id})' 
         ng-repeat='i in vm.dele.data.duenna'>
-          <img src="{{imgUrl + i.yuangong_s_tx}}">
+          <img ng-src="{{imgUrl + i.yuangong_s_tx}}">
           <h2>姓名：{{i.yuangong_name}}</h2>
           <p>简介：{{i.yuangong_jianjie}}</p>
           <p>服务星级：<span class="text-red {{i.class}}"   ng-repeat="i in i.start_class"></span>                   
@@ -70,7 +70,7 @@
         </div>
         <a class="item item-thumbnail-left item-icon-right" ng-if='vm.dele.data.nutritionist.length>0' ui-sref='tab.homePerson({id:i.yuangong_id})' 
         ng-repeat='i in vm.dele.data.nutritionist'>
-          <img src="{{imgUrl + i.yuangong_s_tx}}">
+          <img ng-src="{{imgUrl + i.yuangong_s_tx}}">
           <h2>姓名：{{i.yuangong_name}}</h2>
           <p>简介：{{i.yuangong_jianjie}}</p>
           <p>服务星级：<span class="text-red {{i.class}}"   ng-repeat="i in i.start_class"></span>                   
@@ -92,7 +92,7 @@
           </h3>
         </div>
         <a class="item item-thumbnail-left item-icon-right" ui-sref='tab.homePerson({id:i.yuangong_id})' ng-if='vm.dele.data.nursery.length>0' ng-repeat='i in vm.dele.data.nursery'>
-          <img src="{{imgUrl + i.yuangong_s_tx}}">
+          <img ng-src="{{imgUrl + i.yuangong_s_tx}}">
           <h2>姓名：{{i.yuangong_name}}</h2>
           <p>简介：{{i.yuangong_jianjie}}</p>
           <p>服务星级：<span class="text-red {{i.class}}"   ng-repeat="i in i.start_class"></span>                   
@@ -115,7 +115,7 @@
         </div>
         <a class="item item-thumbnail-left item-icon-right" ng-if='vm.dele.data.prolactor.length>0' ui-sref='tab.homePerson({id:i.yuangong_id})' 
         ng-repeat='i in vm.dele.data.prolactor'>
-          <img src="{{imgUrl + i.yuangong_s_tx}}">
+          <img ng-src="{{imgUrl + i.yuangong_s_tx}}">
           <h2>姓名：{{i.yuangong_name}}</h2>
           <p>简介：{{i.yuangong_jianjie}}</p>
           <p>服务星级：<span class="text-red {{i.class}}"   ng-repeat="i in i.start_class"></span>                   
@@ -138,7 +138,7 @@
         </div>
         <a class="item item-thumbnail-left item-icon-right" ng-if='vm.dele.data.careworker.length>0' ui-sref='tab.homePerson({id:i.yuangong_id})' 
         ng-repeat='i in vm.dele.data.careworker'>
-          <img src="{{imgUrl + i.yuangong_s_tx}}">
+          <img ng-src="{{imgUrl + i.yuangong_s_tx}}">
           <h2>姓名：{{i.yuangong_name}}</h2>
           <p>简介：{{i.yuangong_jianjie}}</p>
           <p>服务星级：<span class="text-red {{i.class}}"   ng-repeat="i in i.start_class"></span>                   
@@ -161,7 +161,7 @@
         </div>
         <a class="item item-thumbnail-left item-icon-right" ng-if='vm.dele.data.ewclean.length>0' ui-sref='tab.homePerson({id:i.yuangong_id})' 
         ng-repeat='i in vm.dele.data.ewclean'>
-          <img src="{{imgUrl + i.yuangong_s_tx}}">
+          <img ng-src="{{imgUrl + i.yuangong_s_tx}}">
           <h2>姓名：{{i.yuangong_name}}</h2>
           <p>简介：{{i.yuangong_jianjie}}</p>
           <p>服务星级：<span class="text-red {{ii.class}}"   ng-repeat="ii in i.start_class"></span>                   
@@ -184,7 +184,7 @@
         </div>
         <a class="item item-thumbnail-left item-icon-right" ng-if='vm.dele.data.pipeulock.length>0' ui-sref='tab.homePerson({id:i.yuangong_id})'
          ng-repeat='i in vm.dele.data.pipeulock'>
-          <img src="{{imgUrl + i.yuangong_s_tx}}">
+          <img ng-src="{{imgUrl + i.yuangong_s_tx}}">
           <h2>姓名：{{i.yuangong_name}}</h2>
           <p>简介：{{i.yuangong_jianjie}}</p>
           <p>服务星级：<span class="text-red {{ii.class}}" ng-repeat="ii in i.start_class"></span>                   

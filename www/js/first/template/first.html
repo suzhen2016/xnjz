@@ -115,10 +115,10 @@
               <span>精品推荐</span>
             </h3>
         <a class="item gap-10 item-thumbnail-left item-icon-right" ng-repeat="i in vm.list track by $index" ui-sref='tab.shoppDetail({id:i.goods_id})'>
-          <img src="{{imgUrl + i.goods_s_logo}}">
+          <img ng-src="{{imgUrl + i.goods_s_logo}}">
          
           <h4>名称：
-            <span>￥{{i.goods_name}}</span>
+            <span>{{i.goods_name}}</span>
           </h4>
           <h4>价格：
             <span>￥{{i.goods_price}}</span>

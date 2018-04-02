@@ -37,7 +37,7 @@
         </h3>
       </div>
       <a class="item item-thumbnail-left" ng-repeat="item in vm.order track by $index">
-        <img src="{{imgUrl + item.goods_log}}">
+        <img ng-src="{{imgUrl + item.goods_log}}">
         <h2>【家政服务超市】</h2>
         <h2>名称：{{item.goods_name}}</h2>
         <p>{{'数量：'+item.goods_buy_number}}{{item.is_goods==1 ? '位':'件'}}</p>

@@ -31,12 +31,21 @@
         </div>
       </div>
       <div class="list  list-plan">
-        <div class="item  item-offer item-zhi item-offer-plan" ng-repeat="item in [{}]">
+        <div class="item  item-offer item-zhi item-offer-plan">
           <a class="item item-car ">
             <h4>支付宝</h4>
           </a>
            <label class="checkbox">
-							<input type="radio" name='zhifu' checked="checked" ng-model="item.checked" ng-change="">
+							<input type="radio" name='zhifu' value='apli' ng-model="vm.paytype" ng-change="">
+						</label>
+            
+        </div>
+        <div class="item  item-offer item-zhi item-offer-plan">
+          <a class="item item-car ">
+            <h4>微信</h4>
+          </a>
+            <label class="checkbox">
+							<input type="radio" name='zhifu' value='weixin'  ng-model="vm.paytype" ng-change="">
 						</label>
         </div>
       </div>

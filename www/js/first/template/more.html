@@ -12,7 +12,7 @@
     </ion-refresher>
     <div ng-if='!vm.dele.isLoading && vm.order.userList.length>0' class="list pos-father">
       <a class="item item-icon-right gap-10 item-thumbnail-left" ng-repeat="i in vm.order.userList" ui-sref='tab.homePerson({id:i.yuangong_id})'>
-        <img src="{{imgUrl+i.yuangong_s_tx}}">
+        <img ng-src="{{imgUrl+i.yuangong_s_tx}}">
         <h2>姓名：{{i.yuangong_name}}</h2>
         <p>简介：{{i.yuangong_jianjie}}</p>
         <p>服务星级：<span class="text-red {{i.class}}"   ng-repeat="i in [{class:'ion-ios-star'},{class:'ion-ios-star'},

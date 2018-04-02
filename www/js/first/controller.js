@@ -39,6 +39,8 @@ angular.module('xn.first.ctrl', [])
                     })
                 }
             }
+          
+            init();
             //下来刷新
             vm.doRefresh = function(){
                 vm.query.page = 1;
@@ -49,9 +51,9 @@ angular.module('xn.first.ctrl', [])
                 init();
             }
             $scope.$on('$ionicView.beforeEnter',function(){
-                vm.list = [];
-                vm.query.page = 1;
-                init();
+                // vm.list = [];
+                // vm.query.page = 1;
+                // init();
             })
         }
     ])
@@ -564,7 +566,7 @@ angular.module('xn.first.ctrl', [])
                 // }
                 // run = false;
                 FirstService.getShopMoreList(vm.query).then(function (res) {
-                    if (res.status == 200) {
+                    if (res.status == 200 && res.data) {
                         res.data.goodSixList.length <10 ? vm.query.hasMore = false : vm.query.hasMore = true;
                         vm.order.userList = vm.order.userList.concat(res.data.goodSixList)
                         $log.debug('更多商品', vm.order.userList, res.data);
@@ -626,7 +628,7 @@ angular.module('xn.first.ctrl', [])
             vm.cmt = {};
             $scope.hasMore = true;
             vm.cmt.page_index  =1;
-            vm.cmt.goodtype_id = $stateParams.id;
+            
             vm.dele.appraiseList = [];
 
             vm.getConFirm = function () {
@@ -659,6 +661,7 @@ angular.module('xn.first.ctrl', [])
                 FirstService.getShopDetailsHeader($stateParams.id).then(function (res) {
                     if (res.status == 200) {
                         vm.order.header = res.data;
+                        vm.cmt.goodtype_id = res.data.goodtype_id;
                          vm.order_model_name  = vm.order.header.goods_name;
                         $log.debug('商品详情头部',vm.order.header);
                     }else{
@@ -837,6 +840,7 @@ angular.module('xn.first.ctrl', [])
             vm.loadMore = function(){
                 vm.cmt.page_index ++;
                 vm.getCmtList('load')
+                 $scope.$broadcast('scroll.infiniteScrollComplete');
             }
             
             $scope.$on("$ionicView.beforeEnter", function () {

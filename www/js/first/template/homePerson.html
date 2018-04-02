@@ -15,7 +15,7 @@
 
           <div class="list card">
               <div class="item item-body">
-                <img class="full-image" src="{{imgUrl + vm.order.employeeinfo.yuangong_b_tx}}">
+                <img class="full-image" ng-src="{{imgUrl + vm.order.employeeinfo.yuangong_b_tx}}">
                 <p style="text-align: center;margin-top:5px;margin-bottom: 4px;">
                     姓名：{{vm.order.employeeinfo.yuangong_name}}
                 </p>
@@ -70,7 +70,7 @@
           </h3>
         </div>
         <a class="item item-avatar" ng-repeat="i in vm.order.appraiseList track by $index">
-          <img src="{{imgUrl+i.user_pho || './img/xn/login-user.png'}}">
+          <img ng-src="{{imgUrl+i.user_pho || './img/xn/login-user.png'}}">
           <h4>{{i.username}} <span class="pull-right"><span class="text-red  {{ii.class}}"  ng-repeat="ii in i.start_class"></span></span></h4>
           <p style="white-space: normal">{{i.cmt_msg}}</p>
           <p class="text-right">时间：{{i.cmttime}}</p>

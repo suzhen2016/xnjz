@@ -299,7 +299,7 @@ angular.module('xn.commonpage.ctrl', [])
         function ($stateParams,$state, $log, $scope, $ionicLoading, ionicToast
             , $ionicHistory, $ionicViewSwitcher, $ionicNavBarDelegate, xnData,FirstService) {
             var vm = $scope.vm = this;
-
+             vm.paytype = 'apli'//默认支付宝支付       
             vm.order = {};
            
             vm.init = function(){
@@ -329,12 +329,12 @@ angular.module('xn.commonpage.ctrl', [])
             }
             //支付宝支付;
             vm.alipayXn = function () {
-
+                if(vm.paytype=='weixin'){
+                    ionicToast.alert('由于甲方钱未付清，此功能暂缓开放，请使用支付宝支付')
+                    return false;
+                }
                 var arr = _.pluck(vm.order.data.orderRetInfo,'order_number')
                 var tradeNo = 'XN'+arr[0];
-                $log.debug(tradeNo)
-            
-                //alert(JSON.stringify(vm.order.data));
                 cordova.plugins.alipay.payment({
                     "app_id": '2017091608772582' ,//vm.order.data.appid,                //APP-ID
                     "rsa_private": vm.order.data.rsa_private,      //私钥

@@ -7,7 +7,7 @@
         </div>
       </ion-nav-title>
   <!--中间内容区-->
-  <ion-content class="bg-gray xn-content" style="padding-bottom:44px" scroll='false'>
+  <ion-content class="bg-gray xn-content"  scroll='false'>
     <!-- <div class="list">
       <div class="item item-input-inset">
         <label class="item-input-wrapper">
@@ -63,14 +63,14 @@
                   <!--家政服务-->
                   <div class='col col-33' ng-if='i.yuangong_name' ui-sref='tab.menuhomePerson({id:i.yuangong_id})' ng-repeat="i in val track by $index">
                     <span class='img_box menu-item padding-6'>
-                      <img src="{{imgUrl + i.yuangong_s_tx}}" alt="">
+                      <img ng-src="{{imgUrl + i.yuangong_s_tx}}" alt="">
                     </span>
                     <h4>{{i.yuangong_name}}</h4>
                   </div>
                   <!--购物商城-->
-                  <div class='col col-33' ui-sref='tab.menushoppDetail({id:i.goods_id})' ng-if='i.goods_name && $index<3' ng-repeat="i in val track by $index">
+                  <div class='col col-33' ui-sref='tab.menushoppDetail({id:i.goods_id})' ng-if='i.goods_name' ng-repeat="i in val track by $index">
                     <span class='img_box menu-item padding-6'>
-                      <img src="{{imgUrl + i.goods_s_logo}}" alt="">
+                      <img ng-src="{{imgUrl + i.goods_s_logo}}" alt="">
                     </span>
                     <h4>{{i.goods_name}}</h4>
                   </div>
@@ -79,9 +79,7 @@
                     <h4 class="text-center">当前暂无数据，敬请期待</h4>
                 </div>
               </div>
-              
             </div>
-
           </div>
         </ion-scroll>
       </div>

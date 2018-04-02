@@ -44,7 +44,7 @@
 							<input type="checkbox"  ng-model="item.isDele" ng-change="vm.isSeletAll()">
 					</label>
           <a class="item item-car item-thumbnail-left">
-            <img src="{{imgUrl+item.goods_log}}">
+            <img ng-src="{{imgUrl+item.goods_log}}">
             <h4>【家政服务超市】</h4>
             <p>{{item.goods_introduce}}</p>
             <span>￥{{item.goods_price}}</span>
@@ -69,7 +69,7 @@
             <input type="checkbox" ng-model='vm.isAllSelect' ng-change='vm.selectAll()'>
         </label> -->
         <!--<span class="text-small">全选</span>-->
-        <span class="text-red gap-left-20">已选择({{vm.isAllSelect}})&nbsp&nbsp总价：{{vm.query.sum |currency :'￥'}}</span>
+        <span class="text-red gap-left-20">{{vm.isAllSelect?"已选择"+"("+vm.isAllSelect+")":''}}&nbsp&nbsp总价：{{vm.query.sum |currency :'￥'}}</span>
       </div>
       <div class="col col-red text-center" ng-click='vm.submitOrder()'>
         去结算

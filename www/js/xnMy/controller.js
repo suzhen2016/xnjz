@@ -615,6 +615,8 @@ angular.module('xn.my.ctrl', [])
                     delete vm.query.goodtype_id;
 
                 }
+                console.log(vm.query)
+                return false;
                 FirstService.addAppraise(vm.query).then(function(res){
                     if(res.status==200){
                         ionicToast.alert('评论成功')

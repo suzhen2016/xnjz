@@ -16,14 +16,13 @@
     <div class="bg-white">
       <div class="list card">
         <div class="item">
-          <!--<img src="mcfly.jpg">-->
           <h2 class="text-center">{{vm.dele.order.dyn_title}}</h2>
         </div>
-
         <div class="item item-body">
-          <img class="full-image" src="{{imgUrl + vm.dele.order.dyn_pho_centerimg}}">
-            <p>{{vm.dele.order.dyn_content}}</p>
-            <p>
+          <img ng-if='vm.dele.order.dyn_pho_headimg' class="full-image" src="{{imgUrl + vm.dele.order.dyn_pho_headimg}}">
+            <p>{{vm.dele.order.dyn_content?"&nbsp&nbsp&nbsp&nbsp"+vm.dele.order.dyn_content:'数据加载中...'}}</p>
+           <img ng-if='vm.dele.order.dyn_pho_bottomimg' class="full-image" src="{{imgUrl + vm.dele.order.dyn_pho_bottomimg}}">  
+            <p ng-if='vm.dele.order.upd_time'>
               <a class="subdued">更新日期：</a>
               <a class="subdued">{{vm.dele.order.upd_time}}</a>
             </p>

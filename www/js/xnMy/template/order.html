@@ -6,8 +6,8 @@
         </div>
     </ion-nav-title>
     <ion-nav-buttons side="left">
-        <i class="icon ion-ios-arrow-back" nav-transition="ios" nav-direction="back" ui-sref='tab.xnMy({ reload: true})'></i>
-        <span class="default-title" nav-transition="ios" nav-direction="back" ui-sref='tab.xnMy({ reload: true})'>返回</span>
+        <i class="icon ion-ios-arrow-back" menu-close nav-transition="ios" nav-direction="back" ui-sref='tab.xnMy({ reload: true})'></i>
+        <span class="default-title" menu-close nav-transition="ios" nav-direction="back" ui-sref='tab.xnMy({ reload: true})'>返回</span>
     </ion-nav-buttons>
     <!--内容区域-->
     <ion-content class="bg-gray">
@@ -50,32 +50,7 @@
             <h4 class="text-gray">当前暂无已取消订单</h4>
              <h4 class="text-gray gap-5">您可以通过去下单商品添加订单</h4>
         </div>
-        <!--<div class="list slide-top" ng-repeat="item in vm.list track by $index">
-            <div ng-class="{'gap-10':!$first}"></div>
-            <div class="item">
-                <h3>
-                    <span>{{item.add_time}}</span>
-                    <span class="pull-right text-red bold">{{item.order_status}}</span>
-                </h3>
-                <div class="row">
-                    <div class="col col-25">
-                        <span>
-                            <img style='width:100%;height:86px' src="{{imgUrl + item.goods_log}}" alt="">
-                        </span>
-                    </div>
-                    <div class='col col-75 gap-left-10 pos-father pa-top-8'>
-                        <h4>{{item.goods_introduce}}</h4>
-                        <p class="pos-moddle"> <span>X {{item.goods_number}}</span>&nbsp&nbsp&nbsp<span class="pull-right">单价:￥{{item.order_price}}</span></p>
-
-                        <span class="pos-bot">名称：{{item.goods_name}}</span>
-                    </div>
-                </div>
-                <h3 class="padding-5"><span class="pull-right">立即支付:<span class="text-red bold">{{(item.order_price * item.goods_number) | currency:'￥'}}</span></span>
-                </h3>
-            </div>
-
-
-        </div>-->
+    
 
         <ion-list class="list slide-top item-order-list" ng-repeat="item in vm.list track by $index" >
              <div ng-class="{'gap-10':!$first}"></div>
@@ -87,7 +62,7 @@
                 <div class="row">
                     <div class="col col-25">
                         <span>
-                            <img style='width:100%;height:86px' src="{{imgUrl + item.goods_log}}" alt="">
+                            <img style='width:100%;height:86px' ng-{imgUrl + item.goods_log}}" alt="">
                         </span>
                     </div>
                     <div class='col col-75 gap-left-10 pos-father pa-top-8'>

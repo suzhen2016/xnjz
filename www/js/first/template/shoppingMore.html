@@ -11,15 +11,14 @@
     <ion-refresher pulling-text="下拉刷新..." on-refresh="vm.doRefresh()">
     </ion-refresher>
    
-    <div ng-if='vm.order.kong&&vm.order.userList.length==0' style="height:200px;line-height:200px"> 
+    <!--<div ng-if='vm.order.kong&&vm.order.userList.length==0' style="height:200px;line-height:200px"> 
       没有数据
-    </div>
+    </div>-->
     <div class="list pos-father" ng-if='vm.order.userList.length>0'>
       <a class="item gap-10 item-thumbnail-left item-icon-right" ng-repeat="i in vm.order.userList track by $index"
        ui-sref='tab.shoppDetail({id:i.goods_id})'>
-        <img src="{{imgUrl + i.goods_s_logo}}">
-        
-        <h4>名称：<span>￥{{i.goods_name}}</span></h4>
+        <img ng-src="{{imgUrl + i.goods_s_logo}}">
+        <h4>名称：<span>{{i.goods_name}}</span></h4>
         <h4>价格：<span>￥{{i.goods_price}}</span></h4>
         <p class="text-line-2">详情:{{i.goods_introduce}}</p>
         <i class="icon ion-ios-arrow-right"></i>

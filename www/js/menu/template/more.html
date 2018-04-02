@@ -11,21 +11,21 @@
     <ion-refresher pulling-text="下拉刷新..." on-refresh="vm.doRefresh()">
     </ion-refresher>
     <div class="list pos-father">
-      <a class="item gap-10 item-thumbnail-left" ng-repeat="i in vm.order.userList" ui-sref='tab.menuhomePerson({id:i.yuangong_id})'>
-        <img src="{{imgUrl+i.yuangong_s_tx}}">
+      <a class="item gap-10 item-thumbnail-left item-icon-right" ng-repeat="i in vm.order.userList" ui-sref='tab.menuhomePerson({id:i.yuangong_id})'>
+        <img ng-src="{{imgUrl+i.yuangong_s_tx}}">
         <h2>姓名：{{i.yuangong_name}}</h2>
         <p>简介：{{i.yuangong_jianjie}}</p>
         <p>服务星级：<span class="text-red {{i.class}}"   ng-repeat="i in [{class:'ion-ios-star'},{class:'ion-ios-star'},
         {class:'ion-ios-star-half'},{class:'ion-ios-star-outline'}]"></span>
            </p>
         <h2>价格：<span>￥{{i.yuangong_price}}</span></h2>
+        <i class="icon ion-ios-arrow-right"></i>
       </a>
-       <button class="button button-clear button-stable login-text text-center pos-bot-40">
-      <!--{{vm.query.hasMore?'上拉加载更多':"没有更多了..."}}-->
-      {{"没有更多了..."}}
+       <button ng-if='vm.query.hasMore' class="button button-clear button-stable login-text text-center pos-bot-40">
+      {{vm.query.hasMore?'上拉加载更多':"没有更多了..."}}
+      <!--{{"没有更多了..."}}-->
     </button>
     </div>
-   
     <ion-infinite-scroll ng-if="vm.query.hasMore" immediate-check="false" icon="ion-loading-c" on-infinite="vm.loadMore()" distance="1%">
     </ion-infinite-scroll>
   </ion-content>

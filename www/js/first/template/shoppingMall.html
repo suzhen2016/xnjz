@@ -17,7 +17,7 @@
     <div class="list" ng-repeat="item in vm.order.data track by $index">
       <div class='item_box item gap-10 padding-none first-bottom pa-btm-5'>
         <h3 class='pa-left-10 pa-top-5'>
-          <img style="width: 25px" class="img_icon" src="{{imgUrl + item.img_img}}" alt="">
+          <img style="width: 25px" class="img_icon" ng-src="{{imgUrl + item.img_img}}" alt="">
           <span>{{item.img_name}}</span>
           <span ng-if='item.more_id' class="pull-right pa-right-10" ui-sref='tab.shoppingMore({id:item.more_id})'>更多 ></span>
         </h3>
@@ -26,11 +26,11 @@
           <div class="col col-33" ng-repeat="i in item.list">
             <div class="list card" ui-sref='tab.shoppDetail({id:i.goods_id})'>
               <div class="item item-body text-space shopMall">
-                <img class="full-image" src="{{imgUrl + i.goods_s_logo}}">
-                <p>
+                <img class="full-image" ng-src="{{imgUrl + i.goods_s_logo}}">
+                <p style="margin:0">
                   {{i.goods_name}}
                 </p>
-                <p>
+                <p style="margin:0">
                   <a class="subdued">￥{{i.goods_price}}</a>
                 </p>
               </div>
