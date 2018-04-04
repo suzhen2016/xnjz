@@ -48,9 +48,9 @@ angular.module('starter', ['ionic',
 
             }
             if (window.StatusBar) {
-                
+                ionic.Platform.showStatusBar(true);
                 // org.apache.cordova.statusbar required
-                StatusBar.styleDefault(false);
+                //StatusBar.styleDefault(false);
                 //$cordovaStatusbar.overlaysWebView(false);
                 //$cordovaStatusbar.style(1);
                //StatusBar.styleLightContent();
