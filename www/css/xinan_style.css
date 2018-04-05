@@ -7,14 +7,20 @@
   display: inline-block;
   text-align: center;
 }
+.center {
+  text-align: center;
+}
+.text-right{
+  text-align: 'rigth';
+}
 .icon_bg {
-  background: url('../img/xn/first/yuandian.png') center center;
-  background-size: 97% 115%;
-  margin: 5px 0 5px 0;
+  /* background: url('../img/xn/first/yuandian.png') center center; */
+  /* background-size: 97% 115%;
+  margin: 5px 0 5px 0; */
 }
 
 .icon_box img {
-padding: 12px;
+
 width: 100%;
 display: inline-block;
 }
@@ -23,7 +29,7 @@ display: inline-block;
 }
 
 .xn-first .icon_box img {
-padding: 28px;
+padding: 12px;
 }
 .icon_bg img {
   width: 80%;
@@ -38,7 +44,6 @@ padding: 28px;
 }
 .img_box h3 {
   font-weight: 600;
-
 }
 
 .item_box .gap-10{
@@ -128,6 +133,16 @@ ion-content .row-height , ion-content .scroll {
   position: relative;
   
 }
+.position-par {
+  position: relative;
+}
+.position-son {
+  position: absolute;
+}
+.fixd-car-xy{
+  top:4px;
+  font-size: 30px;
+}
 .login-img .cirle {
   width: 76px;
   height: 76px;
@@ -155,6 +170,7 @@ ion-content .row-height , ion-content .scroll {
   color:#fff;
   font-size: 17px;
 }
+
 .first-bottom .col h4 {
   margin: 5px 0 ;
 }
@@ -171,16 +187,6 @@ ion-content .row-height , ion-content .scroll {
 .bar {
    background:#e61b1b;
 }*/
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -223,11 +229,15 @@ ion-content .row-height , ion-content .scroll {
 .pa-top-8{
   padding-top: 8px;
 }
+
 .pa-top-8 list item:nth-last-child(1){
   border-bottom:1px solid #000;
 }
 .padding-6 {
   padding: 6px;
+}
+.padding-10 {
+  padding: 10px;
 }
 .pa-btm-5{
   padding-bottom: 5px;
@@ -247,8 +257,11 @@ ion-content .row-height , ion-content .scroll {
 .item .gap-0{
 margin: 0px;
 }
+.bg-img {
+  background-color: #eee;
+}
 .border-top-1{
-  border-top:1px solid #000;
+  border-top:1px solid #c2b4b4;
 }
 .border-btm-1{
   border-bottom:1px solid #000;
@@ -357,6 +370,10 @@ p.text-redd {
   color:red;
 }
 
+.text-orange {
+  color: #FF6C00;
+}
+
 .text-white {
   color: #fff;
 }
@@ -376,6 +393,9 @@ p.text-redd {
   border-radius:50%;
 }
 
+.border-rad-5 {
+  border-radius: 5px;
+}
 
 /*购物车的加减*/
 .driver-input input {
@@ -451,9 +471,9 @@ ion-tabs.tabs-color-active-positive .tab-item {
   color: #444; 
 }
 ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-color-active-positive .tab-item.active, ion-tabs.tabs-color-active-positive .tab-item.activated {
-    color: #e42112; 
+    color: #00c4b6; 
 }
-.xn-first .border-bot-first h4{
+.xn-first .col-20 h4{
   margin-bottom: 15px;
 }
 .bar-positive .title {

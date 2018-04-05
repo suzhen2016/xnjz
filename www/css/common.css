@@ -489,9 +489,9 @@ small {
 
 .bar.bar-positive {
     background-image: linear-gradient(0deg, #b2b2b2, #b2b2b2 0%, transparent 0%);
-    border-color: #ef473a; 
+    border-color: #00c4b6; 
     /* 顶部bar的背景颜色控制 */
-    background: #ef2c00;  
+    background: #00c4b6;  
     /* background: -webkit-linear-gradient(#db4226, #ef473a);
     background: -o-linear-gradient(#db4226, #ef473a);
     background: -moz-linear-gradient(#db4226, #ef473a);
@@ -520,10 +520,10 @@ small {
 
 .bar.bar-stable {
     background-image: linear-gradient(0deg, #b2b2b2, #b2b2b2 0%, transparent 0%);
-    border-color: #ef473a;
+    border-color: #00c4b6;
     /* background: -webkit-linear-gradient(#db4226, #ef473a); */
     /* 顶部bar的颜色背景设置 */
-    background-color: #ef2c00;  
+    background-color: #00c4b6;  
     /* Safari 5.1 - 6.0 */
     /* background: -o-linear-gradient(#db4226, #ef473a); */
     /* Opera 11.1 - 12.0 */

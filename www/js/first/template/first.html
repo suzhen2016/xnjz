@@ -29,11 +29,56 @@
       </label>
     </div>-->
     <div class="list">
-      <div class='item_box item gap-10 padding-none'>
-        <!--<h3 class="gap-10">
-            <img style="width: 25px" class="img_icon" src="./img/xn/first/jiazheng.png" alt="">
-              <span>家政服务</span>
-          </h3>-->
+
+
+      <div class='item_box item  padding-none'>
+        <div class="row row-wrap xn-first">
+          <div class='col col-20 ' ui-sref='tab.homeWork'>
+            <span class='icon_box icon_bg'>
+              <img src="./img/xn/first/jiazhengfw.png" alt="">
+            </span>
+            <h4>家政服务</h4>
+          </div>
+          <div class='col col-20 ' ui-sref='tab.workxun'>
+            <span class='icon_box icon_bg'>
+              <img src="./img/xn/first/peixun.png" alt="">
+            </span>
+            <h4>培训服务</h4>
+          </div>
+          <div class='col col-20 ' ui-sref='tab.industryUser'>
+            <span class='icon_box icon_bg'>
+              <img src="./img/xn/first/kehu.png" alt="">
+            </span>
+            <h4>行业客户</h4>
+          </div>
+          <div class='col col-20 ' ui-sref='tab.recruitment'>
+            <span class='icon_box icon_bg'>
+              <img src="./img/xn/first/zhaopin.png" alt="">
+            </span>
+            <h4>招贤纳士</h4>
+          </div>
+          <div class='col col-20 ' ui-sref='tab.shoppingMall'>
+            <span class='icon_box icon_bg'>
+              <img src="./img/xn/first/shopping.png" alt="">
+            </span>
+            <h4>购物商城</h4>
+          </div>
+          <!-- <div class='col col-33 border-bot-first' ui-sref='tab.condition({id:"ss"})'>
+            <span class='icon_box icon_bg'>
+              <img src="./img/xn/first/more-l.png" alt="">
+            </span>
+            <h4>公司动态</h4>
+          </div> -->
+        </div>
+        <div class="row border-top-1 item-padding-10 position-par">
+          <i class="icon position-son ion-ios-volume-high fixd-car-xy text-orange tada animated infinite"></i>
+          <span class="col col-25   text-right pa-right-10" ui-sref='tab.condition({id:"ss"})'> 公司动态</span>
+          <i class="border-right-1"></i>
+          <span class="col pa-left-10">5月1日正式那还发啊加上线!</span>
+        </div>
+      </div>
+
+      <!-- <div class='item_box item gap-10 padding-none'>
         <div class="row row-wrap xn-first">
           <div class='col col-33 border-bot-right' ui-sref='tab.homeWork'>
             <span class='icon_box icon_bg'>
@@ -72,51 +117,79 @@
             <h4>公司动态</h4>
           </div>
         </div>
-      </div>
-      
-      <div class='item_box item gap-10 padding-none first-bottom pa-btm-5'>
+      </div> -->
+
+      <div class='item_box item gap-10  item-padding-none first-bottom pa-btm-5'>
         <h3 class='pa-left-10 pa-top-5'>
           <img style="width: 25px" class="img_icon" src="./img/xn/first/host.png" alt="">
           <span>热门推荐</span>
         </h3>
         <div class="row row-wrap">
-          <div class='col col-50' ui-sref='tab.shoppingMore({id:57})'>
-            <div style="width: 100%" class="pa-right-5">
-              <img style="width: 100%" src="./img/xn/first/qingjie.jpg" alt="">
+          <div class='col col-33 padding-6' ui-sref='tab.shoppingMore({id:57})'>
+            <div style="width: 100%" class="padding-10 bg-img border-rad-5">
+              <img style="width: 100%" class="border-rad-5" src="./img/xn/first/qingjie.jpg" alt="">
             </div>
             <h4>清洁用品</h4>
           </div>
-          <div class='col col-50' ui-sref='tab.shoppingMore({id:56})'>
-            <div style="width: 100%" class="pa-left-5">
-              <img style="width: 100%" src="./img/xn/first/guizhou.jpg" alt="">
+          <div class='col col-33 padding-6' ui-sref='tab.shoppingMore({id:56})'>
+            <div style="width: 100%" class="padding-10 bg-img border-rad-5">
+              <img style="width: 100%" class="border-rad-5" src="./img/xn/first/guizhou.jpg" alt="">
             </div>
             <h4>贵州特产</h4>
           </div>
 
-          <div class='col col-50' ui-sref='tab.workxun'>
-            <div style="width: 100%" class="pa-right-5">
-              <img style="width: 100%" src="./img/xn/first/pwixun-banner.jpg" alt="">
+          <div class='col col-33 padding-6' ui-sref='tab.workxun'>
+            <div style="width: 100%" class="padding-10 bg-img border-rad-5">
+              <img style="width: 100%" class="border-rad-5" src="./img/xn/first/pwixun-banner.jpg" alt="">
             </div>
             <h4>培训服务</h4>
           </div>
 
-          <div class='col col-50'>
+          <!-- <div class='col col-50'>
             <div style="width: 100%" class="pa-left-5" ui-sref='tab.recruitment'>
               <img style="width: 100%" src="./img/xn/first/renli.jpg" alt="">
             </div>
             <h4>人力资源</h4>
+          </div> -->
+        </div>
+      </div>
+
+
+
+
+      <div class='item_box item gap-10  item-padding-none first-bottom pa-btm-5' ng-if='vm.list.length>0'>
+          <h3 class='pa-left-10 pa-top-5'>
+            <img style="width: 25px" class="img_icon" src="./img/xn/first/host.png" alt="">
+            <span>精品推荐</span>
+          </h3>
+          <div class="row row-wrap" >
+            <div class='col col-50' ng-repeat="i in vm.list track by $index" ui-sref='tab.shoppDetail({id:i.goods_id})' >
+              <div style="width: 100%" class="padding-10 bg-img ">
+                <!-- <img style="width: 100%" class="border-rad-5" ng-src="{{imgUrl + i.goods_s_logo}}" alt=""> -->
+                <img style="width: 100%" class="border-rad-5" src="http://www.zgxnjz.cn./Goodsimgs/2018-03-14/s_5aa892b7a8c7e.jpg" alt="">
+              </div>
+              <div class="padding-10 ">
+                  <h3>{{i.goods_name}}</h3>
+                  <p>{{i.goods_introduce}}</p>
+                  <span class="text-red">￥{{i.goods_price}}</span>
+              </div>
+              
+            </div>
+           
           </div>
         </div>
-        
-      </div>
-      <div class="list pos-father xn-content" ng-if='vm.list.length>0'>
-          <h3 class='pa-left-10 pa-top-5'>
-              <!-- <img style="width: 25px" class="img_icon" src="./img/xn/first/host.png" alt=""> -->
-              <span>精品推荐</span>
-            </h3>
+
+
+
+
+      <!-- <div class="list pos-father  gap-10 " ng-if='vm.list.length>0'>
+        <h3 class='pa-left-10 pa-top-5'>
+          <img style="width: 25px" class="img_icon" src="./img/xn/first/host.png" alt="">
+          <span>精品推荐</span>
+        </h3>
         <a class="item gap-10 item-thumbnail-left item-icon-right" ng-repeat="i in vm.list track by $index" ui-sref='tab.shoppDetail({id:i.goods_id})'>
           <img ng-src="{{imgUrl + i.goods_s_logo}}">
-         
+
           <h4>名称：
             <span>{{i.goods_name}}</span>
           </h4>
@@ -126,10 +199,8 @@
           <p class="text-line-2">详情:{{i.goods_introduce}}</p>
           <i class="icon ion-ios-arrow-right"></i>
         </a>
-        <button ng-if='!vm.dele.hasMore' class="button button-clear button-stable login-text text-center pos-bot-40">
-          {{vm.dele.hasMore?'上拉加载更多':"没有更多了..."}}
-        </button>
-      </div>
+       
+      </div> -->
 
     </div>
     <ion-infinite-scroll ng-if="vm.dele.hasMore" immediate-check="false" icon="ion-loading-c" on-infinite="vm.loadMore()" distance="1%">
