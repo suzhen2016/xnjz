@@ -11,7 +11,7 @@
             
                vm.query=  {};
                vm.order = {};
-               vm.query.menu_id = $stateParams.id;
+               vm.query.menu_id = 'home';
 
                vm.isLoadding = false;
 
@@ -32,19 +32,58 @@
                             }else{
                                 vm.isNull = false;
                             }
+                           for (const key in vm.order) {
+                               if (vm.order.hasOwnProperty(key)) {
+                                   var element = vm.order[key];
+                                   if(element.length>0){
+                                    vm.selectItem(key,element)
+                                       return false;
+                                   }
+                               }
+                           }
                         }else{
-                            vm.isError = true;
+                            //vm.isError = true;
                         }
                     },function(){
-                        vm.isError = true;
+                       // vm.isError = true;
                     }).finally(function(){
                         vm.isLoadding = true;
+
+                        FirstService.getShopOrder().then(function(res){
+                            $log.debug('分类',res);
+                           if(res.status==200){
+                               $log.debug('分类',res.data);
+                               vm.order = _.extend(vm.order,res.data)
+                               if(_.size(_.keys(vm.order))==0){
+                                   vm.isNull = true;//空值
+                               }else{
+                                   vm.isNull = false;
+                               }
+                           }else{
+                               vm.isError = true;
+                           }
+                       },function(){
+                           vm.isError = true;
+                       }).finally(function(){
+                        vm.isLoadding = true;
+                       })
                     })
                }
-               vm.init(vm.query.menu_id);
+              
+
+               vm.selectItem = function(key,val){
+                  vm.isSelect = key;
+                  vm.linkItem = val;
+               }
+
+
                vm.goMore = function(key){
                     $log.debug($filter('menuTieleId')(key))
                     var obj = $filter('menuTieleId')(key);
                     $state.go(obj.route,{id:obj.id,title:key})
                }
+
+               $scope.$on('$ionicView.beforeEnter',function(){
+                vm.init(vm.query.menu_id);
+            })
        }])
