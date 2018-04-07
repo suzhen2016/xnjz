@@ -202,9 +202,12 @@ angular.module('xn.first.service', [])
                 setfeedback:function(data){
                     var all = XnRestAngular.allUrl('/Backinfo/setCustomerBack');
                     return all.post(data); 
+                },
+                //获得支付签名串接口
+                getAlipayString:function(obj){
+                    var all = XnRestAngular.allUrl('/Order/AliPaySign');
+                    return all.post(obj); 
                 }
-
-
             }
         }
     ])

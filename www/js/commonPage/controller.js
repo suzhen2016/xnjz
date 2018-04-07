@@ -240,9 +240,14 @@ angular.module('xn.commonpage.ctrl', [])
 
             vm.init = function () {
                 vm.order = xnData.get();
+                console.log(vm.order)
                 vm.order.forEach(function (i) {
                     vm.dele.ids.push(i.shop_id);
                 })
+                // vm.dele.order_post = 1;
+                // vm.dele.goods_name = vm.order.goods_name;
+                // vm.dele.trade_code = 'jdadasjdjas';
+                // //vm.dele.total_price
 
                 vm.dele.address = xnData.get('address');
                 $log.debug(vm.order, vm.dele.address)
@@ -299,12 +304,22 @@ angular.module('xn.commonpage.ctrl', [])
         function ($stateParams,$state, $log, $scope, $ionicLoading, ionicToast
             , $ionicHistory, $ionicViewSwitcher, $ionicNavBarDelegate, xnData,FirstService) {
             var vm = $scope.vm = this;
-             vm.paytype = 'apli'//默认支付宝支付       
+            vm.paytype = 'apli'//默认支付宝支付       
             vm.order = {};
+            vm.query = {};
            
             vm.init = function(){
                 vm.order.data = xnData.get('pinkUp');
-                vm.times = new Date(vm.order.data.order_time_end);
+                vm.times = new Date(vm.order.data.order_time_end).getTime();
+                vm.query.goods_name = '西南家政商品';
+                vm.query.total_price = vm.order.data.order_total_price;
+                if(vm.order.data.orderRetInfo.length>1){
+                    vm.query.trade_code = vm.order.data.orderRetInfo[0].order_number;
+                }else{
+                    vm.query.trade_code = 'ES' + vm.times;
+                    
+                }
+                
                 $log.debug("订单详情",vm.times, vm.order.data);
             }
 
@@ -335,42 +350,62 @@ angular.module('xn.commonpage.ctrl', [])
                 }
                 var arr = _.pluck(vm.order.data.orderRetInfo,'order_number')
                 var tradeNo = 'XN'+arr[0];
-                cordova.plugins.alipay.payment({
-                    "app_id": '2017091608772582' ,//vm.order.data.appid,                //APP-ID
-                    "rsa_private": vm.order.data.rsa_private,      //私钥
-                    "subject":vm.order.data.subject,              //商品名称
-                    "body": "家政服务超市出品",                    //商品详情
-                    "total_amount":vm.order.data.order_total_price,     //金额
-                    "out_trade_no": 'SE'+ tradeNo,                  //唯一的订单号
-                    "timestamp": '2016-07-29 16:55:53'  //vm.order.data.order_creat_time   //订单时间  
-                }, function success(e) {
-                    if (e) {
-                       
-                        if(e.resultStatus==9000){
-                             ionicToast.alert('订单支付成功')
-                             vm.alipaySuccessOrder(arr)
-                            
-                        }else if(e.resultStatus==8000){
-                            //支付中;
-                             ionicToast.alert('订单支付中，请求订单列表查询订单状态,如果已扣款请联系客服')
-                             $state.go('tab.order',{'status':1})   
-                        }
+
+                // {
+                //     "app_id": '2017091608772582' ,//vm.order.data.appid,                //APP-ID
+                //     "rsa_private": vm.order.data.rsa_private,      //私钥
+                //     "subject":vm.order.data.subject,              //商品名称
+                //     "body": "家政服务超市出品",                    //商品详情
+                //     "total_amount":vm.order.data.order_total_price,     //金额
+                //     "out_trade_no": 'SE'+ tradeNo,                  //唯一的订单号
+                //     "timestamp": '2016-07-29 16:55:53'  //vm.order.data.order_creat_time   //订单时间  
+                // }
+                
+                FirstService.getAlipayString(vm.query).then(function(res){
+                    console.log(res);
+                    if(res.status && res.sign){
+                        cordova.plugins.alipay.payment(res.sign, function success(e) {
+                            if (e) {
+                                if(e.resultStatus==9000){
+                                     ionicToast.alert('订单支付成功')
+                                     vm.alipaySuccessOrder(arr)
+                                    
+                                }else if(e.resultStatus==8000){
+                                    //支付中;
+                                     ionicToast.alert('订单支付中，请求订单列表查询订单状态,如果已扣款请联系客服')
+                                     $state.go('tab.order',{'status':1})   
+                                }
+                            }
+                        }, function error(e) {
+                            if (e) {
+                                //alert(JSON.stringify(e));
+                                if(e.resultStatus==4000){
+                                    ionicToast.alert('订单支付失败')
+                                    $state.go('tab.order',{'status':1})
+                                }else if(e.resultStatus==6001){
+                                    ionicToast.alert('您取消支付了');
+                                    $state.go('tab.order',{'status':1})
+                                }else if(e.resultStatus == 6002){
+                                    ionicToast.alert('网络原因支付失败');
+                                    $state.go('tab.order',{'status':1})
+                                }
+                            }
+                        });
+                    }else{
+
                     }
-                }, function error(e) {
-                    if (e) {
-                        //alert(JSON.stringify(e));
-                        if(e.resultStatus==4000){
-                            ionicToast.alert('订单支付失败')
-                            $state.go('tab.order',{'status':1})
-                        }else if(e.resultStatus==6001){
-                            ionicToast.alert('您取消支付了');
-                            $state.go('tab.order',{'status':1})
-                        }else if(e.resultStatus == 6002){
-                            ionicToast.alert('网络原因支付失败');
-                            $state.go('tab.order',{'status':1})
-                        }
-                    }
-                });
+
+
+
+                })
+
+
+
+
+
+
+
+               
             };
 
             //  $scope.$on("$ionicView.beforeEnter", function () {
@@ -423,3 +458,7 @@ angular.module('xn.commonpage.ctrl', [])
             }
         }
     ])
+
+
+
+    
