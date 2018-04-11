@@ -16,7 +16,7 @@
 
     <div ng-if='!vm.dele.isLoading'>
 
-      <div class="list">
+      <div class="list" ng-if='vm.dele.data.cleaner.length>0'>
         <div class='item_box item gap-10 padding-none first-bottom pa-btm-5'>
           <h3 class='pa-left-10 pa-top-5'>
             <img style="width: 25px" class="img_icon" src="./img/xn/first/homeWork/baojieyuan.png" alt="">
@@ -24,7 +24,7 @@
             <span class="pull-right pa-right-10" ng-if='vm.dele.data.cleaner.length>0' ui-sref='tab.homeMore({id:"10",title:"保洁员"})'>更多 ></span>
           </h3>
         </div>
-        <a class="item item-thumbnail-left item-icon-right" ng-if='vm.dele.data.cleaner.length>0' ui-sref='tab.homePerson({id:i.yuangong_id})' ng-repeat='i in vm.dele.data.cleaner'>
+        <a class="item item-thumbnail-left item-icon-right"  ui-sref='tab.homePerson({id:i.yuangong_id})' ng-repeat='i in vm.dele.data.cleaner'>
           <img ng-src="{{imgUrl + i.yuangong_s_tx}}">
           <h2>姓名：{{i.yuangong_name}}</h2>
           <p>简介：{{i.yuangong_jianjie}}</p>
@@ -37,7 +37,7 @@
         </a>
       </div>
 
-      <div class="list">
+      <div class="list" ng-if='vm.dele.data.duenna.length>0'>
         <div class='item_box item gap-10 padding-none first-bottom pa-btm-5'>
           <h3 class='pa-left-10 pa-top-5'>
             <img style="width: 25px" class="img_icon" src="./img/xn/first/homeWork/baojieyuan.png" alt="">
@@ -45,7 +45,7 @@
             <span class="pull-right pa-right-10" ng-if='vm.dele.data.duenna.length>0' ui-sref='tab.homeMore({id:"11",title:"保姆"})'>更多 ></span>
           </h3>
         </div>
-        <a class="item item-thumbnail-left item-icon-right" ng-if='vm.dele.data.duenna.length>0' ui-sref='tab.homePerson({id:i.yuangong_id})' 
+        <a class="item item-thumbnail-left item-icon-right"  ui-sref='tab.homePerson({id:i.yuangong_id})' 
         ng-repeat='i in vm.dele.data.duenna'>
           <img ng-src="{{imgUrl + i.yuangong_s_tx}}">
           <h2>姓名：{{i.yuangong_name}}</h2>
@@ -60,7 +60,7 @@
         </a>
       </div>
 
-      <div class="list">
+      <div class="list" ng-if='vm.dele.data.nutritionist.length>0'>
         <div class='item_box item gap-10 padding-none first-bottom pa-btm-5'>
           <h3 class='pa-left-10 pa-top-5'>
             <img style="width: 25px" class="img_icon" src="./img/xn/first/homeWork/baojieyuan.png" alt="">
@@ -83,7 +83,7 @@
         </a>
       </div>
 
-      <div class="list">
+      <div class="list" ng-if='vm.dele.data.nursery.length>0'>
         <div class='item_box item gap-10 padding-none first-bottom pa-btm-5'>
           <h3 class='pa-left-10 pa-top-5'>
             <img style="width: 25px" class="img_icon" src="./img/xn/first/homeWork/baojieyuan.png" alt="">
@@ -105,7 +105,7 @@
         </a>
       </div>
 
-      <div class="list">
+      <div class="list" ng-if='vm.dele.data.prolactor.length>0'>
         <div class='item_box item gap-10 padding-none first-bottom pa-btm-5'>
           <h3 class='pa-left-10 pa-top-5'>
             <img style="width: 25px" class="img_icon" src="./img/xn/first/homeWork/baojieyuan.png" alt="">
@@ -128,7 +128,7 @@
         </a>
       </div>
 
-      <div class="list">
+      <div class="list" ng-if='vm.dele.data.careworker.length>0'>
         <div class='item_box item gap-10 padding-none first-bottom pa-btm-5'>
           <h3 class='pa-left-10 pa-top-5'>
             <img style="width: 25px" class="img_icon" src="./img/xn/first/homeWork/baojieyuan.png" alt="">
@@ -151,7 +151,7 @@
         </a>
       </div>
 
-      <div class="list">
+      <div class="list" ng-if='vm.dele.data.ewclean.length>0'>
         <div class='item_box item gap-10 padding-none first-bottom pa-btm-5'>
           <h3 class='pa-left-10 pa-top-5'>
             <img style="width: 25px" class="img_icon" src="./img/xn/first/homeWork/baojieyuan.png" alt="">
@@ -174,7 +174,7 @@
         </a>
       </div>
 
-      <div class="list">
+      <div class="list" ng-if='vm.dele.data.pipeulock.length>0'>
         <div class='item_box item gap-10 padding-none first-bottom pa-btm-5'>
           <h3 class='pa-left-10 pa-top-5'>
             <img style="width: 25px" class="img_icon" src="./img/xn/first/homeWork/baojieyuan.png" alt="">

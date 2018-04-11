@@ -353,7 +353,7 @@ angular.module('xn.commonpage.ctrl', [])
                    
                     FirstService.getweixinPayString(obj).then(function(res){
                         console.log(res);
-                        alert(res)
+                        
                         if(res.status ==200 ){
                             var params = {
                                 partnerid: res.param.mch_id, // merchant id
@@ -362,12 +362,12 @@ angular.module('xn.commonpage.ctrl', [])
                                 timestamp: String(new Date().getTime()/1000 + 100), // timestamp
                                 sign: res.param.sign, // signed string
                             };
-                            alert(JSON.stringify(reason))
+                           
                             Wechat.sendPaymentRequest(params, function () {
                                 ionicToast.alert('订单支付成功')
                                 $state.go('tab.order',{'status':3})
                             }, function (reason) {
-                                alert(JSON.stringify(reason))
+                                ionicToast.alert(JSON.stringify(reason))
                                 $state.go('tab.order',{'status':1})
                             });
                         }else{

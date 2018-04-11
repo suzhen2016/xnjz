@@ -121,7 +121,7 @@
 
       <div class='item_box item gap-10  item-padding-none first-bottom pa-btm-5'>
         <h3 class='pa-left-10 pa-top-5'>
-          <img style="width: 25px" class="img_icon" src="./img/xn/first/host.png" alt="">
+          <img style="width: 16px" class="img_icon" src="./img/xn/first/host.png" alt="">
           <span>热门推荐</span>
         </h3>
         <div class="row row-wrap">
@@ -155,12 +155,12 @@
       </div>
       <div class='item_box item gap-10  item-padding-none first-bottom pa-btm-5' ng-if='vm.list.length>0'>
           <h3 class='pa-left-10 pa-top-5'>
-            <img style="width: 25px" class="img_icon" src="./img/xn/first/jinpin.png" alt="">
+            <img style="width: 20px" class="img_icon" src="./img/xn/first/jinpin.png" alt="">
             <span>精品推荐</span>
           </h3>
           <div class="row row-wrap" >
             <div class='col col-50' ng-repeat="i in vm.list track by $index" ui-sref='tab.shoppDetail({id:i.goods_id})' >
-              <div style="width: 100%" class="padding-10 bg-img ">
+              <div style="width: 100%" class="padding-10 bg-img " ng-class='{"border-right-ff":$index%2==0,"border-left-ff":$index%2==1}'>
                 <!-- <img style="width: 100%" class="border-rad-5" ng-src="{{imgUrl + i.goods_s_logo}}" alt=""> -->
                 <img style="width: 100%" class="border-rad-5" src="http://www.zgxnjz.cn./Goodsimgs/2018-03-14/s_5aa892b7a8c7e.jpg" alt="">
               </div>
