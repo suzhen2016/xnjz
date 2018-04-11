@@ -16,6 +16,7 @@
                vm.isLoadding = false;
 
                vm.init = function(type){
+                vm.isLoadding = false;
                    vm.isError = false;
                     if(vm.query.menu_id=='home'){
                         var serve = FirstService.getHomeMenuById
@@ -47,7 +48,7 @@
                     },function(){
                        // vm.isError = true;
                     }).finally(function(){
-                        vm.isLoadding = true;
+                        
 
                         FirstService.getShopOrder().then(function(res){
                             $log.debug('分类',res);
@@ -70,12 +71,10 @@
                     })
                }
               
-
                vm.selectItem = function(key,val){
                   vm.isSelect = key;
                   vm.linkItem = val;
                }
-
 
                vm.goMore = function(key){
                     $log.debug($filter('menuTieleId')(key))

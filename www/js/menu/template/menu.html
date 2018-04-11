@@ -22,7 +22,7 @@
       <!--left-->
       <div class='col col-height col-25 pa-top-8'>
         <ion-scroll zooming="false" direction="y" scrollbar-y='false' style="width: 100%; height: 100%">
-          <div class="list" ng-repeat="(key,val) in vm.order" ng-if='val.length>0'>
+          <div class="list" ng-repeat="(key,val) in vm.order" ng-if='val.length>0 && vm.isLoadding'>
             <div class="item border-top-1" ng-click='vm.selectItem(key,val)' ng-class='{"link":key==vm.isSelect}' nav-transition="none" nav-transition="ios" nav-direction="enter" >
               <span>{{key | menuName}}</span>
             </div>

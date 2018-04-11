@@ -207,6 +207,11 @@ angular.module('xn.first.service', [])
                 getAlipayString:function(obj){
                     var all = XnRestAngular.allUrl('/Order/AliPaySign');
                     return all.post(obj); 
+                },
+                //获得支付签名串接口Home/WXpay/getPrePayOrder
+                getweixinPayString:function(obj){
+                    var all = XnRestAngular.allUrl('/WXpay/getPrePayOrder');
+                    return all.post(obj); 
                 }
             }
         }
