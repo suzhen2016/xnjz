@@ -49,17 +49,14 @@ angular.module('starter', ['ionic',
             }
             if (window.StatusBar) {
                 ionic.Platform.showStatusBar(true);
-                // org.apache.cordova.statusbar required
-                //StatusBar.styleDefault(false);
-                //$cordovaStatusbar.overlaysWebView(false);
-                //$cordovaStatusbar.style(1);
-               //StatusBar.styleLightContent();
+                if (window.StatusBar) {
+                    StatusBar.show();
+                }
+                
             }
-        //     setTimeout(function () {  
-        //        navigator.splashscreen.hide();  
-        //    }, 1000); 
+       
         });
-         // $ionicConfig.views.swipeBackEnabled(false);
+        
         $rootScope.$state = $state;
         $rootScope.Platform = ionic.Platform;
         $rootScope.$on('$stateChangeSuccess', function (event, toState, roParams, fromState, fromParams) {
