@@ -340,12 +340,12 @@ angular.module('rsc.common.directives', ['ion-BottomSheet'])
     /**
      * 打电话指令
      * */
-    .directive('xnCall', function (iAlert, AccountService,$rootScope, ionicToast, Storage) {
+    .directive('xnCall', function (iAlert, AccountService, $rootScope, ionicToast, Storage) {
         return {
             restrict: 'EAC',
             replace: true,
             scope: {
-               
+
             },
             link: function ($scope, element, attributes) {
                 var vm = $scope.vm = this;
@@ -358,17 +358,17 @@ angular.module('rsc.common.directives', ['ion-BottomSheet'])
                         type: 'radio'
                     };
                     var obj = {
-                        templateUrl: '<ul class="list genderRadio">'+
-                                '<li class="item item-checkbox item-checkbox1 item-icon-right" ng-repeat="item in vm.query.iphoneList track by $index">'+
-                                    '<label class="checkbox" style="width:250px;">'+
-                                        '<input type="radio" ng-value="item.cos_phone" ng-model="vm.query.phone">'+
-                                    '</label>'+
-                                    '{{item.cos_phone}}&nbsp'+
-                                "</li>"+
+                        templateUrl: '<ul class="list genderRadio">' +
+                            '<li class="item item-checkbox item-checkbox1 item-icon-right" ng-repeat="item in vm.query.iphoneList track by $index">' +
+                            '<label class="checkbox" style="width:250px;">' +
+                            '<input type="radio" ng-value="item.cos_phone" ng-model="vm.query.phone">' +
+                            '</label>' +
+                            '{{item.cos_phone}}&nbsp' +
+                            "</li>" +
                             '</ul>',
                         btn: '拨号'
                     };
-                    
+
                     if (vm.query.iphoneList) {
                         //iAlert.confirm('', '13796003244', vm.success, vm.err, obj)
                         iAlert.tPopup($scope, obj, query, vm.success, vm.err);
@@ -378,35 +378,35 @@ angular.module('rsc.common.directives', ['ion-BottomSheet'])
                     }
                 }
 
-                vm.getPhone = function(){
-                     if(!vm.query.isFalg){
+                vm.getPhone = function () {
+                    if (!vm.query.isFalg) {
                         return false;
                     }
                     vm.query.isFalg = false;
-                    AccountService.xnGetPhonekf().then(function(res){
-                        if(res.status==200){
+                    AccountService.xnGetPhonekf().then(function (res) {
+                        if (res.status == 200) {
                             vm.query.iphoneList = res.data;
-                           
-                            if(_.size(vm.query.iphoneList)>0){
+
+                            if (_.size(vm.query.iphoneList) > 0) {
                                 vm.query.isFalg = true;
                                 vm.telPhone();
-                            }else{
+                            } else {
                                 ionicToast.alert('客服电话更新中，请稍后再访问')
                             }
-                           
-                        }else{
+
+                        } else {
                             ionicToast.alert('获取电话失败，请稍后再访问')
                         }
-                    },function(){
+                    }, function () {
                         ionicToast.alert('网络延迟，请稍后再访问')
-                    }).finally(function(){
-                         vm.query.isFalg = true;
+                    }).finally(function () {
+                        vm.query.isFalg = true;
                     })
                 }
-                
+
                 //成功打电话
                 vm.success = function () {
-                   
+
                     window.plugins.CallNumber.callNumber(function onSuccess(res) {
                         $log.debug('Succcess:call number' + res)
                     },
@@ -419,7 +419,7 @@ angular.module('rsc.common.directives', ['ion-BottomSheet'])
                 vm.err = function () {
                 }
                 element.on('click', vm.getPhone);
-                
+
             }
         }
     })
@@ -428,18 +428,18 @@ angular.module('rsc.common.directives', ['ion-BottomSheet'])
      *
      * 上传图片组件
      */
-    .directive('tradeImgTool',function (iAlert,XnAlert, FileUpload, fileReader, $rootScope,AccountService, $ionicHistory, $log, $http, ionicToast, ENV, $ionicLoading) {
+    .directive('tradeImgTool', function (iAlert, XnAlert, FileUpload, fileReader, $rootScope, AccountService, $ionicHistory, $log, $http, ionicToast, ENV, $ionicLoading,Storage) {
 
         return {
             restrict: 'ECA',
             replace: true,
             scope: {
-                imgUrl: '=',
-                count: '@'
+                fun:'='
             },
             // templateUrl: 'js/common/directives/templates/company_page.html',
             link: function ($scope, element, attr) {
                 element.on('click', function () {
+                    alert('请选择图片上传方式')
                     $scope.upLoadOrderImg();
                 });
                 //获取input中files 信息
@@ -461,8 +461,9 @@ angular.module('rsc.common.directives', ['ion-BottomSheet'])
 
                 var _upimg = function (file, _url, $http) {
                     var c = new FormData();
-                    c.append('file', file);
-                    c.append('type', 'tou_xiang')
+                    c.append('File', file);
+                    c.append('type', 'file')
+                    console.log(c,file)
                     // 上传图片
                     return $http({
                         method: 'POST',
@@ -483,21 +484,29 @@ angular.module('rsc.common.directives', ['ion-BottomSheet'])
                             //     'type': 'tou_xiang'
                             // },
                             //url: ENV.api.trade + 'file/img_upload',
-                            url:'http://www.zgxnjz.cn/index.php/Home/User/setUserPhoto',
+                            url: 'http://www.zgxnjz.cn/index.php/Home/UserPho/ImgUpLoadFile',
                             headers: {
-                                'x-access-token': $rootScope.currentUser.token,
-                                "Content-Type": undefined
+                                'x-access-token': $rootScope.user.token,
+                                "Content-Type":undefined
                             }
                         }
+
                         FileUpload.upload('resizeImg', opt, function (res) {
+                        $ionicLoading.show({
+                                             template: "上传中..."
+                                         })
                             res.then(function (json) {
                                 $log.debug('上传图片的回调', json)
                                 var result = JSON.parse(json.response);
-
-                                if (result.status == "success") {
+                               
+                                if (result.status == "200") {
                                     $ionicLoading.hide();
-                                    $scope.imgUrl.push(result.data);
-                                    $log.debug(result)
+                                    ionicToast.alert('上传成功!');
+
+                                    $scope.fun.user_pho = result.data.img_url;
+                                    Storage.set('userInfo',$scope.fun)
+                                    console.log($scope.fun)
+
                                 } else {
                                     ionicToast.alert('上传失败!');
                                     $ionicLoading.hide();
@@ -514,36 +523,32 @@ angular.module('rsc.common.directives', ['ion-BottomSheet'])
                             });
                         })
                     } else {   //pc端
-                        
+
                         var data = {
                             type: 'file'
                         }
                         var obj = {
                             templateUrl: 'js/common/template/popupRadio.html',
-                            title: '上传产品图片'
+                            title: '上传头像'
                         }
                         XnAlert.tPopup($scope, obj, data, function (res) {
-                            if (res) {
-                                //$scope.imgUrl.push(result);
-                                // if ($scope.imgUrl.length < $scope.count) {
-                                //     $log.debug($scope.imgUrl);
-                                // } else {
-                                //     ionicToast.alert('该区域最多能上传' + $scope.count + '张图片');
-                                //     return false;
-                                // }
-                            }
+
                             if (res) {
                                 if (!$scope.file) {
                                     ionicToast.alert('选择图片失败,再次上传');
                                     return false;
                                 }
-                               // var _url = ENV.api.trade + 'file/img_upload';
-                               var _url ='http://www.zgxnjz.cn/index.php/Home/User/setUserPhoto';
+                                // var _url = ENV.api.trade + 'file/img_upload';
+                                var _url = 'http://www.zgxnjz.cn/index.php/Home/UserPho/ImgUpLoadFile';
                                 _upimg($scope.file[0], _url, $http).success(function (data) {
 
-                                    if (data.status == "success") {
-                                        $log.debug('图片上传成功 进入下一步', data)
-                                        $scope.imgUrl.push(data.data);
+                                    if (data.status == "200") {
+                                        ionicToast.alert('更换头像成功')
+                                      
+                                        $scope.fun.user_pho = data.data.img_url;
+                                        Storage.set('userInfo',$scope.fun)
+                                        console.log($scope.fun)
+                                        
                                     } else {
                                         ionicToast.alert('图片上传失败,请稍后重试')
                                     }
@@ -558,5 +563,4 @@ angular.module('rsc.common.directives', ['ion-BottomSheet'])
 
         }
     })
-
-    
+   

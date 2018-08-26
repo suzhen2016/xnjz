@@ -1,0 +1,26 @@
+<ion-view hide-tabs="true" hide-back-button='true'>
+    <ion-nav-title>
+        <div class="bar bar-positive">
+            <h1 class="title">支付结果</h1>
+        </div>
+    </ion-nav-title>
+    <!--<ion-nav-buttons side="left">
+          <i class="icon ion-ios-arrow-back" nav-transition="ios" nav-direction="back" ng-click='GoBack()'></i>
+        </ion-nav-buttons>-->
+
+    <!--内容区域-->
+    <ion-content class="bg-gray" style="overflow: hidden;">
+        <div>
+            <div>
+                <img class='pay_rel_img' ng-src="{{vm.query.img}}" alt="">
+                <h4 class="text-center">{{vm.query.txet}}</h4>
+            </div>
+            <div class="gap-20">
+                <p class="text-center">订单支付成功，{{vm.query.num}}秒钟将跳转到订单支付成功列表页</p>
+                <p class="text-center">如果不跳转请点击<span ui-sref={{vm.query.ui}} class="text-red">这里...</span></p>
+            </div>
+        </div>
+
+    </ion-content>
+
+</ion-view>

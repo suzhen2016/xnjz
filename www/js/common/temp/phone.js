@@ -259,7 +259,7 @@ angular.module('rsc.service.phone', [])
 
             $cordovaImagePicker.getPictures(options)
                 .then(function (results) {
-                    console.log(results)
+                    
                     if (!!resize) {
                         if (ionic.Platform.isAndroid()) {
                             plugins.crop.promise(results[0], options)
@@ -270,12 +270,13 @@ angular.module('rsc.service.phone', [])
                                     $log.error('选取照片出错', error)
                                 })
                         } else {
-                            cordova.plugins.imageCrop.crop(results[0], 700, 700,
-                                function (newPath) {
-                                    results[0] = newPath
-                                }, function (error) {
-                                    $log.error('选取照片出错', error)
-                                })
+                      plugins.crop.promise(results[0], options)
+                      .then(function success(newPath) {
+                            results[0] = newPath
+                            })
+                      .catch(function fail(error) {
+                             $log.error('选取照片出错', error)
+                             })
                         }
                     }
                     //vm.imgUrl = results[0];
@@ -348,6 +349,7 @@ angular.module('rsc.service.phone', [])
                         hideSheet();
                     },
                     buttonClicked: function (index) {
+
                         switch (index) {
                             case 0:
                                 if (resize) {
@@ -376,7 +378,7 @@ angular.module('rsc.service.phone', [])
                                 }
 
                                 $cordovaCamera.getPicture(options).then(function (imageURI) {
-                                    // window.alert(imageURI);
+
                                     cb(imageURI);
                                     hide();
                                     $cordovaCamera.cleanup();
@@ -530,11 +532,10 @@ angular.module('rsc.service.phone', [])
                 switch (type) {
                     case 'image':
                         PictureSelect.selectOrTakePhoto(function (imgUrl) {
+
                             if (imgUrl != 'error') {
                                 console.log(imgUrl)
-                                $ionicLoading.show({
-                                    template: '图片上传中...'
-                                });
+
                                 cb(uploadImg(imgUrl, options));
                             } else {
                                 $log.error('未选择图片!', imgUrl);
@@ -546,11 +547,9 @@ angular.module('rsc.service.phone', [])
                             if (imgUrl != 'error') {
                                 console.log(imgUrl)
                                 if (ionic.Platform.isAndroid()) {
-                                    resizeImg(imgUrl, options, cb);
+                                    cb(uploadImg(imgUrl, options));
                                 } else {
-                                    $ionicLoading.show({
-                                        template: '图片上传中...'
-                                    });
+
                                     cb(uploadImg(imgUrl, options));
                                 }
 

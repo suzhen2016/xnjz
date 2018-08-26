@@ -76,7 +76,7 @@ angular.module('xn.commonpage.ctrl', [])
                         })
                         vm.isSeletAll();
                         vm.isLoading = false;
-                        $log.debug('加入购物车数', vm.carList, res);
+                        $log.debug('加入购物车数', vm.query.sum,vm.carList, res);
                     } else {
 
                     }
@@ -171,7 +171,7 @@ angular.module('xn.commonpage.ctrl', [])
                         }
                     }));
                     vm.query.sum = sum;
-                    $log.debug('选中', vm.isAllSelect);
+                    $log.debug('选中', vm.isAllSelect,sum,vm.query.sum);
                 } else {
                     vm.isAlldele = _.size(_.filter(vm.carList, function (i) {
                         if (i.isDele == false) {
@@ -189,6 +189,7 @@ angular.module('xn.commonpage.ctrl', [])
             }
 
             $scope.$on("$ionicView.beforeEnter", function () {
+                vm.isEdit = true
                 vm.getCar();
             })
         }
@@ -273,6 +274,7 @@ angular.module('xn.commonpage.ctrl', [])
                 FirstService.pickOrder(vm.dele.obj).then(function (res) {
                     if (res.status == 200) {
                         $log.debug('提交订单', res);
+                        //xnData.remove('pinkUp')
                         xnData.set(res.data, 'pinkUp');
                         if (res.data.order_total_price == vm.order[0].sum_all) {
 
@@ -299,28 +301,30 @@ angular.module('xn.commonpage.ctrl', [])
         }
     ])
 
-    .controller('pink_up_ctrl', ['$stateParams','$state', '$log', '$scope', '$ionicLoading'
-        , 'ionicToast', '$ionicHistory', '$ionicViewSwitcher', '$ionicNavBarDelegate', 'xnData','FirstService',
-        function ($stateParams,$state, $log, $scope, $ionicLoading, ionicToast
-            , $ionicHistory, $ionicViewSwitcher, $ionicNavBarDelegate, xnData,FirstService) {
+    .controller('pink_up_ctrl', ['$stateParams', '$state', '$log', '$scope', '$ionicLoading'
+        , 'ionicToast', '$ionicHistory', '$ionicViewSwitcher', '$ionicNavBarDelegate', 'xnData', 'FirstService',
+        function ($stateParams, $state, $log, $scope, $ionicLoading, ionicToast
+            , $ionicHistory, $ionicViewSwitcher, $ionicNavBarDelegate, xnData, FirstService) {
             var vm = $scope.vm = this;
             vm.paytype = 'apli'//默认支付宝支付       
             vm.order = {};
             vm.query = {};
-           
-            vm.init = function(){
+
+            vm.init = function () {
+                vm.order = {};
                 vm.order.data = xnData.get('pinkUp');
+               
                 vm.times = new Date().getTime();
                 vm.query.goods_name = '西南家政商品';
-                vm.query.total_price =  '0.01'; //vm.order.data.order_total_price;
-                if(vm.order.data.orderRetInfo.length>1){
+                vm.query.total_price = vm.order.data.order_total_price;
+                if (vm.order.data.orderRetInfo.length > 1) {
                     vm.query.trade_code = vm.order.data.orderRetInfo[0].order_number;
-                }else{
+                } else {
                     vm.query.trade_code = 'ES' + vm.times;
-                    
+
                 }
-                
-                $log.debug("订单详情",vm.times, vm.order.data);
+
+                $log.debug("订单详情", vm.times, vm.order.data);
             }
 
             vm.goBack = function () {
@@ -328,101 +332,107 @@ angular.module('xn.commonpage.ctrl', [])
                 $ionicViewSwitcher.nextDirection("back")
             }
             //成功的回调
-            vm.alipaySuccessOrder= function(arr){
-              //订单的ids
+            vm.alipaySuccessOrder = function (arr) {
+                //订单的ids
                 FirstService.clientNotifyUrl(arr).then(function (res) {
                     if (res.status == 200) {
-                        $state.go('tab.order',{'status':3})
+                        $state.go('payrelsult', { 'type': 3 })
                     } else {
-                        $state.go('tab.order',{'status':1})
+                        $state.go('payrelsult', { 'type': 1 })
                     }
                 }, function () {
-                   $state.go('tab.order',{'status':1})
-                }).finally(function(){
-                    
+                    $state.go('payrelsult', { 'type': 1 })
+                }).finally(function () {
+
                 })
             }
             //支付
             vm.alipayXn = function () {
-                if(vm.paytype=='weixin'){
+                xnData.remove('pinkUp');
+                if (vm.paytype == 'weixin') {
 
                     var obj = {}
                     obj.body = '家政服务超市商品';
                     obj.out_trade_no = vm.query.trade_code;
                     obj.total_fee = vm.query.total_price;
-                   
-                    FirstService.getweixinPayString(obj).then(function(res){
-                        console.log(res);
-                        
-                        if(res.status ==200 ){
+
+                    FirstService.getweixinPayString(obj).then(function (res) {
+                       
+                        if (res.status == 200) {
+
                             var params = {
-                                partnerid: res.param.mch_id, // merchant id
-                                prepayid: res.param.prepay_id, // prepay id
-                                noncestr: res.param.nonce_str, // nonce
-                                timestamp: String(new Date().getTime()/1000 + 100), // timestamp
-                                sign: res.param.sign, // signed string
+                                partnerid: res.data.PartnerId, // merchant id
+                                prepayid: res.data.PrePayId, // prepay id
+                                noncestr: res.data.NonceStr, // nonce
+                                timestamp: res.data.Timestamp, // timestamp
+                                sign: res.data.Sign, // signed string
+                                appid:res.data.AppId,
+                                package:res.data.Package,
                             };
-                           
+                            var arr = _.pluck(vm.order.data.orderRetInfo, 'order_number')
                             Wechat.sendPaymentRequest(params, function () {
-                                ionicToast.alert('订单支付成功')
-                                $state.go('tab.order',{'status':3})
+                                //ionicToast.alert('订单支付成功')
+                                //$state.go('payrelsult', { 'type': 3 })
+                                vm.alipaySuccessOrder(arr)
                             }, function (reason) {
-                                ionicToast.alert(JSON.stringify(reason))
-                                $state.go('tab.order',{'status':1})
+                                $state.go('payrelsult', { 'type': 1 })
                             });
-                        }else{
-    
+                        } else {
+
                         }
-    
+
                     })
-                }else{
+                } else {
                     //支付宝
-                     var arr = _.pluck(vm.order.data.orderRetInfo,'order_number')
-                    FirstService.getAlipayString(vm.query).then(function(res){
+                    var arr = _.pluck(vm.order.data.orderRetInfo, 'order_number')
+                    FirstService.getAlipayString(vm.query).then(function (res) {
                         console.log(res);
-                        if(res.status==200 && res.param){
+                        if (res.status == 200 && res.param) {
                             cordova.plugins.alipay.payment(res.param, function success(e) {
                                 if (e) {
-                                    if(e.resultStatus==9000){
-                                         ionicToast.alert('订单支付成功')
-                                         vm.alipaySuccessOrder(arr)
-                                        
-                                    }else if(e.resultStatus==8000){
+                                    if (e.resultStatus == 9000) {
+                                        //ionicToast.alert('订单支付成功')
+                                        vm.alipaySuccessOrder(arr)
+
+                                    } else if (e.resultStatus == 8000) {
                                         //支付中;
-                                         ionicToast.alert('订单支付中，请求订单列表查询订单状态,如果已扣款请联系客服')
-                                         $state.go('tab.order',{'status':1})   
+                                        ionicToast.alert('订单支付中，请求订单列表查询订单状态,如果已扣款请联系客服')
+                                        $state.go('tab.order', { 'status': 1 })
                                     }
                                 }
                             }, function error(e) {
                                 if (e) {
                                     //alert(JSON.stringify(e));
-                                    if(e.resultStatus==4000){
-                                        ionicToast.alert('订单支付失败')
-                                        $state.go('tab.order',{'status':1})
-                                    }else if(e.resultStatus==6001){
+                                    if (e.resultStatus == 4000) {
+                                        //ionicToast.alert('订单支付失败')
+                                        $state.go('payrelsult', { 'type': 1 })
+                                    } else if (e.resultStatus == 6001) {
                                         ionicToast.alert('您取消支付了');
-                                        $state.go('tab.order',{'status':1})
-                                    }else if(e.resultStatus == 6002){
+                                        $state.go('tab.order', { 'status': 1 })
+                                    } else if (e.resultStatus == 6002) {
                                         ionicToast.alert('网络原因支付失败');
-                                        $state.go('tab.order',{'status':1})
+                                        $state.go('payrelsult', { 'type': 1 })
                                     }
                                 }
                             });
-                        }else{
-    
+                        } else {
+
                         }
-    
+
                     })
-    
+
                 }
-                
+
             };
 
-            //  $scope.$on("$ionicView.beforeEnter", function () {
-               
-            //     vm.init();
-            // })    
-            
+             $scope.$on("$ionicView.beforeEnter", function () {
+                vm.paytype = 'apli'//默认支付宝支付       
+                vm.order = {};
+                vm.order.data = {};
+                vm.query = {};
+                vm.init();
+            })    
+
         }
     ])
 
@@ -439,21 +449,21 @@ angular.module('xn.commonpage.ctrl', [])
                 vm.address_data = [];
                 FirstService.getAddressList().then(function (res) {
                     if (res.status == 200) {
-                      
+
                         vm.dele.isError = false;
                         vm.address_data = res.data;
                         $log.debug('地址列表', res.data);
                     } else {
                         vm.address_data = [];
-                      
+
                         vm.dele.isError = true;
                     }
                 }, function () {
                     vm.address_data = [];
-                   
-                     vm.dele.isError = true;
-                }).finally(function(){
-                     vm.dele.isLoading = false;
+
+                    vm.dele.isError = true;
+                }).finally(function () {
+                    vm.dele.isLoading = false;
                 })
             }
             vm.init();
@@ -469,6 +479,51 @@ angular.module('xn.commonpage.ctrl', [])
         }
     ])
 
+    //订单支付结果
+    .controller('payrelsut_ctr', ['$stateParams', '$log', '$scope', '$ionicLoading', '$interval', '$state',
+        'ionicToast', '$ionicHistory', '$ionicViewSwitcher', '$ionicNavBarDelegate', 'FirstService', 'xnData',
+        function ($stateParams, $log, $scope, $ionicLoading, $interval, $state, ionicToast, $ionicHistory, $ionicViewSwitcher, $ionicNavBarDelegate, FirstService, xnData) {
+            var vm = $scope.vm = this;
+            vm.query = {};
+            vm.query.type = $stateParams.type;
+            vm.timer = '';
+            function timeStop() {
+                vm.query.num = 4;
+                vm.timer = $interval(function () {
+
+                    if (vm.query.num == 0) {
+                        $interval.cancel(vm.timer);
+                        vm.timer = null;
+                        console.log(vm.query.num)
+                        $state.go('tab.order', { status: vm.query.type })
+                    } else {
+                        vm.query.num--;
+                        console.log(vm.query.num)
+
+                    }
+                }, 1000)
+            }
+
+            vm.init = function () {
+                if (vm.query.type==3) {
+                    vm.query.img = 'img/xn/pay_success.png';
+                    vm.query.text = '支付成功';
+                    vm.query.ui = 'tab.order({status:2})'
+                } else {
+
+                    vm.query.img = 'img/xn/pay_err.png';
+                    vm.query.text = '支付失败';
+                    vm.query.ui = 'tab.order({status:1})'
+                }
+                timeStop();
+
+            }
+            $scope.$on("$ionicView.beforeEnter", function () {
+
+                vm.init();
+            })
+        }
+    ])
 
 
-    
+

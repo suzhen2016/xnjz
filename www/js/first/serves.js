@@ -212,6 +212,11 @@ angular.module('xn.first.service', [])
                 getweixinPayString:function(obj){
                     var all = XnRestAngular.allUrl('/WXpay/getPrePayOrder');
                     return all.post(obj); 
+                },
+                //版本更新接口
+                getVistion:function(obj){
+                    var all = XnRestAngular.allUrl('/Version/CheckAppIsLatestVersion');
+                    return all.post(obj); 
                 }
             }
         }

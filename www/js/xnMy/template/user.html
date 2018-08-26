@@ -1,4 +1,4 @@
-<ion-view hide-tabs="true">
+<ion-view hide-tabs="true" hide-back-button='true'>
   <!--中间内容区-->
   <ion-nav-title>
     <div class="bar bar-positive">
@@ -7,15 +7,19 @@
       </div>
     </div>
   </ion-nav-title>
+  <ion-nav-buttons side="left">
+    <i class="icon ion-ios-arrow-back" nav-transition="ios" nav-direction="back" ng-click='vm.goBack()'></i>
+    <span  class="default-title" ng-click='vm.goBack()'>返回</span>
+</ion-nav-buttons>
   <ion-content class="bg-gray xn-content">
     <div class="list gap-8">
        <a class="item item-icon-right" >
          基本信息
       </a>
       <!--ng-click='vm.selectSheet()'ng-click='vm.selectSheet()' trade-img-tool-->
-      <a class="item item-icon-right user-icon"  >
+      <a class="item item-icon-right user-icon" trade-img-tool fun='vm.userChange' >
          <span class="pull-left gap-10">头像</span>
-         <span class="pull-right text-gray" > <img  ng-src="{{imgUrl+vm.userChange.user_pho || './img/xn/login-user.png'}}"></span>
+         <span class="pull-right text-gray" > <img  ng-src="{{imgUrl+vm.userChange.user_pho}}"></span>
          <i class="icon ion-ios-arrow-right"></i>
       </a>
       <a class="item item-icon-right" ng-click='vm.changeUser("username",confin)'>
@@ -35,6 +39,7 @@
       </a>-->
       
     </div>
+    
      <!--<div class="list gap-8">
        <a class="item item-icon-right" >
          实名认证信息

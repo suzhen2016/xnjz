@@ -49,17 +49,14 @@ angular.module('starter', ['ionic',
             }
             if (window.StatusBar) {
                 ionic.Platform.showStatusBar(true);
-                // org.apache.cordova.statusbar required
-                //StatusBar.styleDefault(false);
-                //$cordovaStatusbar.overlaysWebView(false);
-                //$cordovaStatusbar.style(1);
-               //StatusBar.styleLightContent();
+                if (window.StatusBar) {
+                    StatusBar.show();
+                }
+                
             }
-        //     setTimeout(function () {  
-        //        navigator.splashscreen.hide();  
-        //    }, 1000); 
+       
         });
-         // $ionicConfig.views.swipeBackEnabled(false);
+        
         $rootScope.$state = $state;
         $rootScope.Platform = ionic.Platform;
         $rootScope.$on('$stateChangeSuccess', function (event, toState, roParams, fromState, fromParams) {
@@ -90,13 +87,13 @@ angular.module('starter', ['ionic',
         });
 
        
-         var user = Storage.get('userInfo');
-            if (user) {
-                $rootScope.user = user;
-                console.log('内',$rootScope.user)
-            }else{
-                ionicToast.show('请登录账号密码', 'middle', false, 1500);
-            }
+        //  var user = Storage.get('userInfo');
+        //     if (user) {
+        //         $rootScope.user = user;
+        //         console.log('内',$rootScope.user)
+        //     }else{
+        //         ionicToast.show('请登录账号密码', 'middle', false, 1500);
+        //     }
        
 
         //返回上一级历史记录
@@ -201,21 +198,21 @@ angular.module('starter', ['ionic',
                     auth: ["$q", "$log", 'AuthenticationService',function ($q, $log,AuthenticationService) {
                         var userInfo = AuthenticationService.getUserInfo();
                         // 如果本地有token且token有效则不通过
-                        if (userInfo) {
-                            // if (userInfo) {
-                            return $q.when({
-                                data: userInfo
-                            });
-                        } else {
-                            return $q.reject({
-                                msg:'no_login'
-                            });
-                        }
+                        // if (userInfo) {
+                        //     // if (userInfo) {
+                        //     return $q.when({
+                        //         data: userInfo
+                        //     });
+                        // } else {
+                        //     return $q.reject({
+                        //         msg:'no_login'
+                        //     });
+                        // }
                     }]
                 }
             })
 
-        // 15166558998 陶哥
-        $urlRouterProvider.otherwise('/login');
+        // $urlRouterProvider.otherwise('/login');
+        $urlRouterProvider.otherwise('tab/first');
 
     });
