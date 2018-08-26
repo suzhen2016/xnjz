@@ -527,3 +527,7 @@ angular.module('xn.commonpage.ctrl', [])
 
 
 
+<<<<<<< HEAD
+=======
+ 
+>>>>>>> ca47c626bc072ba56563f052d7e0829b7fd4bd57
