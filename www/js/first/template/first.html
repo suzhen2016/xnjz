@@ -12,13 +12,13 @@
     </ion-refresher>
     <ion-slide-box on-slide-changed="slideHasChanged($index)" auto-play="true" does-continue="true" slide-interval=3000 show-pager="true">
       <ion-slide>
-        <img src="./img/xn/first/lash1.png" class="img-responsive">
+        <img src="./img/xn/first/banner.png" class="img-responsive">
       </ion-slide>
       <ion-slide>
-        <img src="./img/xn/first/slash2.png" class="img-responsive">
+        <img src="./img/xn/first/banner2.png" class="img-responsive">
       </ion-slide>
       <ion-slide>
-        <img src="./img/xn/first/slash3.png" class="img-responsive">
+        <img src="./img/xn/first/banner3.png" class="img-responsive">
       </ion-slide>
     </ion-slide-box>
     <!--
@@ -153,27 +153,29 @@
           </div> -->
         </div>
       </div>
+
+
       <div class='item_box item gap-10  item-padding-none first-bottom pa-btm-5' ng-if='vm.list.length>0'>
-          <h3 class='pa-left-10 pa-top-5'>
-            <img style="width: 20px" class="img_icon" src="./img/xn/first/jinpin.png" alt="">
-            <span>精品推荐</span>
-          </h3>
-          <div class="row row-wrap" >
-            <div class='col col-50' ng-repeat="i in vm.list track by $index" ui-sref='tab.shoppDetail({id:i.goods_id})' >
-              <div style="width: 100%" class="padding-10 bg-img " ng-class='{"border-right-ff":$index%2==0,"border-left-ff":$index%2==1}'>
-                <!-- <img style="width: 100%" class="border-rad-5" ng-src="{{imgUrl + i.goods_s_logo}}" alt=""> -->
-                <img style="width: 100%" class="border-rad-5" src="http://www.zgxnjz.cn./Goodsimgs/2018-03-14/s_5aa892b7a8c7e.jpg" alt="">
-              </div>
-              <div class="padding-10 ">
-                  <h3>{{i.goods_name}}</h3>
-                  <p>{{i.goods_introduce}}</p>
-                  <span class="text-red">￥{{i.goods_price}}</span>
-              </div>
-              
+        <h3 class='pa-left-10 pa-top-5'>
+          <img style="width: 20px" class="img_icon" src="./img/xn/first/jinpin.png" alt="">
+          <span>精品推荐</span>
+        </h3>
+        <div class="row row-wrap">
+          <div class='col col-50' ng-repeat="i in vm.list track by $index" ui-sref='tab.shoppDetail({id:i.goods_id})'>
+            <div style="width: 100%" class="padding-10 bg-img " ng-class='{"border-right-ff":$index%2==1,"border-left-ff":$index%2==0}'>
+              <img class="border-rad-5 jing_imglogo" ng-src="{{imgUrl + i.goods_s_logo}}" alt="">
+              <!-- <img style="width: 100%" class="border-rad-5" src="img/xn/first/372.png" alt=""> -->
             </div>
-           
+            <div class="padding-10 ">
+              <h3>{{i.goods_name}}</h3>
+              <p>{{i.goods_introduce}}</p>
+              <span class="text-red">￥{{i.goods_price}}</span>
+            </div>
+
           </div>
+
         </div>
+      </div>
 
 
 

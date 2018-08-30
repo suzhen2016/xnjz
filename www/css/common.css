@@ -338,7 +338,11 @@ small {
 }
 
 .button.button-stable {
-    background: #8B572A;
+    background: #b2b2b2;
+    color: #fff;
+}
+.button.button-stable-close {
+    background: #a2b12e;
     color: #fff;
 }
 

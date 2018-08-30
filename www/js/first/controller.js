@@ -2,8 +2,8 @@ angular.module('xn.first.ctrl', [])
     /**
      *
      */
-    .controller('first_ctrl', ['$stateParams', '$log', '$scope', '$ionicLoading', 'Storage', 'ionicToast', '$filter', 'FirstService',
-        function ($stateParams, $log, $scope, $ionicLoading, Storage, ionicToast, $filter, FirstService) {
+    .controller('first_ctrl', ['$ionicHistory','$stateParams', '$log', '$scope', '$ionicLoading', 'Storage', 'ionicToast', '$filter', 'FirstService',
+        function ($ionicHistory,$stateParams, $log, $scope, $ionicLoading, Storage, ionicToast, $filter, FirstService) {
             var vm = $scope.vm = this;
             vm.query = {};
             vm.dele ={};
@@ -51,9 +51,10 @@ angular.module('xn.first.ctrl', [])
                 init();
             }
             $scope.$on('$ionicView.beforeEnter',function(){
-                // vm.list = [];
-                // vm.query.page = 1;
-                // init();
+                // $ionicHistory.nextViewOptions({
+                //     historyRoot: true,
+                //     disableAnimate: false
+                //   })
             })
         }
     ])
@@ -215,8 +216,8 @@ angular.module('xn.first.ctrl', [])
         }
     ])
 
-    .controller('home_person_ctrl', ['$stateParams', '$ionicHistory','$timeout','$log', '$scope', '$ionicLoading', 'Storage', 'ionicToast', '$filter', 'FirstService',
-        function ($stateParams,$ionicHistory,$timeout, $log, $scope, $ionicLoading, Storage, ionicToast, $filter, FirstService) {
+    .controller('home_person_ctrl', ['$stateParams', '$ionicHistory','$timeout','$log', '$scope', '$ionicLoading', 'Storage', 'ionicToast', '$filter', 'FirstService','$state',
+        function ($stateParams,$ionicHistory,$timeout, $log, $scope, $ionicLoading, Storage, ionicToast, $filter, FirstService,$state) {
             var vm = $scope.vm = this;
             $log.debug("家政个人详情页");
             vm.query = {};
@@ -325,6 +326,11 @@ angular.module('xn.first.ctrl', [])
             vm.addCar = function(){
               
                 if(!vm.order.employeeinfo){
+                    return false;
+                }
+                var user = Storage.get('userInfo');
+                if(!user){
+                    $state.go('login')
                     return false;
                 }
                 var str ='yuangong_id='+vm.query.yuangong_id+'&now_num='+vm.order.num;
@@ -616,8 +622,8 @@ angular.module('xn.first.ctrl', [])
     ])
 
     .controller('shopp_detail_ctrl', ['$stateParams', 'FirstService','$log', '$scope', '$ionicLoading', 'Storage',
-        'ionicToast', '$filter', 'iAlert', '$ionicModal',
-        function ($stateParams,FirstService, $log, $scope, $ionicLoading, Storage, ionicToast, $filter, iAlert, $ionicModal) {
+        'ionicToast', '$filter', 'iAlert', '$ionicModal','$state',
+        function ($stateParams,FirstService, $log, $scope, $ionicLoading, Storage, ionicToast, $filter, iAlert, $ionicModal,$state) {
             var vm = $scope.vm = this;
             $log.debug("商品详情");
             vm.order = {};
@@ -728,7 +734,13 @@ angular.module('xn.first.ctrl', [])
                 if(!vm.order.header){
                     return false;
                 }
+                var user = Storage.get('userInfo');
+                if(!user){
+                    $state.go('login')
+                    return false;
+                }
                 var str = 'goodtype_id='+vm.order.header.goodtype_id+'&now_num='+vm.query.order.num;
+                
                 FirstService.shoppCar(str).then(function (res) {
                     if (res.status == 200) {
                         if(res.data.goods_num){
@@ -762,7 +774,7 @@ angular.module('xn.first.ctrl', [])
                         vm.query.num = sum;
                         $log.debug('加入购物车数',vm.query.num);
                     }else{
-                        ionicToast.alert('服务忙，请稍后再访问')
+                        //ionicToast.alert('服务忙，请稍后再访问')
                     }
                 },function(){
                     ionicToast.alert('网络有延时，请稍后再访问')
@@ -797,7 +809,7 @@ angular.module('xn.first.ctrl', [])
                             vm.query.hasMore = false;
                         }
                     }else{
-                        ionicToast.alert('服务忙，请稍后再访问')
+                        //ionicToast.alert('服务忙，请稍后再访问')
                     }
                 },function(){
                     vm.query.hasMore = false;

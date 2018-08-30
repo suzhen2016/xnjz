@@ -9,14 +9,17 @@
   <ion-content class="bg-gray  xn-content">
     <div class="login_box">
       <div class="login-img">
-        <span class="cirle">
-               <img src="{{imgUrl+vm.dele.user.user_pho || './img/xn/login-user.jpg'}}" alt="">
+        <span class="cirle" ng-if='vm.dele.user.user_pho'>
+               <img src="{{imgUrl+vm.dele.user.user_pho}}" alt="">
           </span>
+          <span class="cirle" ng-if='!vm.dele.user.user_pho'>
+            <img src="./img/xn/login-user.jpg" alt="">
+       </span>
       </div>
-      <div class="login-text">
+      <div class="login-text" >
         <p>
           <a href="">用户名：</a>
-          <a href="">{{vm.dele.user.username}}</a>
+          <a href="">{{vm.dele.user.username||'未登录'}}</a>
         </p>
       </div>
     </div>
@@ -77,7 +80,7 @@
               </span>
           <h4>反馈</h4>
         </div>
-        <div class="col col-25 my-item-padding" nav-transition="ios" nav-direction="forward" ui-sref='tab.setUp'>
+        <div class="col col-25 my-item-padding" nav-transition="ios" nav-direction="forward" ng-click='goSet()'>
           <span class='icon_box'>
                 <img src="./img/xn/setup.png" alt="">
               </span>

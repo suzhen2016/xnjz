@@ -7,16 +7,74 @@
       </div>
     </div>
   </ion-nav-title>
-  <ion-content class="bg-gray xn-content">
+  <ion-content class=" xn-content">
     <ion-slide-box on-slide-changed="slideHasChanged($index)" auto-play="false" does-continue="false" show-pager="false">
       <ion-slide>
-        <img src="./img/xn/first/homeWork/dingbu.png" class="img-responsive">
+        <img src="./img/xn/first/banner3.png" class="img-responsive">
       </ion-slide>
     </ion-slide-box>
 
     <div ng-if='!vm.dele.isLoading'>
 
-      <div class="list" ng-if='vm.dele.data.cleaner.length>0'>
+      <div class=' gap-10  item-padding-none first-bottom pa-btm-5'>
+        <!-- <h3 class='pa-left-10 pa-top-5'>
+              <img style="width: 16px" class="img_icon" src="./img/xn/first/host.png" alt="">
+              <span>热门推荐</span>
+            </h3> -->
+        <div class="row row-wrap">
+          <div class='col col-33 padding-6' ui-sref='tab.homeMore({id:"10",title:"保洁员"})'>
+            <div style="width: 100%" class="border-rad-5">
+              <img style="width: 100%" class="border-rad-5" src="./img/xn/first/homeWork/baojie.png" alt="">
+            </div>
+          </div>
+
+          <div class='col col-33 padding-6' ui-sref='tab.homeMore({id:"11",title:"保姆"})'>
+            <div style="width: 100%" class="border-rad-5">
+              <img style="width: 100%" class="border-rad-5" src="./img/xn/first/homeWork/baomo.png" alt="">
+            </div>
+          </div>
+
+          <div class='col col-33 padding-6' ui-sref='tab.homeMore({id:"12",title:"营养师"})'>
+            <div style="width: 100%" class="border-rad-5">
+              <img style="width: 100%" class="border-rad-5" src="./img/xn/first/homeWork/yingyangs.png" alt="">
+            </div>
+          </div>
+
+          <div class='col col-33 padding-6' ui-sref='tab.homeMore({id:"13",title:"育婴师"})'>
+            <div style="width: 100%" class="border-rad-5">
+              <img style="width: 100%" class="border-rad-5" src="./img/xn/first/homeWork/yuyings.png" alt="">
+            </div>
+          </div>
+
+          <div class='col col-33 padding-6' ui-sref='tab.homeMore({id:"14",title:"催乳师"})'>
+            <div style="width: 100%" class="border-rad-5">
+              <img style="width: 100%" class="border-rad-5" src="./img/xn/first/homeWork/cuiruo.png" alt="">
+            </div>
+          </div>
+
+          <div class='col col-33 padding-6' ui-sref='tab.homeMore({id:"15",title:"护工"})'>
+            <div style="width: 100%" class="border-rad-5">
+              <img style="width: 100%" class="border-rad-5" src="./img/xn/first/homeWork/hugong.png" alt="">
+            </div>
+          </div>
+
+          <div class='col col-33 padding-6' ui-sref='tab.homeMore({id:"16",title:"外墙清洗"})'>
+            <div style="width: 100%" class="border-rad-5">
+              <img style="width: 100%" class="border-rad-5" src="./img/xn/first/homeWork/waiqiang.png" alt="">
+            </div>
+          </div>
+
+          <div class='col col-33 padding-6' ui-sref='tab.homeMore({id:"17",title:"管道疏通与开锁服务"})'>
+            <div style="width: 100%" class="border-rad-5">
+              <img style="width: 100%" class="border-rad-5" src="./img/xn/first/homeWork/guansu.png" alt="">
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+      <!-- <div class="list" ng-if='vm.dele.data.cleaner.length>0'>
         <div class='item_box item gap-10 padding-none first-bottom pa-btm-5'>
           <h3 class='pa-left-10 pa-top-5'>
             <img style="width: 25px" class="img_icon" src="./img/xn/first/homeWork/baojieyuan.png" alt="">
@@ -195,20 +253,20 @@
         <a class="item"  ng-if='vm.dele.data.pipeulock.length==0'>
           <h3 class="text-center">该条暂无数据,敬请期待</h3>
         </a>
-      </div>
+      </div> -->
 
     </div>
     <div ng-if='vm.dele.isLoading'>
-        <h4 class="text-center gap-30" style='margin-bottom:30px'>正在加载中...</h4>
+      <h4 class="text-center gap-30" style='margin-bottom:30px'>正在加载中...</h4>
     </div>
 
 
 
-    <ion-slide-box on-slide-changed="slideHasChanged($index)" auto-play="false" does-continue="false" show-pager="false">
+    <!-- <ion-slide-box on-slide-changed="slideHasChanged($index)" auto-play="false" does-continue="false" show-pager="false">
       <ion-slide>
         <img src="./img/xn/first/homeWork/dibu.png" class="img-responsive">
       </ion-slide>
-    </ion-slide-box>
+    </ion-slide-box> -->
   </ion-content>
 
 </ion-view>

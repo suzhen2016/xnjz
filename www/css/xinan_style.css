@@ -29,7 +29,7 @@ display: inline-block;
 }
 
 .xn-first .icon_box img {
-padding: 12px;
+padding: 8px;
 }
 .icon_bg img {
   width: 80%;
@@ -155,11 +155,12 @@ ion-content .row-height , ion-content .scroll {
   bottom:10px;
   left:50%;
   margin-left: -38px;
+  overflow: hidden;
 }
 .login-img .cirle img {
   width: 100%;
   height: 100%;
-  padding: 10px;
+  /* padding: 10px; */
 }
 .login-text {
   width: 100%;
@@ -261,10 +262,10 @@ ion-content .row-height , ion-content .scroll {
 margin: 0px;
 }
 .bg-img {
-  background-color: #eee;
+  background-color: #EEF6F8;
 }
 .border-top-1{
-  border-top:1px solid #c2b4b4;
+  border-top:1px solid #EEF6F8;
 }
 .border-btm-1{
   border-bottom:1px solid #000;
@@ -273,10 +274,10 @@ margin: 0px;
   border-right:1px solid #c2b4b4;
 }
 .border-right-ff{
-  border-right:1px solid #fff;
+  border-right:3px solid #fff;
 }
 .border-left-ff{
-  border-right:1px solid #fff;
+  border-right:3px solid #fff;
 }
 .pull-right {
   float: right;
@@ -335,8 +336,8 @@ margin: 0px;
 }
 /*分类的图片大小*/
 .menu-item img {
-  width:100px;
-  height: 110px;
+  /* width:100px;
+  height: 110px; */
 }
 .shopMall img {
   width: 75px;
@@ -488,4 +489,23 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-col
 .bar-positive .title {
   font-size: 16px;
   font-weight: 600;
+}
+.car_img {
+  display: block;
+  margin: 70px auto;
+}
+.zhi_img {
+  display: block;
+  margin: 30px auto;
+}
+.pay_rel_img {
+  display: block;
+  margin: 0 auto;
+  padding: 70px 0 20px 0;
+}
+.jing_imglogo{
+  display: block;
+  width:100%;
+  /* height: 170px; */
+  /* margin: 0 auto; */
 }

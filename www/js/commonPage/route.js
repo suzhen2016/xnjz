@@ -16,6 +16,11 @@ angular.module('xn.commompage', ['ui.router', 'xn.commonpage.ctrl'])
         templateUrl: 'js/commonPage/template/pinkUp.html',
         controller:'pink_up_ctrl'
       })
+      .state('payrelsult', {
+        url: '/payrelsult?type',
+        templateUrl: 'js/commonPage/template/payResult.html',
+        controller:'payrelsut_ctr'
+      })
       .state('selectAddress',{
         url:'selectAddress',
         templateUrl:'js/commonPage/template/selectAddress.html',

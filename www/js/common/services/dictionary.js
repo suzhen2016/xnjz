@@ -95,6 +95,13 @@ angular.module('rsc.commmon.services.dicitionary', [])
                     return this.data;
                 }
                 
+            },
+            remove:function(type){
+                if(type){
+                    dataObj[type] = '';
+                }else{
+                    this.data = '';
+                }
             }
         }
     })
