@@ -9,24 +9,14 @@
   <ion-content class="bg-gray  xn-content">
     <div class="login_box">
       <div class="login-img">
-<<<<<<< HEAD
         <span class="cirle" ng-if='vm.dele.user.user_pho'>
-               <img src="{{imgUrl+vm.dele.user.user_pho}}" alt="">
-=======
-<<<<<<< HEAD
-        <span class="cirle" ng-if='vm.dele.user.user_pho'>
-               <img src="{{imgUrl+vm.dele.user.user_pho}}" alt="">
-=======
-        <span class="cirle">
-               <img src="{{imgUrl+vm.dele.user.user_pho || './img/xn/login-user.jpg'}}" alt="">
->>>>>>> ca47c626bc072ba56563f052d7e0829b7fd4bd57
->>>>>>> 8b0c5b038174469ec9a596b16a6d9df57b4801f7
-          </span>
-          <span class="cirle" ng-if='!vm.dele.user.user_pho'>
-            <img src="./img/xn/login-user.jpg" alt="">
-       </span>
+          <img src="{{imgUrl+vm.dele.user.user_pho}}" alt="">
+        </span>
+        <span class="cirle" ng-if='!vm.dele.user.user_pho'>
+          <img src="./img/xn/login-user.jpg" alt="">
+        </span>
       </div>
-      <div class="login-text" >
+      <div class="login-text">
         <p>
           <a href="">用户名：</a>
           <a href="">{{vm.dele.user.username||'未登录'}}</a>
@@ -34,18 +24,23 @@
       </div>
     </div>
     <div class="item item_box gap-10 pa-top-5 item-padding item-padding-none">
-      <h3 style="text-indent: 4%"> <span>我的订单</span> <span nav-transition="ios" nav-direction="forward" ui-sref='tab.order({status:"all"})' class='pull-right pa-right-10 small-font'>查看所有订单<i class="icon ion-ios-arrow-right"></i></span></h3>
+      <h3 style="text-indent: 4%">
+        <span>我的订单</span>
+        <span nav-transition="ios" nav-direction="forward" ui-sref='tab.order({status:"all"})' class='pull-right pa-right-10 small-font'>查看所有订单
+          <i class="icon ion-ios-arrow-right"></i>
+        </span>
+      </h3>
       <div class="row row-border row-padding-bot">
         <div class="col col-25 my-item-padding" nav-transition="ios" nav-direction="forward" ui-sref='tab.order({status:"1"})'>
           <span class='icon_box'>
-                <img src="./img/xn/payment.png" alt="">
-              </span>
+            <img src="./img/xn/payment.png" alt="">
+          </span>
           <h4>待付款</h4>
         </div>
         <div class="col col-25 my-item-padding" nav-transition="ios" nav-direction="forward" ui-sref='tab.order({status:"3"})'>
           <span class='icon_box'>
-                <img src="./img/xn/receipt.png" alt="">
-              </span>
+            <img src="./img/xn/receipt.png" alt="">
+          </span>
           <h4>进行中</h4>
         </div>
         <!--<div class="col col-20" nav-transition="ios" nav-direction="forward" ui-sref='tab.order({status:"complete"})'>
@@ -56,44 +51,46 @@
         </div>-->
         <div class="col col-25 my-item-padding" nav-transition="ios" nav-direction="forward" ui-sref='tab.order({status:"4"})'>
           <span class='icon_box'>
-                <img src="./img/xn/evaluation.png" alt="">
-              </span>
+            <img src="./img/xn/evaluation.png" alt="">
+          </span>
           <h4>已完成</h4>
         </div>
         <div class="col col-25 my-item-padding" nav-transition="ios" nav-direction="forward" ui-sref='tab.order({status:"2"})'>
           <span class='icon_box'>
-                <img src="./img/xn/cancel.png" alt="">
-              </span>
+            <img src="./img/xn/cancel.png" alt="">
+          </span>
           <h4>已取消</h4>
         </div>
       </div>
     </div>
     <!--ng-click='vm.telPhone()'-->
     <div class="item item_box gap-10 item-padding-none">
-        <h3 style="text-indent: 4%"> <span>常用功能</span> </h3>
+      <h3 style="text-indent: 4%">
+        <span>常用功能</span>
+      </h3>
       <div class="row row-border">
         <div class="col col-25 my-item-padding" xn-call>
           <span class='icon_box'>
-                <img src="./img/xn/customer.png" alt="">
-              </span>
+            <img src="./img/xn/customer.png" alt="">
+          </span>
           <h4 class="row-padding-bot">客服</h4>
         </div>
         <div class="col col-25 my-item-padding " nav-transition="ios" nav-direction="forward" ui-sref='car'>
           <span class='icon_box'>
-                <img src="./img/xn/news.png" alt="">
-              </span>
+            <img src="./img/xn/news.png" alt="">
+          </span>
           <h4 class="row-padding-bot">购物车</h4>
         </div>
         <div class="col col-25 my-item-padding" nav-transition="ios" nav-direction="forward" ui-sref='tab.feedlist'>
           <span class='icon_box'>
-                <img src="./img/xn/feedback.png" alt="">
-              </span>
+            <img src="./img/xn/feedback.png" alt="">
+          </span>
           <h4>反馈</h4>
         </div>
         <div class="col col-25 my-item-padding" nav-transition="ios" nav-direction="forward" ng-click='goSet()'>
           <span class='icon_box'>
-                <img src="./img/xn/setup.png" alt="">
-              </span>
+            <img src="./img/xn/setup.png" alt="">
+          </span>
           <h4>设置</h4>
         </div>
       </div>
