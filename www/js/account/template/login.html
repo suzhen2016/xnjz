@@ -1,21 +1,20 @@
 <ion-view view-title="" hide-nav-bar="true" hide-back-button="true" style="background-color:rgb(255, 239, 188)">
-	 <ion-nav-bar class="bar-stable" style="height:44px">
-        <ion-nav-back-button class="button-clear">
-          
-        </ion-nav-back-button>
-    </ion-nav-bar>
+	<ion-nav-bar class="bar-stable" style="height:44px">
+		<ion-nav-back-button class="button-clear">
+
+		</ion-nav-back-button>
+	</ion-nav-bar>
 	<ion-content style="background-color:#fcfcfc" class="has-header" overflow-scroll="true" style="overflow: visible;">
 		<img src='./img/common/bg-login.png' class="img-responsive">
 		<!--src="./img/general/bg-login.png"-->
 		<div class="bg-white item-login">
-		
+
 			<form name="frm_login" novalidate>
 				<div class="list">
 					<li class="item item-input item-icon-left">
 						<i class="icon ion-iphone"></i>
-						<input class="font-col" type="tel" name="phone" id="phone" ng-model="vm.user.phone" placeholder="输入手机号" required
-							   maxlength="11"
-							   ng-pattern="/(^13[0-9]{9}$)|(^15[0-9]{9}$)|(^17[0-9]{9}$)|(^18[012356789][0-9]{8}$)/">
+						<input class="font-col" type="tel" name="phone" id="phone" ng-model="vm.user.phone" placeholder="输入手机号" required maxlength="11"
+						 ng-pattern="/(^13[0-9]{9}$)|(^15[0-9]{9}$)|(^17[0-9]{9}$)|(^18[012356789][0-9]{8}$)/">
 					</li>
 					<div class="form-error" ng-messages="frm_login.phone.$dirty&&frm_login.phone.$error">
 						<!--<div ng-message="required"></div>-->
@@ -23,9 +22,8 @@
 					</div>
 					<li class="item-input item-icon-left item-icon-right">
 						<i class="icon ion-key"></i>
-						<input class="font-col" type={{inputSel?'password':'text'}} name="password" id="password"
-							   ng-model="vm.user.password"
-							   placeholder="输入密码" required ng-pattern="/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,13}$/">
+						<input class="font-col" style="border:1px" type={{inputSel? 'password': 'text'}} name="password" id="password" ng-model="vm.user.password"
+						 placeholder="输入密码" required ng-pattern="/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,13}$/">
 						<i ng-click="isSelect()" class="icon {{inputSel?'ion-eye-disabled':'ion-eye'}}"></i>
 					</li>
 					<div class="form-error" ng-messages="frm_login.password.$dirty&&frm_login.password.$error">
@@ -34,21 +32,22 @@
 					</div>
 				</div>
 				<div class="clear"></div>
-				<button ng-disabled="frm_login.$invalid" ng-click="vm.login()" class="button button-block button-stable">
+				<button ng-disabled="frm_login.$invalid" ng-click="vm.login()" class="button button-block button-stable-close">
 					登录
 				</button>
-
-				<button  ng-click="$root.GoBack()" class="button button-block button-stable-close">
+				<button ng-click="$root.GoBack()" class="button button-block button-stable">
 					关闭
 				</button>
-				
+
+
+
 			</form>
 		</div>
 		<div class="list-inset gap-10">
 			<a ui-sref="reg_user" class="pull-left">注&nbsp册</a>
 			<a ui-sref="find_pwd" class="pull-right">找回密码?</a>
 		</div>
-	
+
 		<div class="clear"></div>
 		<div class="row text-center">
 			<!--<a ui-sref="reg_employee" class="col col-50">企业人员注册</a>

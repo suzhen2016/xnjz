@@ -455,7 +455,7 @@ angular
           obj.out_trade_no = vm.query.trade_code
           obj.total_fee = vm.query.total_price
 
-          FirstService.WeiPaySuccessOrder(obj).then(function(res) {
+          FirstService.getweixinPayString(obj).then(function(res) {
             if (res.status == 200) {
               var params = {
                 partnerid: res.data.PartnerId, // merchant id
@@ -470,11 +470,13 @@ angular
               Wechat.sendPaymentRequest(
                 params,
                 function() {
-                  //ionicToast.alert('订单支付成功')
+                  ionicToast.alert('订单支付成功')
                   //$state.go('payrelsult', { 'type': 3 })
-                  vm.alipaySuccessOrder(arr)
+                  vm.WeiPaySuccessOrder(arr)
                 },
                 function(reason) {
+                  ionicToast.alert('订单支付失败')
+                  alert(JSON.stringify(reason))
                   $state.go('payrelsult', { type: 1 })
                 }
               )
