@@ -334,12 +334,21 @@ small {
 }
 
 .button.button-stable {
+<<<<<<< HEAD
   background: #b2b2b2;
   color: #fff;
 }
 .button.button-stable-close {
   background: #a2b12e;
   color: #fff;
+=======
+    background: #b2b2b2;
+    color: #fff;
+}
+.button.button-stable-close {
+    background: #a2b12e;
+    color: #fff;
+>>>>>>> 8b0c5b038174469ec9a596b16a6d9df57b4801f7
 }
 
 .button.button-stable:hover {
