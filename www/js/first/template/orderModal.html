@@ -18,7 +18,7 @@
               <!--<img src="img/xn/xiyiyi.jpg" alt="">-->
               <img style='width: 88px;' ng-src="{{imgUrl + vm.order.header.goods_s_xc1}}" alt="">
             </span>
-           
+
             <div class="pull-right driver-input" style="margin-top: 40px">
               <img src="./img/xn/first/shopping/minus.png" class="pull-left" ng-if='vm.query.order.num>1' ng-click="vm.count('sub')">
               <input type="tel" placeholder="1" class="pull-left" ng-model="vm.query.order.num" ng-change="vm.count()">
@@ -28,14 +28,15 @@
         </div>
         <div class="item item-text-wrap">
           <div class="row row-wrap border-col">
-            <div class="col col-25 text-center " ng-class='{"active":vm.order_model_name ==i.goods_name}' ng-click='vm.changeOrder(i)' ng-repeat="i in vm.order.att.goodsAttr track by $index">{{i.goods_name}}</div>
-            
+            <div class="col col-25 text-center " ng-class='{"active":vm.order_model_name ==i.goods_name}' ng-click='vm.changeOrder(i)'
+              ng-repeat="i in vm.order.att.goodsAttr track by $index">{{i.goods_name}}</div>
+
           </div>
         </div>
       </div>
     </div>
   </ion-content>
   <ion-footer-bar class="bar bar-assertive bar-footer">
-    <h2 style="text-align:center;width:100%;line-height: 33px;" ng-click='vm.addCar()'>加入购物车</h2>
+    <h2 style="text-align:center;width:100%;line-height: 33px;color:#fff" ng-click='vm.addCar()'>加入购物车</h2>
   </ion-footer-bar>
 </ion-modal-view>
